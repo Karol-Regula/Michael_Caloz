@@ -1,0 +1,6 @@
+ENTRY FORMAT:
+firstL -- TIMESTAMP
+<CHANGES>
+
+karolR -- 2017-05-08 12:01 PM
+- initial commit, started devlog, added .gitignore
