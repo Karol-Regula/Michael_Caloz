@@ -7,3 +7,8 @@ karolR -- 2017-05-08 12:01 PM
 
 emmaV -- 2017-05-13 13:28 PM
 - added basic account login/register functionality
+
+karolR -- 2017-05-14 16:04 PM
+- added database access functions
+- added basic app.py functionality
+- added test template for displaying data
