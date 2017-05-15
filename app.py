@@ -8,7 +8,8 @@ app = Flask(__name__)
 @app.route("/")
 def placeholder0():
   data = database.getSampleData()
-  return render_template('test.html', variable = data)
+  return render_template('index.html', types = ['questions','notes','lessons'])
+  #return render_template('test.html', variable = data)
 
 
 if __name__ == "__main__":

@@ -5,11 +5,12 @@
 	</head>
 	<body>
 		<h2>Topics</h2>
+
 		<select>
-			<option value="Biology">Biology</option>
-			<option value="Chemistry">Chemistry</option>
-			<option value="Math">Math</option>
-			<option value="English">English</option>
+			{% for type in types%}
+			<option value={{type}}>{{type}}</option>
+			{%endfor%}
 		</select>
+
 	</body>
 </html>

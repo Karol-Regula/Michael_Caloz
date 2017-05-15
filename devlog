@@ -12,3 +12,6 @@ karolR -- 2017-05-14 16:04 PM
 - added database access functions
 - added basic app.py functionality
 - added test template for displaying data
+
+emmaV -- 2017-05-15 18:34 PM
+- add basic index.html with jinja dropdown
