@@ -22,78 +22,93 @@ def initializeDB():
   #initialize.createDB()
   return c
 
-
 def closeDB():
   global db
   db.commit()
   db.close()
-    
+  
     
 def getSampleData():
   initializeDB()
   c.execute('SELECT * FROM questions')
   out = c.fetchall()
-  closeDB
+  closeDB()
   return out
 
 
 def getSubjectsDefinitions():
-    initializeDB()
-    q = 'SELECT subject FROM definitions'
-    c.execute(q)
-    subjects = c.fetchall()
-    allSubjects = []
-    for i in subjects:
-        if not i in allSubjects:
-            allSubjects.append(i)
-    print allSubjects
-    
+  initializeDB()
+  q = 'SELECT subject FROM definitions'
+  c.execute(q)
+  subjects = c.fetchall()
+  allSubjects = []
+  for i in subjects:
+    if not i in allSubjects:
+      allSubjects.append(i)
+  closeDB()
+  return allSubjects
+  
 def getSubjectsNotes():
-    initializeDB()
-    q = 'SELECT subject FROM notes'
-    c.execute(q)
-    subjects = c.fetchall()
-    allSubjects = []
-    for i in subjects:
-        if not i in allSubjects:
-            allSubjects.append(i)
-    print allSubjects
-    
+  initializeDB()
+  q = 'SELECT subject FROM notes'
+  c.execute(q)
+  subjects = c.fetchall()
+  allSubjects = []
+  for i in subjects:
+    if not i in allSubjects:
+      allSubjects.append(i)
+  closeDB()
+  return allSubjects
+  
 def getSubjectsQuestions():
-    initializeDB()
-    q = 'SELECT subject FROM questions'
-    c.execute(q)
-    subjects = c.fetchall()
-    allSubjects = []
-    for i in subjects:
-        if not i in allSubjects:
-            allSubjects.append(i)
-    print allSubjects
+  initializeDB()
+  q = 'SELECT subject FROM questions'
+  c.execute(q)
+  subjects = c.fetchall()
+  allSubjects = []
+  for i in subjects:
+    if not i in allSubjects:
+      allSubjects.append(i)
+  closeDB()
+  return allSubjects
 
 def getSubtopicNotes():
-    initializeDB()
-    q = 'SELECT SubTopic_Name FROM notes'
-    c.execute(q)
-    subjects = c.fetchall()
-    allSubjects = []
-    for i in subjects:
-        if not i in allSubjects:
-            allSubjects.append(i)
-    print allSubjects
+  initializeDB()
+  q = 'SELECT SubTopic_Name FROM notes'
+  c.execute(q)
+  subjects = c.fetchall()
+  allSubjects = []
+  for i in subjects:
+    if not i in allSubjects:
+      allSubjects.append(i)
+  closeDB()
+  return allSubjects
 
 def getSubtopicQuestions():
-    initializeDB()
-    q = 'SELECT Subtopic Name FROM questions'
-    c.execute(q)
-    subjects = c.fetchall()
-    allSubjects = []
-    for i in subjects:
-        if not i in allSubjects:
-            allSubjects.append(i)
-    print allSubjects
+  initializeDB()
+  q = 'SELECT Subtopic Name FROM questions'
+  c.execute(q)
+  subjects = c.fetchall()
+  allSubjects = []
+  for i in subjects:
+    if not i in allSubjects:
+      allSubjects.append(i)
+  closeDB()
+  return allSubjects
+
+#retrieves the subtopics under a certain subject from question table
+def getSubtopics(subject):
+  initializeDB()
+  q = 'SELECT Subtopic Name FROM questions WHERE subject=?'
+  info = c.execute(q, (subject))
+  subtopics = []
+  for i in info:
+    subtopics.append(i)
+  closeDB()
+  return subtopics
 
 #getSubtopicQuestions()
-getSubtopicNotes()
+print getSubtopicNotes()
 
 
 '''   
