@@ -59,6 +59,34 @@ def getSubjectsQuestions():
             allSubjects.append(i)
     print allSubjects
 
+def getSubtopicNotes():
+    initializeDB()
+    q = 'SELECT SubTopic_Name FROM notes'
+    c.execute(q)
+    subjects = c.fetchall()
+    allSubjects = []
+    for i in subjects:
+        if not i in allSubjects:
+            allSubjects.append(i)
+    print allSubjects
+
+def getSubtopicQuestions():
+    initializeDB()
+    q = 'SELECT Subtopic Name FROM questions'
+    c.execute(q)
+    subjects = c.fetchall()
+    allSubjects = []
+    for i in subjects:
+        if not i in allSubjects:
+            allSubjects.append(i)
+    print allSubjects
+
+#getSubtopicQuestions()
+getSubtopicNotes()
+
+
+'''   
 getSubjectsDefinitions()
 getSubjectsNotes()
 getSubjectsQuestions()
+'''
