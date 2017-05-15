@@ -3,6 +3,16 @@ import sqlite3
 
 f = "database.db"
 
+#database headings
+
+#definitions
+#idx|Subject|Word|Definition
+
+#notes
+#idx|Subject|Form|Topic_Number|Topic_Name|SubTopic_Number|SubTopic_Name|Information_ID|Information
+
+#questions
+#ID|Test|Test Type|Year|Subject|Question Number|Part Number|Question|A|B|C|D|E|Answer|Subtopic Name|Flag|Notes
 
 def initializeDB():
   global c, db
@@ -25,6 +35,7 @@ def getSampleData():
   out = c.fetchall()
   closeDB
   return out
+
 
 def getSubjectsDefinitions():
     initializeDB()
