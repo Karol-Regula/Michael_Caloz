@@ -16,3 +16,7 @@ if __name__ == "__main__":
     # app.config.from_object("config")
     # app.secret_key = app.config["SECRET_KEY"]
     app.run()
+
+
+#next thing due:
+#FRIDAY: demo of progress, site design, discuss what is being worked on/project
