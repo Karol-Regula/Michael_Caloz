@@ -131,14 +131,14 @@ def getSubjects():
   
   out = []
   for sub in subDef:
-    if sub not in out:
-      out.append(sub)
+    if sub[0] not in out:
+      out.append(sub[0])
   for sub in subQue:
-    if sub not in out:
-      out.append(sub)
+    if sub[0] not in out:
+      out.append(sub[0])
   for sub in subNot:
-    if subTranslate(sub) not in out:
-      out.append(subTranslate(sub))
+    if subTranslate(sub[0]) not in out:
+      out.append(subTranslate(sub[0]))
   return out
   
 def subTranslate(subject):
