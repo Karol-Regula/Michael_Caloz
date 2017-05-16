@@ -7,20 +7,20 @@
 	</head>
 	<body>
 
-		<h2>Types</h2>
-		<select id="selectTypes" onchange="setTopics();">
+		<h2>Subjects</h2>
+		<select id="selectSubjects" onchange="setTypes();">
 			<option value=""></option>
-			{% for type in types%}
-			<option value={{type}}>{{type}}</option>
+			{% for subject in subjects%}
+			<option value={{type}}>{{subject}}</option>
 			{%endfor%}
 		</select>
 
-		<h2>Subjects</h2>
-		<select id="selectTopics" onchange="setSubtopics();">
+		<h2>Types</h2>
+		<select id="selectTypes" onchange="setTopics();">
 		</select>
 
 		<h2>Topics</h2>
-		<select id="selectSubtopics">
+		<select id="selectTopics">
 		</select>
 
 	</body>
