@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 # Returns comma-separated str of topics available
 # for the requested material type
-@app.route("/getTopics/", methods=["GET"])
-def getTopicsBy():
+@app.route("/getSubjectByType/", methods=["GET"])
+def getTopics():
 	topics = []
 	materialType = request.args['category']
 	if materialType=='Definitions':
@@ -24,8 +24,8 @@ def getTopicsBy():
 
 # Returns comma-separated str of subtopics available
 # for the requested topic
-@app.route("/getSubtopics/", methods=["GET"])
-def getSubtopicsBy():
+@app.route("/getTopics/", methods=["GET"])
+def getTopicsBy():
 	topic = request.args['category']
 	subs = database.getTopicsNotes(topic)
 	ret = [sub[0] for sub in subs]
@@ -33,11 +33,11 @@ def getSubtopicsBy():
 
 @app.route("/")
 def placeholder1():
-	return render_template('index.html', types = ['Questions','Notes','Definitions'])
+	return render_template('index.html', subjects = database.getSubjects());
 
 @app.route("/slash")
 def placeholder0():
-	data = database.getSampleData()
+	data = database.getSubjects()
 	return render_template('test.html', variable = data)
 
 

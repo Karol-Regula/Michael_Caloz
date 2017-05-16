@@ -96,7 +96,7 @@ def getSubtopicQuestions():
   closeDB()
   return allSubjects
 
-#retrieves the subtopics under a certain subject from question table
+#retrieves the topics under a certain subject from question table
 def getTopicsNotes(subject):
   print "subject: " + subject
   initializeDB()
@@ -109,13 +109,77 @@ def getTopicsNotes(subject):
   closeDB()
   #print topics
   return topics
+  
+def getSubtopicsNotes(topic):
+  print "topic: " + topic
+  initializeDB()
+  q = 'SELECT "Subtopic_Name" FROM notes WHERE Topic_Name=?'
+  info = c.execute(q, (topic,))
+  subtopics = []
+  for i in info:
+    if not i in subtopics:
+      subtopics.append(i)
+  closeDB()
+  #print subtopics
+  return subtopics
+  
+  
+def getSubjects():
+  subDef = getSubjectsDefinitions()
+  subNot = getSubjectsNotes()
+  subQue = getSubjectsQuestions()
+  
+  out = []
+  for sub in subDef:
+    if sub[0] not in out:
+      out.append(sub[0])
+  for sub in subQue:
+    if sub[0] not in out:
+      out.append(sub[0])
+  for sub in subNot:
+    if subTranslate(sub[0]) not in out:
+      out.append(subTranslate(sub[0]))
+  return out
+  
+def subTranslate(subject):
+  if subject == "C":
+    return "Civics"
+  if subject == "Z":
+    return "Chemistry"
+  if subject == "P":
+    return "Physics"
+  if subject == "B":
+    return "Biology"
+  if subject == "G":
+    return "Geography"
+  if subject == "H":
+    return "History"
+  return "BROKEN"
 
-#getSubtopicQuestions()
-#print getSubtopicNotes()
+#subject,type,topic -> content. type: questions, notes, or definitions
+def content(subject,tipe,topic):
+    initializeDB()
+    if tipe == "notes":
+        q = "SELECT Information FROM notes WHERE subject =? and topic=?"
+        con = c.execute(q, (subject,topic))
+    if tipe == "definitions":
+        q = "SELECT Word, Definition FROM definitions WHERE subject =?"
+        con = c.execute(q, (subject,))
+    if tipe == "questions":
+        q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =?"
+        con = c.execute(q, (subject,))
+    
+    content = c.fetchall()
+    closeDB()
+    return content
 
+
+#print content('Geography','definitions','')
 
 '''   
 getSubjectsDefinitions()
 getSubjectsNotes()
 getSubjectsQuestions()
+getSubtopicQuestions()
+print getSubtopicNotes()
 '''

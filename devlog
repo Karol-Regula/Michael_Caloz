@@ -30,8 +30,13 @@ karolR -- 2017-05-16 11:46 PM
 - removed duplicate topic entries
 - cleaned up terminology (subject vs topic vs subtopic)
 
+emmaV -- 2017-05-16 12:23 PM
+- changed html and js to start reflecing new format
+
 yvonneC & bayleS -- 2017-05-16 12:25 PM
 - finished method that takes (subject, type, topic) and returns the information related to those categories (topic is empty string for every type except notes)
 
 karolR -- 2017-05-16 12:29 PM
 - wrote method for getting subjects and translating the subjects from the notes table
+
+
