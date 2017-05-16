@@ -13,6 +13,10 @@ karolR -- 2017-05-14 16:04 PM
 - added basic app.py functionality
 - added test template for displaying data
 
+yvonneC -- 2017-05-15 15:31 PM
+- added subtopic method for specific subject
+- reorganization of code to fit style guide
+
 emmaV -- 2017-05-15 18:34 PM
 - add basic index.html with jinja dropdown
 - topic dropdowns change based on type selection
