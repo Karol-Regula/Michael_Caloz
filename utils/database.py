@@ -108,7 +108,7 @@ def getSubtopics(subject):
   return subtopics
 
 #getSubtopicQuestions()
-print getSubtopicNotes()
+#print getSubtopicNotes()
 
 
 '''   

@@ -2,14 +2,25 @@
 <html>
 	<head>
 		<title>Text Tetea</title>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="static/js/tetea.js"></script>
 	</head>
 	<body>
-		<h2>Topics</h2>
 
-		<select>
+		<h2>Types</h2>
+		<select id="selectTypes" onchange="setTopics();">
+			<option value=""></option>
 			{% for type in types%}
 			<option value={{type}}>{{type}}</option>
 			{%endfor%}
+		</select>
+
+		<h2>Topics</h2>
+		<select id="selectTopics" onchange="setSubtopics();">
+		</select>
+
+		<h2>Subtopics</h2>
+		<select id="selectSubtopics">
 		</select>
 
 	</body>
