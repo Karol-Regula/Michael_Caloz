@@ -37,7 +37,7 @@ def placeholder1():
 
 @app.route("/slash")
 def placeholder0():
-	data = database.getSampleData()
+	data = database.getSubjects()
 	return render_template('test.html', variable = data)
 
 
