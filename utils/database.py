@@ -174,7 +174,7 @@ def content(subject,tipe,topic):
     return content
 
 
-print content('Geography','definitions','')
+#print content('Geography','definitions','')
 
 '''   
 getSubjectsDefinitions()
