@@ -4,6 +4,8 @@ from utils import database, accounts
 
 app = Flask(__name__)
 
+# Returns comma-separated str of topics available
+# for the requested material type
 @app.route("/getTopics/", methods=["GET"])
 def getTopicsBy():
 	topics = []
@@ -20,6 +22,8 @@ def getTopicsBy():
 	ret = [topic[0] for topic in topics] #bc tuple
 	return ",".join(ret)
 
+# Returns comma-separated str of subtopics available
+# for the requested topic
 @app.route("/getSubtopics/", methods=["GET"])
 def getSubtopicsBy():
 	topic = request.args['category']

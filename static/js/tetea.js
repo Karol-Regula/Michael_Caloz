@@ -1,3 +1,5 @@
+// Updates thisSelect menu based on the choice
+// made in the lastSelect menu (using the function fxn)
 var setSelect = function(lastSelect,fxn,thisSelect) {
 	var typeSelect = document.getElementById(lastSelect);
 	var typePicked = typeSelect.options[typeSelect.selectedIndex].text;
@@ -35,10 +37,12 @@ var setSelect = function(lastSelect,fxn,thisSelect) {
 	});
 };
 
+// sets topics based on material type
 var setTopics = function() {
 	setSelect("selectTypes","/getTopics/","selectTopics");
 }
 
+// sets subtopics based on topic
 var setSubtopics = function() {
 	setSelect("selectTopics","/getSubtopics/","selectSubtopics")
 }
