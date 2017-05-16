@@ -25,7 +25,12 @@ var setSelect = function(lastSelect,fxn,thisSelect) {
 };
 
 var setDropdown = function(to_add, thisSelect) {
-	var topicList = topics.split(",")
+	if (to_add instanceof String) {
+		var topicList = to_add.split(",");
+	} else {
+		var topicList = to_add;
+	}
+	
 	var select = document.getElementById(thisSelect);
 	// clear old subtopics
 	while (select.hasChildNodes()) {
