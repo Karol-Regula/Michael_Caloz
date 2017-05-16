@@ -52,5 +52,5 @@ var setTypes = function() {
 };
 
 var setTopics = function() {
-	setSelect("selectTypes", "getSubtopics", "selectTopics");
+	setSelect("selectTypes", "getTopics", "selectTopics");
 };
