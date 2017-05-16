@@ -25,3 +25,7 @@ emmaV -- 2017-05-15 18:34 PM
 karolR -- 2017-05-15 20:44 PM
 - fixed bug with database breaking when accessing subtopics
 - subtopics now work for notes
+
+karolR -- 2017-05-16 11:46 PM
+- removed duplicate topic entries
+- cleaned up terminology (subject vs topic vs subtopic)

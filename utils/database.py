@@ -97,17 +97,18 @@ def getSubtopicQuestions():
   return allSubjects
 
 #retrieves the subtopics under a certain subject from question table
-def getSubtopicsNotes(subject):
+def getTopicsNotes(subject):
   print "subject: " + subject
   initializeDB()
   q = 'SELECT "Topic_Name" FROM notes WHERE subject=?'
   info = c.execute(q, (subject,))
-  subtopics = []
+  topics = []
   for i in info:
-    subtopics.append(i)
+    if not i in topics:
+      topics.append(i)
   closeDB()
-  print subtopics
-  return subtopics
+  #print topics
+  return topics
 
 #getSubtopicQuestions()
 #print getSubtopicNotes()
