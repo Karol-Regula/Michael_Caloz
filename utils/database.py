@@ -16,7 +16,7 @@ f = "database.db"
 
 def initializeDB():
   global c, db
-  file = '../data/database.db'
+  file = 'data/database.db'
   db = sqlite3.connect(file)
   c = db.cursor()
   #initialize.createDB()
