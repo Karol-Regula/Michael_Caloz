@@ -17,3 +17,7 @@ emmaV -- 2017-05-15 18:34 PM
 - add basic index.html with jinja dropdown
 - topic dropdowns change based on type selection
 - started subtopic dropdown changing based on topic
+
+karolR -- 2017-05-15 20:44 PM
+- fixed bug with database breaking when accessing subtopics
+- subtopics now work for notes

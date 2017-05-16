@@ -27,7 +27,7 @@ def getTopicsBy():
 @app.route("/getSubtopics/", methods=["GET"])
 def getSubtopicsBy():
 	topic = request.args['category']
-	subs = database.getSubtopics(topic)
+	subs = database.getSubtopicsNotes(topic)
 	ret = [sub[0] for sub in subs]
 	return ",".join(ret)
 
