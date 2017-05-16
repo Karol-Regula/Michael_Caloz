@@ -29,3 +29,9 @@ karolR -- 2017-05-15 20:44 PM
 karolR -- 2017-05-16 11:46 PM
 - removed duplicate topic entries
 - cleaned up terminology (subject vs topic vs subtopic)
+
+yvonneC & bayleS -- 2017-05-16 12:25 PM
+- finished method that takes (subject, type, topic) and returns the information related to those categories (topic is empty string for every type except notes)
+
+karolR -- 2017-05-16 12:29 PM
+- wrote method for getting subjects and translating the subjects from the notes table
