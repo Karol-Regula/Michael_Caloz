@@ -48,9 +48,18 @@ var setDropdown = function(to_add, thisSelect) {
 
 
 var setTopics = function(topics) {
-	console.log(topics)
-	var typeSelect = document.getElementById("selectSubjects");
+	var subjSelect = document.getElementById("selectSubjects");
+	var subjPicked = subjSelect.options[subjSelect.selectedIndex].text;
+
+	var typeSelect = document.getElementById("selectTypes");
 	var typePicked = typeSelect.options[typeSelect.selectedIndex].text;
 
-
+	if (typePicked=='Notes') {
+		setDropdown(topics[subjPicked], "selectTopics");
+	} else {
+		var select = document.getElementById("selectTopics");
+		while (select.hasChildNodes()) {
+			select.removeChild(select.lastChild);
+		}
+	}
 };
