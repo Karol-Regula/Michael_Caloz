@@ -179,11 +179,11 @@ def getSubjects():
 #retrieves the information from specified subject in the specified type table
 def content(subject,tipe,topic):
   initializeDB()
+  ret = []
   if tipe == "Notes":
     subject = revSubTranslate(subject)
     q = "SELECT Information FROM notes WHERE Subject=? AND Topic_Name=?"
     c.execute(q, (subject,topic))
-    ret = []
     for i in c.fetchall():
       ret.append(i[0])
     print ret
@@ -192,7 +192,6 @@ def content(subject,tipe,topic):
     q = "SELECT Word, Definition FROM definitions WHERE subject =?"
     c.execute(q, (subject,))
     whole = c.fetchall()
-    ret =[]
     for i in whole:
       ret.append({'Word': i[0], 'Definition':i[1]})
       
@@ -201,8 +200,9 @@ def content(subject,tipe,topic):
     c.execute(q, (subject,))
     whole = c.fetchall()
     for i in whole:
-      ret.append();
+      ret.append({"Question": i[0], "A": i[1], "B": i[2], "C": i[3], "D":i[4], "E":i[5], "Answer": i[6]})
   closeDB()
+  print ret
   return ret
 
 #return dictionary of subject:[topics] for the notes
