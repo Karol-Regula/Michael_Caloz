@@ -192,6 +192,24 @@ def content(subject,tipe,topic):
   closeDB()
   return content
 
+#return dictionary of subject:[topics] for the notes
+def subjectTopic():
+  initializeDB()
+  q = 'SELECT Topic_Name, Subject FROM notes'
+  c.execute(q)
+  info = c.fetchall()
+  ret = {}
+  for i in info:
+    if subTranslate(i[1]) not in ret:
+      ret[subTranslate(i[1])] = [i[0]]
+    else:
+      ret[subTranslate(i[1])].append(i[0])
+  for item in ret:
+    ret[item] = list(set(ret[item])    )
+  closeDB()
+  return ret
+
+print subjectTopic()
 
 #print content('Geography','definitions','')
 
