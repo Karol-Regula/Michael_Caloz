@@ -43,6 +43,10 @@ yvonneC -- 2017-05-16 21:48 PM
 - minor changes to database.py to ensure style is same
 - integrated access tracking in app.py by creating a session variable
 
+emmaV & felixR -- 2017-05-17 12:22 PM
+- refigure how dropdown info laods to be more efficient
+
 yvonneC & bayleS -- 2017-05-17 12:30 PM
 - fixed getTopicNotes(subject) method
 - created subjectTopic method that returns dictionary of subjects with list of topics as values
+
