@@ -39,4 +39,6 @@ yvonneC & bayleS -- 2017-05-16 12:25 PM
 karolR -- 2017-05-16 12:29 PM
 - wrote method for getting subjects and translating the subjects from the notes table
 
+yvonneC -- 2017-05-16 21:48 PM
+- minor changes to database.py to ensure style is same
 

@@ -101,7 +101,8 @@ def getTopicsNotes(subject):
   print "subject: " + subject
   initializeDB()
   q = 'SELECT "Topic_Name" FROM notes WHERE subject=?'
-  info = c.execute(q, (subject,))
+  c.execute(q, (subject,))
+  info = c.fetchall()
   topics = []
   for i in info:
     if not i in topics:
@@ -158,20 +159,19 @@ def subTranslate(subject):
 
 #subject,type,topic -> content. type: questions, notes, or definitions
 def content(subject,tipe,topic):
-    initializeDB()
-    if tipe == "notes":
-        q = "SELECT Information FROM notes WHERE subject =? and topic=?"
-        con = c.execute(q, (subject,topic))
-    if tipe == "definitions":
-        q = "SELECT Word, Definition FROM definitions WHERE subject =?"
-        con = c.execute(q, (subject,))
-    if tipe == "questions":
-        q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =?"
-        con = c.execute(q, (subject,))
-    
-    content = c.fetchall()
-    closeDB()
-    return content
+  initializeDB()
+  if tipe == "notes":
+    q = "SELECT Information FROM notes WHERE subject =? and topic=?"
+    con = c.execute(q, (subject,topic))
+  if tipe == "definitions":
+    q = "SELECT Word, Definition FROM definitions WHERE subject =?"
+    con = c.execute(q, (subject,))
+  if tipe == "questions":
+    q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =?"
+    con = c.execute(q, (subject,))
+  content = c.fetchall()
+  closeDB()
+  return content
 
 
 #print content('Geography','definitions','')
