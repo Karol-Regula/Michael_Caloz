@@ -1,8 +1,16 @@
 // Updates thisSelect menu based on the choice
 // made in the lastSelect menu (using the function fxn)
-var setSelect = function(lastSelect,fxn,thisSelect) {
-	var typeSelect = document.getElementById(lastSelect);
+// NOT USING RN, keeping for ajax
+
+//gets selected of dropdown with id thisselect
+var selected = function(thisSelect) {
+	var typeSelect = document.getElementById(thisSelect);
 	var typePicked = typeSelect.options[typeSelect.selectedIndex].text;
+	return typePicked;
+}
+
+var setSelect = function(lastSelect,fxn,thisSelect) {
+	var typePicked = selected(lastSelect);
 	var topics = ""
 	$.ajax({
 		traditional: true,
@@ -24,6 +32,9 @@ var setSelect = function(lastSelect,fxn,thisSelect) {
 	});
 };
 
+// resets dropdown with id thisSelect to contain
+// the information in to_add (which is either values
+// separated by commas, or an array)
 var setDropdown = function(to_add, thisSelect) {
 	if (to_add instanceof String) {
 		var topicList = to_add.split(",");
@@ -46,13 +57,10 @@ var setDropdown = function(to_add, thisSelect) {
 	}
 };
 
-
+//sets topics when form data is changed
 var setTopics = function(topics) {
-	var subjSelect = document.getElementById("selectSubjects");
-	var subjPicked = subjSelect.options[subjSelect.selectedIndex].text;
-
-	var typeSelect = document.getElementById("selectTypes");
-	var typePicked = typeSelect.options[typeSelect.selectedIndex].text;
+	var subjPicked = selected("selectSubjects");
+	var typePicked = selected("selectTypes");
 
 	if (typePicked=='Notes') {
 		setDropdown(topics[subjPicked], "selectTopics");
@@ -63,3 +71,33 @@ var setTopics = function(topics) {
 		}
 	}
 };
+
+var getContent = function() {
+	var subj = selected("selectSubjects");
+	var mType = selected("selectTypes");
+	var mTopic;
+	if (mType=='Notes') {
+		mTopic = selected("selectTopics");
+	} else {
+		mTopic = "";
+	}
+
+	$.ajax({
+		traditional: true,
+        type: "GET",
+        url: "/getContent/",
+        data: {subject: subj, type: mType, topic: mTopic},
+        dataType: "text",
+        success: function(response){
+        	console.log(response)
+        },
+        error: function(textStatus, errorThrown){
+        	console.log(textStatus)
+        	console.log(errorThrown)
+        }
+	})
+	.done(function() {
+		console.log("done!")
+		// add content to page
+	});
+}

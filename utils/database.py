@@ -179,13 +179,13 @@ def getSubjects():
 #retrieves the information from specified subject in the specified type table
 def content(subject,tipe,topic):
   initializeDB()
-  if tipe == "notes":
+  if tipe == "Notes":
     q = "SELECT Information FROM notes WHERE subject =? and topic=?"
     con = c.execute(q, (subject,topic))
-  if tipe == "definitions":
+  if tipe == "Definitions":
     q = "SELECT Word, Definition FROM definitions WHERE subject =?"
     con = c.execute(q, (subject,))
-  if tipe == "questions":
+  if tipe == "Questions":
     q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =?"
     con = c.execute(q, (subject,))
   content = c.fetchall()
@@ -209,7 +209,7 @@ def subjectTopic():
   closeDB()
   return ret
 
-print subjectTopic()
+#print subjectTopic()
 
 #print content('Geography','definitions','')
 

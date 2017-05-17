@@ -38,7 +38,6 @@ def getTopicsBy():
 @app.route("/")
 def placeholder1():
 	session['access'] = 0 #increment to record amount of time information is accessed
-	print json.dumps(database.getTopicsNotes('Civics'))
 	return render_template('index.html', subjects=database.getSubjects(), types=['Questions', 'Notes', 'Lessons'], topics=json.dumps(database.subjectTopic()));
 
 @app.route("/slash")
@@ -46,6 +45,13 @@ def placeholder0():
 	data = database.getSubjects()
 	return render_template('test.html', variable = data)
 
+@app.route("/getContent/", methods=["GET"])
+def getContent():
+	print request.args.keys()
+	subj = request.args['subject']
+	theType = request.args['type']
+	topic = request.args['topic']
+	return str(database.content(subj, theType, topic))
 
 if __name__ == "__main__":
     app.debug = True

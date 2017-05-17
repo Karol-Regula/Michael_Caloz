@@ -9,7 +9,6 @@
 
 		<h2>Subjects</h2>
 		<select id="selectSubjects" onchange="setTopics({{topics}});">
-			<option value=""></option>
 			{% for subject in subjects%}
 			<option value={{type}}>{{subject}}</option>
 			{%endfor%}
@@ -17,7 +16,6 @@
 
 		<h2>Types</h2>
 		<select id="selectTypes" onchange="setTopics({{topics}});">
-			<option value=""></option>
 			{% for type in types%}
 			<option value={{type}}>{{type}}</option>
 			{%endfor%}
@@ -26,10 +24,9 @@
 		<h2>Topics</h2>
 		<select id="selectTopics">
 		</select>
-<!--
-		<form name="search" action="/cgi-bin/test.py" method="get">
-		<input type="submit" value="Submit">
-		</form> 
--->
+
+		<br><br>
+		<input type="submit" value="Submit" onclick="getContent();">
+
 	</body>
 </html>
