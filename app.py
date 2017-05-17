@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import utils
 from os import urandom
 from utils import database, accounts
+import json
 
 app = Flask(__name__)
 app.secret_key = urandom(20)
@@ -36,8 +37,9 @@ def getTopicsBy():
 
 @app.route("/")
 def placeholder1():
-        session['access'] = 0 #increment to record amount of time information is accessed
-	return render_template('index.html', subjects = database.getSubjects());
+	session['access'] = 0 #increment to record amount of time information is accessed
+	print json.dumps(database.getTopicsNotes('Civics'))
+	return render_template('index.html', subjects=database.getSubjects(), types=['Questions', 'Notes', 'Lessons'], topics=json.dumps(database.getTopicsNotes('Civics')));
 
 @app.route("/slash")
 def placeholder0():
