@@ -46,11 +46,11 @@ var setDropdown = function(to_add, thisSelect) {
 	}
 };
 
-// sets types based on subject
-var setTypes = function() {
-	setDropdown(['Questions','Notes','Lessons'], "selectTypes");
-};
 
-var setTopics = function() {
-	setSelect("selectTypes", "getTopics", "selectTopics");
+var setTopics = function(topics) {
+	console.log(topics)
+	var typeSelect = document.getElementById("selectSubjects");
+	var typePicked = typeSelect.options[typeSelect.selectedIndex].text;
+
+
 };
