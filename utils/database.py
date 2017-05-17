@@ -183,15 +183,27 @@ def content(subject,tipe,topic):
     subject = revSubTranslate(subject)
     q = "SELECT Information FROM notes WHERE Subject=? AND Topic_Name=?"
     c.execute(q, (subject,topic))
+    ret = []
+    for i in c.fetchall():
+      ret.append(i[0])
+    print ret
+
   if tipe == "Definitions":
     q = "SELECT Word, Definition FROM definitions WHERE subject =?"
     c.execute(q, (subject,))
+    whole = c.fetchall()
+    ret =[]
+    for i in whole:
+      ret.append({'Word': i[0], 'Definition':i[1]})
+      
   if tipe == "Questions":
     q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =?"
     c.execute(q, (subject,))
-  content = c.fetchall()
+    whole = c.fetchall()
+    for i in whole:
+      ret.append();
   closeDB()
-  return content
+  return ret
 
 #return dictionary of subject:[topics] for the notes
 def subjectTopic():
