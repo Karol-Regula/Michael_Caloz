@@ -47,5 +47,7 @@ emmaV & felixR -- 2017-05-17 12:22 PM
 - refigure how dropdown info laods to be more efficient
 - finish so that subj/type/topic dropdowns flow well
 
-emmaV -- 2017-05-17 13:07 PM
-- begin getting content basd on subj/type/topic
+yvonneC & bayleS -- 2017-05-17 12:30 PM
+- fixed getTopicNotes(subject) method
+- created subjectTopic method that returns dictionary of subjects with list of topics as values
+
