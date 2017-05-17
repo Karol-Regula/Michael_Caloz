@@ -14,6 +14,37 @@ f = "database.db"
 #questions
 #ID|Test|Test Type|Year|Subject|Question Number|Part Number|Question|A|B|C|D|E|Answer|Subtopic Name|Flag|Notes
 
+def subTranslate(subject):
+  if subject == "C":
+    return "Civics"
+  if subject == "Z":
+    return "Chemistry"
+  if subject == "P":
+    return "Physics"
+  if subject == "B":
+    return "Biology"
+  if subject == "G":
+    return "Geography"
+  if subject == "H":
+    return "History"
+  return "BROKEN"
+
+def revSubTranslate(subject):
+  if subject == "Civics":
+    return "C"
+  if subject == "Chemistry":
+    return "Z"
+  if subject == "Physics":
+    return "P"
+  if subject == "Biology":
+    return "B"
+  if subject == "Geography":
+    return "G"
+  if subject == "History":
+    return "H"
+  return "BROKEN"
+
+
 def initializeDB():
   global c, db
   file = 'data/database.db'
@@ -34,7 +65,6 @@ def getSampleData():
   out = c.fetchall()
   closeDB()
   return out
-
 
 def getSubjectsDefinitions():
   initializeDB()
@@ -100,8 +130,8 @@ def getSubtopicQuestions():
 def getTopicsNotes(subject):
   print "subject: " + subject
   initializeDB()
-  q = 'SELECT "Topic_Name" FROM notes WHERE subject=?'
-  c.execute(q, (subject,))
+  q = 'SELECT Topic_Name FROM notes WHERE subject=?'
+  c.execute(q, (revSubTranslate(subject),))
   info = c.fetchall()
   topics = []
   for i in info:
@@ -111,11 +141,13 @@ def getTopicsNotes(subject):
   #print topics
   return topics
 
+#print getTopicsNotes("Physics")
+
 #retrieves subtopics under certain topic from notes table
 def getSubtopicsNotes(topic):
   print "topic: " + topic
   initializeDB()
-  q = 'SELECT "Subtopic_Name" FROM notes WHERE Topic_Name=?'
+  q = 'SELECT Subtopic_Name FROM notes WHERE Topic_Name=?'
   info = c.execute(q, (topic,))
   subtopics = []
   for i in info:
@@ -143,21 +175,6 @@ def getSubjects():
       out.append(subTranslate(sub[0]))
   return out
   
-def subTranslate(subject):
-  if subject == "C":
-    return "Civics"
-  if subject == "Z":
-    return "Chemistry"
-  if subject == "P":
-    return "Physics"
-  if subject == "B":
-    return "Biology"
-  if subject == "G":
-    return "Geography"
-  if subject == "H":
-    return "History"
-  return "BROKEN"
-
 #subject,type,topic -> content. type: questions, notes, or definitions
 #retrieves the information from specified subject in the specified type table
 def content(subject,tipe,topic):
