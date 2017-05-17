@@ -2,58 +2,61 @@ ENTRY FORMAT:
 firstL -- TIMESTAMP
 <CHANGES>
 
-karolR -- 2017-05-08 12:01 PM
+karolR -- 2017-05-08 12:01 
 - initial commit, started devlog, added .gitignore
 
-emmaV -- 2017-05-13 13:28 PM
+emmaV -- 2017-05-13 13:28 
 - added basic account login/register functionality
 
-karolR -- 2017-05-14 16:04 PM
+karolR -- 2017-05-14 16:04 
 - added database access functions
 - added basic app.py functionality
 - added test template for displaying data
 
-yvonneC -- 2017-05-15 15:31 PM
+yvonneC -- 2017-05-15 15:31 
 - added subtopic method for specific subject
 - reorganization of code to fit style guide
 
-emmaV -- 2017-05-15 18:34 PM
+emmaV -- 2017-05-15 18:34 
 - add basic index.html with jinja dropdown
 - topic dropdowns change based on type selection
 - started subtopic dropdown changing based on topic
 
-karolR -- 2017-05-15 20:44 PM
+karolR -- 2017-05-15 20:44 
 - fixed bug with database breaking when accessing subtopics
 - subtopics now work for notes
 
-karolR -- 2017-05-16 11:46 PM
+karolR -- 2017-05-16 11:46 
 - removed duplicate topic entries
 - cleaned up terminology (subject vs topic vs subtopic)
 
-emmaV -- 2017-05-16 12:23 PM
+emmaV -- 2017-05-16 12:23 
 - changed html and js to start reflecing new format
 
-yvonneC & bayleS -- 2017-05-16 12:25 PM
+yvonneC & bayleSS -- 2017-05-16 12:25 
 - finished method that takes (subject, type, topic) and returns the information related to those categories (topic is empty string for every type except notes)
 
-karolR -- 2017-05-16 12:29 PM
+karolR -- 2017-05-16 12:29 
 - wrote method for getting subjects and translating the subjects from the notes table
 
-yvonneC -- 2017-05-16 21:48 PM
+yvonneC -- 2017-05-16 21:48 
 - minor changes to database.py to ensure style is same
 - integrated access tracking in app.py by creating a session variable
 
-emmaV & felixR -- 2017-05-17 12:22 PM
+emmaV & felixR -- 2017-05-17 12:22 
 - refigure how dropdown info laods to be more efficient
 - finish so that subj/type/topic dropdowns flow well
 
-yvonneC & bayleS -- 2017-05-17 12:30 PM
+yvonneC & bayleSS -- 2017-05-17 12:30
 - fixed getTopicNotes(subject) method
 - created subjectTopic method that returns dictionary of subjects with list of topics as values
 
-emmaV -- 2017-05-17 13:09 PM
+emmaV -- 2017-05-17 13:09
 - begin getting content based on subject/type/topic
 
-emmaV & bayleS -- 2017-05-17 13:49 PM
+emmaV & bayleSS -- 2017-05-17 13:49
 - fix getting content from db (table typos, wrong sqlite3 fxns)
 - plan better content return type
+
+bayleSS -- 2017-05-17 15:22
+- database.py sends content to client side successfuly
