@@ -51,3 +51,5 @@ yvonneC & bayleS -- 2017-05-17 12:30 PM
 - fixed getTopicNotes(subject) method
 - created subjectTopic method that returns dictionary of subjects with list of topics as values
 
+emmaV -- 2017-05-17 13:09 PM
+- begin getting content based on subject/type/topic
