@@ -1,7 +1,3 @@
-// Updates thisSelect menu based on the choice
-// made in the lastSelect menu (using the function fxn)
-// NOT USING RN, keeping for ajax
-
 //gets selected of dropdown with id thisselect
 var selected = function(thisSelect) {
 	var typeSelect = document.getElementById(thisSelect);
@@ -9,9 +5,13 @@ var selected = function(thisSelect) {
 	return typePicked;
 }
 
+// Updates thisSelect menu based on the choice
+// made in the lastSelect menu (using the function fxn)
+// NOT USING RN, keeping for ajax
 var setSelect = function(lastSelect,fxn,thisSelect) {
 	var typePicked = selected(lastSelect);
 	var topics = ""
+	// run fxn, set topics to response
 	$.ajax({
 		traditional: true,
 		//async: false,
@@ -28,6 +28,7 @@ var setSelect = function(lastSelect,fxn,thisSelect) {
         }
 	})
 	.done(function() {
+		// once done, set dropdown to topics
 		setDropdown(topics, thisSelect);
 	});
 };
@@ -37,8 +38,10 @@ var setSelect = function(lastSelect,fxn,thisSelect) {
 // separated by commas, or an array)
 var setDropdown = function(to_add, thisSelect) {
 	if (to_add instanceof String) {
+		// str of comma separated vals
 		var topicList = to_add.split(",");
 	} else {
+		// just use the array as is
 		var topicList = to_add;
 	}
 	
@@ -48,6 +51,7 @@ var setDropdown = function(to_add, thisSelect) {
 		select.removeChild(select.lastChild);
 	}
 
+	//add each item in list to dropdown
 	var i=0;
 	for (i=0; i<topicList.length; i++){
 		var node = document.createElement("option");
@@ -63,8 +67,10 @@ var setTopics = function(topics) {
 	var typePicked = selected("selectTypes");
 
 	if (typePicked=='Notes') {
+		//set topics based on subject
 		setDropdown(topics[subjPicked], "selectTopics");
 	} else {
+		//no topics: clear the dropdown of options
 		var select = document.getElementById("selectTopics");
 		while (select.hasChildNodes()) {
 			select.removeChild(select.lastChild);
@@ -72,16 +78,20 @@ var setTopics = function(topics) {
 	}
 };
 
+// Runs upon submission
+// Gets content based on subj/type/topic
 var getContent = function() {
 	var subj = selected("selectSubjects");
 	var mType = selected("selectTypes");
 	var mTopic;
+	//only get type if applicable
 	if (mType=='Notes') {
 		mTopic = selected("selectTopics");
 	} else {
 		mTopic = "";
 	}
 
+	// call to app.py to get the content
 	$.ajax({
 		traditional: true,
         type: "GET",
