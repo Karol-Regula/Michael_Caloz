@@ -41,4 +41,4 @@ karolR -- 2017-05-16 12:29 PM
 
 yvonneC -- 2017-05-16 21:48 PM
 - minor changes to database.py to ensure style is same
-
+- integrated access tracking in app.py by creating a session variable

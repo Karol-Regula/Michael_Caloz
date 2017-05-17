@@ -110,7 +110,8 @@ def getTopicsNotes(subject):
   closeDB()
   #print topics
   return topics
-  
+
+#retrieves subtopics under certain topic from notes table
 def getSubtopicsNotes(topic):
   print "topic: " + topic
   initializeDB()
@@ -158,6 +159,7 @@ def subTranslate(subject):
   return "BROKEN"
 
 #subject,type,topic -> content. type: questions, notes, or definitions
+#retrieves the information from specified subject in the specified type table
 def content(subject,tipe,topic):
   initializeDB()
   if tipe == "notes":

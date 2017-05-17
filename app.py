@@ -1,13 +1,16 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 import utils
+from os import urandom
 from utils import database, accounts
 
 app = Flask(__name__)
+app.secret_key = urandom(20)
 
 # Returns comma-separated str of topics available
 # for the requested material type
 @app.route("/getSubjectByType/", methods=["GET"])
 def getTopics():
+        #print session['access']
 	topics = []
 	materialType = request.args['category']
 	if materialType=='Definitions':
@@ -18,7 +21,6 @@ def getTopics():
 		topics = database.getSubjectsQuestions()
 	else:
 		print "Invalid argument"
-	
 	ret = [topic[0] for topic in topics] #bc tuple
 	return ",".join(ret)
 
@@ -27,12 +29,14 @@ def getTopics():
 @app.route("/getTopics/", methods=["GET"])
 def getTopicsBy():
 	topic = request.args['category']
+        session['access'] += 1
 	subs = database.getTopicsNotes(topic)
 	ret = [sub[0] for sub in subs]
 	return ",".join(ret)
 
 @app.route("/")
 def placeholder1():
+        session['access'] = 0 #increment to record amount of time information is accessed
 	return render_template('index.html', subjects = database.getSubjects());
 
 @app.route("/slash")
