@@ -180,14 +180,15 @@ def getSubjects():
 def content(subject,tipe,topic):
   initializeDB()
   if tipe == "Notes":
-    q = "SELECT Information FROM notes WHERE subject =? and topic=?"
-    con = c.execute(q, (subject,topic))
+    subject = revSubTranslate(subject)
+    q = "SELECT Information FROM notes WHERE Subject=? AND Topic_Name=?"
+    c.execute(q, (subject,topic))
   if tipe == "Definitions":
     q = "SELECT Word, Definition FROM definitions WHERE subject =?"
-    con = c.execute(q, (subject,))
+    c.execute(q, (subject,))
   if tipe == "Questions":
     q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =?"
-    con = c.execute(q, (subject,))
+    c.execute(q, (subject,))
   content = c.fetchall()
   closeDB()
   return content

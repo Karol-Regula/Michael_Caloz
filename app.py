@@ -47,7 +47,7 @@ def placeholder0():
 
 @app.route("/getContent/", methods=["GET"])
 def getContent():
-	print request.args.keys()
+	#print request.args.keys()
 	subj = request.args['subject']
 	theType = request.args['type']
 	topic = request.args['topic']
