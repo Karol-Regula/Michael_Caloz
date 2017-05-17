@@ -53,3 +53,7 @@ yvonneC & bayleS -- 2017-05-17 12:30 PM
 
 emmaV -- 2017-05-17 13:09 PM
 - begin getting content based on subject/type/topic
+
+emmaV & bayleS -- 2017-05-17 13:49 PM
+- fix getting content from db (table typos, wrong sqlite3 fxns)
+- plan better content return type
