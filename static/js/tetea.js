@@ -37,6 +37,7 @@ var setSelect = function(lastSelect,fxn,thisSelect) {
 // the information in to_add (which is either values
 // separated by commas, or an array)
 var setDropdown = function(to_add, thisSelect) {
+	console.log("setDropdown");
 	if (to_add instanceof String) {
 		// str of comma separated vals
 		var topicList = to_add.split(",");
@@ -65,16 +66,25 @@ var setDropdown = function(to_add, thisSelect) {
 var setTopics = function(topics) {
 	var subjPicked = selected("selectSubjects");
 	var typePicked = selected("selectTypes");
+	var select = document.getElementById("selectTopics");
+	var selectHeading = document.getElementById("selectTopicsHeading");
 
 	if (typePicked=='Notes') {
 		//set topics based on subject
+		//select.style.display = "block";
+		//selectHeading.style.display = "block";
+		select.style.visibility = "visible";
+		selectHeading.style.visibility = "visible";
 		setDropdown(topics[subjPicked], "selectTopics");
 	} else {
 		//no topics: clear the dropdown of options
-		var select = document.getElementById("selectTopics");
 		while (select.hasChildNodes()) {
 			select.removeChild(select.lastChild);
 		}
+		//select.style.display = "none";
+		//selectHeading.style.display = "none";
+		select.style.visibility = "collapse";
+		selectHeading.style.visibility = "collapse";
 	}
 };
 
@@ -110,4 +120,11 @@ var getContent = function() {
 		console.log("done!")
 		// add content to page
 	});
+}
+
+window.onload = function WindowLoad(event) {
+	var select = document.getElementById("selectTopics");
+	var selectHeading = document.getElementById("selectTopicsHeading");
+	select.style.visibility = "collapse";
+	selectHeading.style.visibility = "collapse";
 }
