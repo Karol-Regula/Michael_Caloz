@@ -1,5 +1,6 @@
 import csv
 import sqlite3
+import json
 
 f = "database.db"
 
@@ -100,7 +101,7 @@ def getSubjectsQuestions():
     if not i in allSubjects:
       allSubjects.append(i)
   closeDB()
-  return allSubjects
+  return json.dumps(allSubjects)
 
 def getSubtopicNotes():
   initializeDB()
@@ -156,8 +157,7 @@ def getSubtopicsNotes(topic):
   closeDB()
   #print subtopics
   return subtopics
-  
-  
+
 def getSubjects():
   subDef = getSubjectsDefinitions()
   subNot = getSubjectsNotes()
@@ -173,6 +173,7 @@ def getSubjects():
   for sub in subNot:
     if subTranslate(sub[0]) not in out:
       out.append(subTranslate(sub[0]))
+  #print out
   return out
   
 #subject,type,topic -> content. type: questions, notes, or definitions
@@ -203,7 +204,7 @@ def content(subject,tipe,topic):
       ret.append({"Question": i[0], "A": i[1], "B": i[2], "C": i[3], "D":i[4], "E":i[5], "Answer": i[6]})
   closeDB()
   print ret
-  return ret
+  return json.dumps(ret)
 
 #return dictionary of subject:[topics] for the notes
 def subjectTopic():
@@ -220,7 +221,7 @@ def subjectTopic():
   for item in ret:
     ret[item] = list(set(ret[item])    )
   closeDB()
-  return ret
+  return json.dumps(ret)
 
 #print subjectTopic()
 

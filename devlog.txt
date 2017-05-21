@@ -70,3 +70,6 @@ bayleSS -- 2017-05-17 15:22
 
 karolR -- 2017-05-19 11:36
 - worked on making topics drop down-invisible when not needed (still not perfect) 
+
+yvonneC -- 2017-05-21 18:39
+- utilized json.dumps() to make the information sent from backend to frontend easier to parse
