@@ -37,7 +37,6 @@ var setSelect = function(lastSelect,fxn,thisSelect) {
 // the information in to_add (which is either values
 // separated by commas, or an array)
 var setDropdown = function(to_add, thisSelect) {
-	console.log("setDropdown");
 	if (to_add instanceof String) {
 		// str of comma separated vals
 		var topicList = to_add.split(",");
@@ -109,17 +108,81 @@ var getContent = function() {
         data: {subject: subj, type: mType, topic: mTopic},
         dataType: "text",
         success: function(response){
-        	console.log(response)
+        	response = JSON.parse(response)
+        	if (mType=='Notes') {
+        		displayNotes(response);
+        	} else if (mType=='Questions') {
+        		displayQuestions(response);
+        	} else if (mType=='Definitions') {
+        		displayDefinitions(response);
+        	}
         },
         error: function(textStatus, errorThrown){
         	console.log(textStatus)
         	console.log(errorThrown)
         }
 	})
-	.done(function() {
-		console.log("done!")
-		// add content to page
-	});
+}
+
+var contentCap = 10;
+var content = null;
+
+//clears content section of page
+//so it can be filled with new content
+var clearContent = function() {
+	content = document.getElementById("content")
+	while (content.hasChildNodes()) {
+		content.removeChild(content.lastChild);
+	}
+}
+
+//creates a content node given a piece of content
+//modular, easy to change if we change from ul
+var createContentNode = function(content) {
+	var node = document.createElement("td");
+	node.innerHTML = content;
+	return node;
+}
+
+var displayNotes = function(notes) {
+	clearContent();
+
+	var i=0;
+	for (i=0; i<contentCap; i++) {
+		row = document.createElement("tr")
+		row.appendChild(createContentNode(notes[i]));
+		content.appendChild(row);
+	}
+}
+
+var displayQuestions = function(qs) {
+	clearContent();
+
+	var row = document.createElement("tr");
+	var i=0;
+	var keys = ['Question','A','B','C','D','E'];
+	for (i=0; i<keys.length; i++) {
+		row.appendChild(createContentNode(keys[i]));
+	}
+	console.log(row);
+	content.appendChild(row);
+
+	var i=0;
+	for (i=0; i<contentCap; i++) {
+		var this_row = document.createElement("tr");
+		q = qs[i]
+		var j=0;
+		for (j=0; j<keys.length; j++) {
+			this_row.appendChild(createContentNode(q[keys[i]]));
+		}
+		content.appendChild(this_row);
+	}
+}
+
+var displayDefinitions = function(defs) {
+	clearContent();
+
+	console.log("displaying Definitions");
 }
 
 window.onload = function WindowLoad(event) {
