@@ -227,7 +227,23 @@ def subjectTopic():
     ret[item] = list(set(ret[item])    )
   closeDB()
   return json.dumps(ret)
-
+  
+#removes duplicate entires from database
+def deduplicateDatabase():
+  #work in progress
+  initializeDB()
+  #q = 'SELECT * FROM definitions'
+  #c.execute(q)
+  #data = c.fetchall()
+  #for i in data:
+  #  print i
+  q = 'DELETE FROM definitions WHERE rowid NOT IN(SELECT min(rowid) FROM definiions GROUP BY hash, d)'
+  c.execute(q);
+  closeDB()
+  
+#deduplicateDatabase()
+  
+  
 #print subjectTopic()
 
 #print content('Geography','definitions','')
