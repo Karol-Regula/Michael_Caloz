@@ -101,7 +101,7 @@ def getSubjectsQuestions():
     if not i in allSubjects:
       allSubjects.append(i)
   closeDB()
-  return json.dumps(allSubjects)
+  return allSubjects
 
 def getSubtopicNotes():
   initializeDB()
@@ -165,12 +165,15 @@ def getSubjects():
   
   out = []
   for sub in subDef:
+    #print sub
     if sub[0] not in out:
       out.append(sub[0])
   for sub in subQue:
+    #print sub
     if sub[0] not in out:
       out.append(sub[0])
   for sub in subNot:
+    #print sub
     if subTranslate(sub[0]) not in out:
       out.append(subTranslate(sub[0]))
   #print out
