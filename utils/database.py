@@ -203,8 +203,10 @@ def content(subject,tipe,topic):
     for i in whole:
       ret.append({"Question": i[0], "A": i[1], "B": i[2], "C": i[3], "D":i[4], "E":i[5], "Answer": i[6]})
   closeDB()
-  print ret
+  #print ret
   return json.dumps(ret)
+
+#print content("Physics", "Notes", "Applications of Vectors")
 
 #return dictionary of subject:[topics] for the notes
 def subjectTopic():
