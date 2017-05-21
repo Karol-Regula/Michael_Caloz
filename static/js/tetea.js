@@ -173,7 +173,7 @@ var displayQuestions = function(qs) {
 		q = qs[i]
 		var j=0;
 		for (j=0; j<keys.length; j++) {
-			this_row.appendChild(createContentNode(q[keys[i]]));
+			this_row.appendChild(createContentNode(q[keys[j]]));
 		}
 		content.appendChild(this_row);
 	}
