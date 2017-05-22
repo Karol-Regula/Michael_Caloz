@@ -174,7 +174,13 @@ var displayQuestions = function(qs) {
 		console.log(q);
 		var j=0;
 		for (j=0; j<keys.length; j++) {
-			this_row.appendChild(createContentNode(q[keys[j]]));
+			var item = createContentNode(q[keys[j]])
+ 			if (keys[j]==q['Answer']) { //If correct answer
+ 				item.addEventListener('click', function(e) { this.setAttribute("style","color: green;"); });
+ 			} else if (keys[j].length==1) { //wrong answer
+ 				item.addEventListener('click', function(e) { this.setAttribute("style","color: red;"); });
+ 			}
+ 			this_row.appendChild(item);
 		}
 		content.appendChild(this_row);
 	}
