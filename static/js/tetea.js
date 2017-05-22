@@ -173,7 +173,13 @@ var displayQuestions = function(qs) {
 		q = qs[i]
 		var j=0;
 		for (j=0; j<keys.length; j++) {
-			this_row.appendChild(createContentNode(q[keys[j]]));
+			var item = createContentNode(q[keys[j]])
+			if (keys[j]==q['Answer']) { //If correct answer
+				item.addEventListener('click', function(e) { this.setAttribute("style","color: green;"); });
+			} else if (keys[j].length==1) { //wrong answer
+				item.addEventListener('click', function(e) { this.setAttribute("style","color: red;"); });
+			}
+			this_row.appendChild(item);
 		}
 		content.appendChild(this_row);
 	}
@@ -181,7 +187,7 @@ var displayQuestions = function(qs) {
 
 var displayDefinitions = function(defs) {
 	clearContent();
-
+	
 	console.log("displaying Definitions");
 }
 
