@@ -50,7 +50,7 @@ yvonneC -- 2017-05-16 21:48
 - minor changes to database.py to ensure style is same
 - integrated access tracking in app.py by creating a session variable
 
-emmaV & felixR -- 2017-05-17 12:22 
+emmaV & felixRB -- 2017-05-17 12:22 
 - refigure how dropdown info laods to be more efficient
 - finish so that subj/type/topic dropdowns flow well
 
@@ -73,3 +73,6 @@ karolR -- 2017-05-19 11:36
 
 yvonneC -- 2017-05-21 18:39
 - utilized json.dumps() to make the information sent from backend to frontend easier to parse
+
+felixRB -- 2017-05-21 22:00
+- introduced Bootstrap framework, theerby simplifying and improving the presentation and apperance of the site
