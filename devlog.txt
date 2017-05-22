@@ -51,7 +51,7 @@ yvonneC -- 2017-05-16 21:48
 - integrated access tracking in app.py by creating a session variable
 
 emmaV & felixRB -- 2017-05-17 12:22 
-- refigure how dropdown info laods to be more efficient
+- refigure how dropdown info loads to be more efficient
 - finish so that subj/type/topic dropdowns flow well
 
 yvonneC & bayleSS -- 2017-05-17 12:30
@@ -66,7 +66,7 @@ emmaV & bayleSS -- 2017-05-17 13:49
 - plan better content return type
 
 bayleSS -- 2017-05-17 15:22
-- database.py sends content to client side successfuly
+- database.py sends content to client side successfully
 
 karolR -- 2017-05-19 11:36
 - worked on making topics drop down-invisible when not needed (still not perfect) 
@@ -74,5 +74,20 @@ karolR -- 2017-05-19 11:36
 yvonneC -- 2017-05-21 18:39
 - utilized json.dumps() to make the information sent from backend to frontend easier to parse
 
+emmaV -- 2017-05-21 19:44
+- parsed json dump sent from backend
+- added display code for notes and questions (on frontend)
+- displayed as rows in table
+- answers for questions are color coded, change color when clicked
+
+karolR -- 2017-05-21 21:02
+- started work on database de-duplication function
+- excluded questions with no answers from being sent to frontend
+- used Emma's display code to display definitions, hidden by default, visible when word is clicked
+
 felixRB -- 2017-05-21 22:00
-- introduced Bootstrap framework, theerby simplifying and improving the presentation and apperance of the site
+- introduced Bootstrap framework, thereby simplifying and improving the presentation and apperance of the site
+
+karolR -- 2017-05-22 13:05
+- finished database de-duplication function, de-duplicated database
+- added copy of original not de-duplicated database
