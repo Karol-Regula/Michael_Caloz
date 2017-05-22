@@ -232,14 +232,14 @@ def subjectTopic():
   
 #removes duplicate entires from database
 def deduplicateDatabase():
-  #work in progress
   initializeDB()
-  #q = 'SELECT * FROM definitions'
-  #c.execute(q)
-  #data = c.fetchall()
-  #for i in data:
-  #  print i
-  q = 'DELETE FROM definitions WHERE rowid NOT IN(SELECT min(rowid) FROM definiions GROUP BY hash, d)'
+  q = 'DELETE FROM definitions WHERE rowid NOT IN(SELECT min(rowid) FROM definitions GROUP BY idx, Definition)'
+  c.execute(q);
+  q = 'DELETE FROM questions WHERE rowid NOT IN(SELECT min(rowid) FROM questions GROUP BY Question, A)'
+  c.execute(q);
+  q = 'DELETE FROM notes WHERE rowid NOT IN(SELECT min(rowid) FROM notes GROUP BY idx, Information)'
+  c.execute(q);
+  q = 'vacuum'
   c.execute(q);
   closeDB()
   
