@@ -203,9 +203,15 @@ var displayDefinitions = function(defs) {
 		var this_row = document.createElement("tr");
 		d = defs[i]
 		var j=0;
-		for (j=0; j<keys.length; j++) {
-			this_row.appendChild(createContentNode(d[keys[j]]));
-		}
+		
+		var itemWord = createContentNode(d[keys[0]])
+		var itemDef = createContentNode(d[keys[1]])
+		itemDef.setAttribute("style","visibility: hidden;");
+		itemDef.setAttribute("id", String(i) + "definitionActual");
+		itemWord.setAttribute("id", String(i) + "definition");
+		itemWord.addEventListener('click', function(e) { document.getElementById(this.getAttribute("id") + "Actual").setAttribute("style","visibility: visible;");});
+		this_row.appendChild(itemWord);
+		this_row.appendChild(itemDef);
 		content.appendChild(this_row);
 	}
 	
