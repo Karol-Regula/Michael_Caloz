@@ -171,15 +171,10 @@ var displayQuestions = function(qs) {
 	for (i=0; i<contentCap; i++) {
 		var this_row = document.createElement("tr");
 		q = qs[i]
+		console.log(q);
 		var j=0;
 		for (j=0; j<keys.length; j++) {
-			var item = createContentNode(q[keys[j]])
-			if (keys[j]==q['Answer']) { //If correct answer
-				item.addEventListener('click', function(e) { this.setAttribute("style","color: green;"); });
-			} else if (keys[j].length==1) { //wrong answer
-				item.addEventListener('click', function(e) { this.setAttribute("style","color: red;"); });
-			}
-			this_row.appendChild(item);
+			this_row.appendChild(createContentNode(q[keys[j]]));
 		}
 		content.appendChild(this_row);
 	}
@@ -187,6 +182,26 @@ var displayQuestions = function(qs) {
 
 var displayDefinitions = function(defs) {
 	clearContent();
+	
+	var row = document.createElement("tr");
+	var i=0;
+	var keys = ['Word', 'Definition'];
+	for (i=0; i<keys.length; i++) {
+		row.appendChild(createContentNode(keys[i]));
+	}
+	console.log(row);
+	content.appendChild(row);
+
+	var i=0;
+	for (i=0; i<contentCap; i++) {
+		var this_row = document.createElement("tr");
+		d = defs[i]
+		var j=0;
+		for (j=0; j<keys.length; j++) {
+			this_row.appendChild(createContentNode(d[keys[j]]));
+		}
+		content.appendChild(this_row);
+	}
 	
 	console.log("displaying Definitions");
 }
