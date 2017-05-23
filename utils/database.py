@@ -258,7 +258,11 @@ def initializeAccessDB():
 def addAccessEntry(time, subject, tipe, topic):
   initializeAccessDB()
   q = 'INSERT INTO clicks VALUES(?,?,?,?)'
-  c.execute(q, (time, subject, tipe, topic))
+  try:
+    c.execute(q, (time, subject, tipe, topic))
+  except:
+    c.execute("CREATE TABLE clicks (time TEXT, subject TEXT, tipe TEXT, topic TEXT)")
+    return addAccessEntry(time,subject,tipe,topic)
   closeDB()
     
   
