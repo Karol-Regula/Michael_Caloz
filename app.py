@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import utils
+import utils, datetime, time
 from os import urandom
 from utils import database, accounts
 import json
@@ -30,14 +30,14 @@ def getTopics():
 @app.route("/getTopics/", methods=["GET"])
 def getTopicsBy():
 	topic = request.args['category']
-        session['access'] += 1
+        #session['access'] += 1
 	subs = database.getTopicsNotes(topic)
 	ret = [sub[0] for sub in subs]
 	return ",".join(ret)
 
 @app.route("/")
 def placeholder1():
-	session['access'] = 0 #increment to record amount of time information is accessed
+#	session['access'] = 0 #increment to record amount of time information is accessed
 	return render_template('index.html', subjects=database.getSubjects(), types=['Questions', 'Notes', 'Definitions'], topics=database.subjectTopic());
 
 @app.route("/slash")
@@ -51,6 +51,8 @@ def getContent():
 	subj = request.args['subject']
 	theType = request.args['type']
 	topic = request.args['topic']
+        time = datetime.datetime.now()
+        database.addAccessEntry(time, subj, theType, topic)
 	return database.content(subj, theType, topic)
 
 if __name__ == "__main__":
