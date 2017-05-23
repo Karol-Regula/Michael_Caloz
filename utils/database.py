@@ -230,6 +230,24 @@ def subjectTopic():
   closeDB()
   return json.dumps(ret)
   
+#returns data for requested quiz, scalable
+#NOT TESTED
+def returnQuiz(quizNumber):
+  initializeDB()
+  out = []
+  q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =?"
+  c.execute(q, (subject,))
+  whole = c.fetchall()
+  for i in whole:
+    if (i[6] != ''):
+      out.append({"Question": i[0], "A": i[1], "B": i[2], "C": i[3], "D":i[4], "E":i[5], "Answer": i[6]})
+  a = (quizNumber * 10) - 10
+  b = (quizNumber * 10)
+  print "a: " + str(a) + "b: " + str(b)
+  out = out[a,b]
+  closeDB()
+  return out
+  
 #removes duplicate entires from database
 def deduplicateDatabase():
   initializeDB()
