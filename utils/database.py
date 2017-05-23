@@ -1,3 +1,4 @@
+import time
 import csv
 import sqlite3
 import json
@@ -260,6 +261,28 @@ def deduplicateDatabase():
   q = 'vacuum'
   c.execute(q);
   closeDB()
+
+
+def initializeAccessDB():
+  global c, db
+  file = 'data/access.db'
+  db = sqlite3.connect(file)
+  c = db.cursor()
+  #initialize.createDB()
+  return c
+
+
+#converting time to nice time: time.asctime(localtime())
+def addAccessEntry(time, subject, tipe, topic):
+  initializeAccessDB()
+  q = 'INSERT INTO clicks VALUES(?,?,?,?)'
+  try:
+    c.execute(q, (time, subject, tipe, topic))
+  except:
+    c.execute("CREATE TABLE clicks (time TEXT, subject TEXT, tipe TEXT, topic TEXT)")
+    return addAccessEntry(time,subject,tipe,topic)
+  closeDB()
+    
   
 #deduplicateDatabase()
   

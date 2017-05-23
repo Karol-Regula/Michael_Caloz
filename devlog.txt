@@ -91,3 +91,10 @@ felixRB -- 2017-05-21 22:00
 karolR -- 2017-05-22 13:05
 - finished database de-duplication function, de-duplicated database
 - added copy of original not de-duplicated database
+
+bayleSS -- 2017-05-22 20:20
+- made database to tally clicks
+- made function to tally clicks (accessed through app.py)
+
+emmaV -- 2017-05-22 21:00
+- debug tally clicks table functionality
