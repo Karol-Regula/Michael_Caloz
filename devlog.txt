@@ -95,3 +95,6 @@ karolR -- 2017-05-22 13:05
 bayleSS -- 2017-05-22 20:20
 - made database to tally clicks
 - made function to tally clicks (accessed through app.py)
+
+emmaV -- 2017-05-22 21:00
+- debug tally clicks table functionality
