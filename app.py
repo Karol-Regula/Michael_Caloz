@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import utils, datetime, time
 from os import urandom
-from utils import database, accounts
+from utils import database, accounts, accessDB
 import json
 
 app = Flask(__name__)
@@ -37,7 +37,6 @@ def getTopicsBy():
 
 @app.route("/")
 def placeholder1():
-#	session['access'] = 0 #increment to record amount of time information is accessed
 	return render_template('index.html', subjects=database.getSubjects(), types=['Questions', 'Notes', 'Definitions'], topics=database.subjectTopic());
 
 @app.route("/slash")
@@ -52,8 +51,22 @@ def getContent():
 	theType = request.args['type']
 	topic = request.args['topic']
         time = datetime.datetime.now()
-        database.addAccessEntry(time, subj, theType, topic)
+        accessDB.addAccessEntry(time, subj, theType, topic)
 	return database.content(subj, theType, topic)
+
+@app.route("/login")
+def login():
+    if 'username' in session:
+        return redirect("/admin")
+    else:
+        return redirect("/")
+
+@app.route("/admin")
+def admin():
+    #add something that shows data from access.db
+    return render_template('index.html', subjects=database.getSubjects(), types=['Questions', 'Notes', 'Definitions'], topics=database.subjectTopic());
+
+    
 
 if __name__ == "__main__":
     app.debug = True
