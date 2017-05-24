@@ -98,3 +98,8 @@ bayleSS -- 2017-05-22 20:20
 
 emmaV -- 2017-05-22 21:00
 - debug tally clicks table functionality
+
+karolR -- 2017-05-24 11:44
+- wrote backend functions for returning quizzes
+- returnQuizAmount(subject) returns amount of quizzes available per subject
+- returnQuiz(quizNumber, subject) returns data for requested quizNumber for a particular subject

@@ -246,7 +246,7 @@ def returnQuiz(quizNumber, subject):
   print "a: " + str(a) + "b: " + str(b)
   out = out[a:b]
   closeDB()
-  return out
+  return json.dumps(out)
 
 #returns amount of available quizes for a particular subject, use for returnQuiz()
 def returnQuizAmount(subject):
