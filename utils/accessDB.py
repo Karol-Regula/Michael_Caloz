@@ -17,7 +17,7 @@ def closeDB():
   db.commit()
   db.close()
 
-
+#currently adds entry to database table
 #converting time to nice time: time.asctime(localtime())
 def addAccessEntry(time, subject, tipe, topic):
   initializeAccessDB()
@@ -26,22 +26,23 @@ def addAccessEntry(time, subject, tipe, topic):
     c.execute(q, (time, subject, tipe, topic))
   except:
     c.execute("CREATE TABLE clicks (time TEXT, subject TEXT, tipe TEXT, topic TEXT)")
-    return addAccessEntry(time,subject,tipe,topic)
+    c.execute(q, (time, subject, tipe, topic))
   closeDB()
 
-#somehow, this should be by month eventually
+#retrieves the amount of times the info for each subject is accessed
+#dictionary format: {subject: freq}
+#eventually, this should be by month eventually
 def getInfo():
   q = 'SELECT * FROM clicks'
   c.execute(q)
   totalDB = c.fetchall()
-  #retFormat = subject: freq
   retFormat = {}
   for i in totalDB:
     if totalDB[1] in retFormat:
       retFormat[subject]+=1
     else:
       retFormat[subject] = 1
-      
-    
+  closeDB()
+  return retFormat
     
 

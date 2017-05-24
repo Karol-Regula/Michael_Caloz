@@ -37,7 +37,10 @@ def getTopicsBy():
 
 @app.route("/")
 def placeholder1():
-	return render_template('index.html', subjects=database.getSubjects(), types=['Questions', 'Notes', 'Definitions'], topics=database.subjectTopic());
+        #homepage changes depending on whether admin is logged in or not
+        if 'username' in session:
+                admin = True
+	return render_template('index.html', subjects=database.getSubjects(), types=['Questions', 'Notes', 'Definitions'], topics=database.subjectTopic(), admin=admin);
 
 @app.route("/slash")
 def placeholder0():
@@ -54,25 +57,34 @@ def getContent():
         accessDB.addAccessEntry(time, subj, theType, topic)
 	return database.content(subj, theType, topic)
 
-@app.route("/login")
+@app.route("/login", methods=["POST"])
 def login():
-    if 'username' in session:
-        return redirect("/admin")
-    else:
-        return redirect("/")
-
+        user = request.form["admin"]
+        pw = request.form["pass"]
+        text = account.login(un, pw)#error message
+        if text == "":#if no error message, succesful go back home
+                session["username"] = user
+                print text
+                return redirect("/")
+        else:
+                return render_template("login.html", login_error=text)
+        
 @app.route("/admin")
 def admin():
-    #add something that shows data from access.db
-    return render_template('index.html', subjects=database.getSubjects(), types=['Questions', 'Notes', 'Definitions'], topics=database.subjectTopic());
+        #add something that shows data from access.db
+        info = accessDB.getInfo()
+        return render_template('index.html', data=info);
 
-    
+@app.route("/logout/", methods=['POST'])
+def logout():
+        session.pop("username")
+        return redirect("/")
 
 if __name__ == "__main__":
-    app.debug = True
-    # app.config.from_object("config")
-    # app.secret_key = app.config["SECRET_KEY"]
-    app.run()
+        app.debug = True
+        # app.config.from_object("config")
+        # app.secret_key = app.config["SECRET_KEY"]
+        app.run()
 
 #next thing due:
 #FRIDAY: demo of progress, site design, discuss what is being worked on/project
