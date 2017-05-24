@@ -103,3 +103,8 @@ karolR -- 2017-05-24 11:44
 - wrote backend functions for returning quizzes
 - returnQuizAmount(subject) returns amount of quizzes available per subject
 - returnQuiz(quizNumber, subject) returns data for requested quizNumber for a particular subject
+
+yvonneC & bayleSS -- 2017-05-24 12:30
+- added accessDB.py and began writing basic functions for retrieving data
+  - plan to use information to construct graph for admin
+- added basic routes for app.py regarding admin accounts
