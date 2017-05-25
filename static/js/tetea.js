@@ -244,13 +244,21 @@ var displayQuestions = function(qs) {
 		var j=0;
 		for (j=0; j<keys.length; j++) {
 			var item = createContentNode(q[keys[j]])
+
+			if (keys[j]=='Question') {
+				item.setAttribute("class","question")
+			}
+
  			if (keys[j]==q['Answer']) { //If correct answer
  				item.addEventListener('click', function(e) { this.setAttribute("style","color: green;"); });
+ 				item.setAttribute("class","answer right"); //adds BOTH CLASSES to this element
  			} else if (keys[j].length==1) { //wrong answer
  				item.addEventListener('click', function(e) { this.setAttribute("style","color: red;"); });
+ 				item.setAttribute("class","answer wrong");
  			}
  			this_row.appendChild(item);
 		}
+		this_row.setAttribute("class","qitem");
 		content.appendChild(this_row);
 	}
 }

@@ -1,1 +1,24 @@
-...
+.qitem {
+	background-color: aliceblue;
+}
+
+table {
+	border-collapse:separate;
+	border-spacing:0 10px;
+}
+
+tr {
+	border: 1px solid black;
+}
+
+.answer {
+	color: gray;
+}
+
+.wrong {
+	font-style: italic;
+}
+
+.right {
+	font-style: bold;
+}
