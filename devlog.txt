@@ -116,3 +116,6 @@ yvonneC -- 2017-05-24 13:45
 bayleSS -- 2017-05-24 21:19
 - finished work started in class tallying click frequencies by subject
 - getInfo() function returns dictionary with subjects and their click frequencies
+
+karolR -- 2017-05-25 10:33
+- added two app.py ajax routes for returning quiz amount per subject and quiz data
