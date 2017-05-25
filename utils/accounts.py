@@ -1,17 +1,42 @@
-from sqlite3 import connect
+import sqlite3
 from os import urandom
 from hashlib import sha1
 
-tableCreateQuery = "CREATE TABLE Accounts (username TEXT, password TEXT, salt TEXT)"
+tableCreateQuery = "CREATE TABLE Accounts (username TEXT, password TEXT, salt TEXT, defaultPW TEXT)"
 
-f = "tetea.db"
+def initializeDB():
+  global c, db
+  file = 'data/admin.db'
+  db = sqlite3.connect(file)
+  c = db.cursor()
+  return c
+
+def closeDB():
+  global db
+  db.commit()
+  db.close()
+
+
+#Ask Yvonne for default password
+def initializeAdmin():
+        initializeDB()        
+        c.execute(tableCreateQuery)
+        user = "Admin"
+        adminQuery = "INSERT INTO Accounts VALUES (?,?,?,?)"
+        salt = urandom(10).encode('hex')
+        password = sha1(""+salt).hexdigest()
+	default = sha1(""+salt).hexdigest()
+	c.execute(adminQuery, (user, password, salt, default))
+	ret = "Admin account not created. Now login."
+        closeDB()
+        return ret
+
+#print initializeAdmin()
 
 # Returns "" if login succeeds and returns
 # string of reason why login failed otherwise
 def login(user,password):
-	db = connect(f)
-	c = db.cursor()
-
+	initializeDB()
 	query = ("SELECT * FROM Accounts WHERE username=?")
 	ret = "n/a"
 
@@ -31,12 +56,14 @@ def login(user,password):
 			ret = "Username does not exist"
 
 	except: # TABLE does NOT exist
-		c.execute(tableCreateQuery)
-		ret = "Create an account!" # account could not exist
+                ret = "Admin account does not exist. Please contact administator."
 
-	db.commit()
-	db.close()
+        closeDB()
 	return ret
+
+#gives admin the ability to change the password
+def changePass(user, pw):
+        pass
 
 # Checks if user already exists
 # Returns True if exists, False if doesn't
