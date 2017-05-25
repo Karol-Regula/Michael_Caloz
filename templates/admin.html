@@ -5,30 +5,39 @@
     <title>Tetea Admin</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-
-      
-      google.charts.load('current', {packages: ['corechart']});
+      google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
-
       function drawChart() {
-      // Define the chart to be drawn.
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Element');
-      data.addColumn('number', 'Percentage');
-      data.addRows([
-      ['Nitrogen', 0.78],
-      ['Oxygen', 0.21],
-      ['Other', 0.01]
+      var data = google.visualization.arrayToDataTable([
+      ["Element", "Density", { role: "style" } ],
+      ["Copper", 8.94, "#b87333"],
+      ["Silver", 10.49, "silver"],
+      ["Gold", 19.30, "gold"],
+      ["Platinum", 21.45, "color: #e5e4e2"]
       ]);
 
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+      { calc: "stringify",
+      sourceColumn: 1,
+      type: "string",
+      role: "annotation" },
+      2]);
+      var options = {
+      title: "Density of Precious Metals, in g/cm^3",
+      width: 600,
+      height: 400,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+      };
       // Instantiate and draw the chart.
-      var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
-      chart.draw(data, null);
+      var chart = new google.visualization.BarChart(document.getElementById('batchart_values));
+      chart.draw(view, options);
       }
     </script>
   </head>
-  <body>
-    <!-- Identify where the chart should be drawn. -->
-    <div id="myPieChart"/>
-  </body>
+
+    <div id="barchart_values" style="width: 900px; height: 300px;"></div>
+
+
 </html>
