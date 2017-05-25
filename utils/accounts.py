@@ -63,7 +63,42 @@ def login(user,password):
 
 #gives admin the ability to change the password
 def changePass(user, pw):
-        pass
+        initializeDB()
+        query = "SELECT * FROM Accounts WHERE username=?"
+        info = c.execute(query, (user,))
+        salt = ""
+        for record in info:
+                salt = record[2]
+        pw = sha1(pw+salt).hexdigest()
+        changeQuery = "UPDATE Accounts SET PASSWORD = ? WHERE USERNAME = ?"
+        c.execute(changeQuery, (pw, user))
+        ret = "Password is now changed."
+        closeDB()
+        return ret
+
+def getPassword(user):
+        initializeDB()
+        queryCheck = "SELECT * FROM Accounts WHERE username=?"
+        check = c.execute(queryCheck, (user,))
+        password = ""
+        for record in check:
+                password = record[1]
+        closeDB()
+        return password
+
+def getDefault(user):
+        initializeDB()
+        queryCheck = "SELECT * FROM Accounts WHERE username=?"
+        check = c.execute(queryCheck, (user,))
+        password = ""
+        for record in check:
+                password = record[3]
+        closeDB()
+        return password
+
+#print getDefault("Admin")
+#print changePass("Admin","passChanged!")
+#print getPassword("Admin")
 
 # Checks if user already exists
 # Returns True if exists, False if doesn't

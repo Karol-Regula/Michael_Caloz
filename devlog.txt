@@ -123,3 +123,8 @@ karolR -- 2017-05-25 10:33
 emmaV -- 2017-05-25 12:12
 - different quizzes now displayed on the page
 - start changing formatting for quiz questions
+
+yvonneC -- 2017-05-25 2:53
+- initialized the admin account with default password
+- wrote methods to retrieve default password in database and real password in database
+- also wrote backend method to change passwords in Accounts database
