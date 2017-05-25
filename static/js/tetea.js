@@ -142,8 +142,16 @@ var getContent = function() {
 	} else {
 		mTopic = "";
 	}
+	var mNumber;
+	//only get number if applicable
+	if (mType=='Questions') {
+		mNumber = selected("selectQuiz");
+	} else {
+		mNumber = "";
+	}
 
 	// call to app.py to get the content
+	if (mNumber == ""){
 	$.ajax({
 		traditional: true,
         type: "GET",
@@ -165,6 +173,23 @@ var getContent = function() {
         	console.log(errorThrown)
         }
 	})
+}else{
+	$.ajax({
+		traditional: true,
+        type: "GET",
+        url: "/getQuiz/",
+        data: {subject: subj, number:mNumber},
+        dataType: "text",
+        success: function(response){
+        	response = JSON.parse(response)
+					console.log(response)
+        },
+        error: function(textStatus, errorThrown){
+        	console.log(textStatus)
+        	console.log(errorThrown)
+        }
+	})
+}
 }
 
 var contentCap = 10;

@@ -234,6 +234,7 @@ def subjectTopic():
 #returns data for requested quiz, scalable
 def returnQuiz(quizNumber, subject):
   initializeDB()
+  quizNumber = int(quizNumber)
   out = []
   q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =?"
   c.execute(q, (subject,))
