@@ -108,7 +108,7 @@ var setQuiz = function() {
 					success: function(response){
 						console.log("SucessQuiz: " + response);
 						var amounts = [];
-						var i = 0;
+						var i = 1;
 						while (i < parseInt(response)){
 							amounts.push(i);
 							i++;
@@ -182,7 +182,8 @@ var getContent = function() {
         dataType: "text",
         success: function(response){
         	response = JSON.parse(response)
-					console.log(response)
+			//		console.log(response)
+			displayQuestions(response);
         },
         error: function(textStatus, errorThrown){
         	console.log(textStatus)
