@@ -37,6 +37,7 @@ var setSelect = function(lastSelect,fxn,thisSelect) {
 // the information in to_add (which is either values
 // separated by commas, or an array)
 var setDropdown = function(to_add, thisSelect) {
+	console.log("setDropdown:" + String(to_add) + String(thisSelect))
 	if (to_add instanceof String) {
 		// str of comma separated vals
 		var topicList = to_add.split(",");
@@ -63,6 +64,7 @@ var setDropdown = function(to_add, thisSelect) {
 
 //sets topics when form data is changed
 var setTopics = function(topics) {
+	console.log("setTopics: " + String(topics));
 	var subjPicked = selected("selectSubjects");
 	var typePicked = selected("selectTypes");
 	var select = document.getElementById("selectTopics");
@@ -70,8 +72,6 @@ var setTopics = function(topics) {
 
 	if (typePicked=='Notes') {
 		//set topics based on subject
-		//select.style.display = "block";
-		//selectHeading.style.display = "block";
 		select.style.visibility = "visible";
 		selectHeading.style.visibility = "visible";
 		setDropdown(topics[subjPicked], "selectTopics");
@@ -80,33 +80,50 @@ var setTopics = function(topics) {
 		while (select.hasChildNodes()) {
 			select.removeChild(select.lastChild);
 		}
-		//select.style.display = "none";
-		//selectHeading.style.display = "none";
 		select.style.visibility = "collapse";
 		selectHeading.style.visibility = "collapse";
 	}
 };
 
 //sets quizzes when form data is changed
-var setQuiz = function(amount) {
+var setQuiz = function() {
+	console.log("setQuiz:");
 	var subjPicked = selected("selectSubjects");
 	var typePicked = selected("selectTypes");
 	var quiz = document.getElementById("selectQuiz");
 	var quizHeading = document.getElementById("selectQuizHeading");
-	console.log("setQuiz: " + typePicked)
+	
+	var subj = selected("selectSubjects");
 	
 	if (typePicked=='Questions') {
 		quiz.style.visibility = "visible";
 		quizHeading.style.visibility = "visible";
-		var amounts = [];
-		var i = 0;
-		while (i < amount){
-			amounts.push(i);
-		}
-		setDropdown(amounts, "selectQuiz");
+		
+		$.ajax({
+			traditional: true,
+					type: "GET",
+					url: "/getQuizAmount/",
+					data: {subject: subj},
+					dataType: "text",
+					success: function(response){
+						console.log("SucessQuiz: " + response);
+						var amounts = [];
+						var i = 0;
+						while (i < parseInt(response)){
+							amounts.push(i);
+							i++;
+						}
+						setDropdown(amounts, "selectQuiz");
+					},
+					error: function(textStatus, errorThrown){
+						console.log(textStatus)
+						console.log(errorThrown)
+					}
+		})
+		
 	} else {
-		while (select.hasChildNodes()) {
-			select.removeChild(select.lastChild);
+		while (quiz.hasChildNodes()) {
+			quiz.removeChild(quiz.lastChild);
 		}
 		quiz.style.visibility = "collapse";
 		quizHeading.style.visibility = "collapse";

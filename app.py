@@ -38,17 +38,17 @@ def getTopicsBy():
 # Returns number of available quizzes
 @app.route("/getQuizAmount/", methods=["GET"])
 def getQuizAmount():
-	subject = request.args['category']
+	subject = request.args['subject']
+	print "getQuizAmount():"
 	amount = database.returnQuizAmount(subject)
-	return amount
+	return str(amount)
 	
 # Returns content of the reuqested quiz
 @app.route("/getQuiz/", methods=["GET"])
 def getQuiz():
-	subject = request.args['category']
+	subject = request.args['subject']
 	number = request.args['number']
-	data = database.returnQuiz(number, subject)
-	return data
+	return database.returnQuiz(number, subject)
 
 @app.route("/")
 def placeholder1():

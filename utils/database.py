@@ -261,6 +261,7 @@ def returnQuizAmount(subject):
   print "len(out): " + str(len(out))
   a = (len(out) / 10)
   closeDB()
+  print "a: " + str(a)
   return a
 
 #print returnQuiz(2, "Civics");
