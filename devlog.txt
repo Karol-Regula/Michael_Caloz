@@ -112,3 +112,7 @@ yvonneC & bayleSS -- 2017-05-24 12:30
 yvonneC -- 2017-05-24 13:45
 - continued integrating admin account login
 - finished up getInfo() function to retrieve data for access tracking
+
+bayleSS -- 2017-05-24 21:19
+- finished work started in class tallying click frequencies by subject
+- getInfo() function returns dictionary with subjects and their click frequencies
