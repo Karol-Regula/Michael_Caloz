@@ -52,6 +52,13 @@ def getInfo():
   closeDB()
   return retFormat
 
+def getInfoArray():
+    dictionary = getInfo()
+    retArray = []
+    for item in dictionary:
+        retArray.append([item, dictionary[item]])
+    return retArray
+
 print getInfo()
-    
+print getInfoArray()    
 

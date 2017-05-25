@@ -11,6 +11,10 @@ tr {
 	border: 1px solid black;
 }
 
+td {
+	border: solid 1px #000;
+}
+
 .answer {
 	color: gray;
 }
