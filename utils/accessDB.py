@@ -3,7 +3,7 @@
 import sqlite3
 import json
 
-f = "/data/access.db"
+f = "data/access.db"
 
 def initializeAccessDB():
   global c, db
