@@ -12,7 +12,21 @@ var setSelect = function(lastSelect,fxn,thisSelect) {
 	var typePicked = selected(lastSelect);
 	var topics = ""
 	// run fxn, set topics to response
-
+	$.ajax({
+		traditional: true,
+		//async: false,
+        type: "GET",
+        url: fxn,
+        data: {category: typePicked},
+        dataType: "text",
+        success: function(response){
+        	topics = response
+        },
+        error: function(textStatus, errorThrown){
+        	console.log(textStatus)
+        	console.log(errorThrown)
+        }
+	})
 	.done(function() {
 		// once done, set dropdown to topics
 		setDropdown(topics, thisSelect);
