@@ -33,16 +33,20 @@ def addAccessEntry(time, subject, tipe, topic):
 #dictionary format: {subject: freq}
 #eventually, this should be by month eventually
 def getInfo():
+  initializeAccessDB()
   q = 'SELECT * FROM clicks'
   c.execute(q)
   totalDB = c.fetchall()
   retFormat = {}
-  for i in totalDB:
-    if totalDB[1] in retFormat:
+  for i in range(len(totalDB)):
+    subject = totalDB[i][1]
+    if subject in retFormat:
       retFormat[subject]+=1
     else:
       retFormat[subject] = 1
   closeDB()
   return retFormat
+
+print getInfo()
     
 
