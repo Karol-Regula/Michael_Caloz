@@ -12,21 +12,7 @@ var setSelect = function(lastSelect,fxn,thisSelect) {
 	var typePicked = selected(lastSelect);
 	var topics = ""
 	// run fxn, set topics to response
-	$.ajax({
-		traditional: true,
-		//async: false,
-        type: "GET",
-        url: fxn,
-        data: {category: typePicked},
-        dataType: "text",
-        success: function(response){
-        	topics = response
-        },
-        error: function(textStatus, errorThrown){
-        	console.log(textStatus)
-        	console.log(errorThrown)
-        }
-	})
+
 	.done(function() {
 		// once done, set dropdown to topics
 		setDropdown(topics, thisSelect);
@@ -84,6 +70,32 @@ var setTopics = function(topics) {
 		//selectHeading.style.display = "none";
 		select.style.visibility = "collapse";
 		selectHeading.style.visibility = "collapse";
+	}
+};
+
+//sets quizzes when form data is changed
+var setQuiz = function(amount) {
+	var subjPicked = selected("selectSubjects");
+	var typePicked = selected("selectTypes");
+	var quiz = document.getElementById("selectQuiz");
+	var quizHeading = document.getElementById("selectQuizHeading");
+	console.log("setQuiz: " + typePicked)
+	
+	if (typePicked=='Questions') {
+		quiz.style.visibility = "visible";
+		quizHeading.style.visibility = "visible";
+		var amounts = [];
+		var i = 0;
+		while (i < amount){
+			amounts.push(i);
+		}
+		setDropdown(amounts, "selectQuiz");
+	} else {
+		while (select.hasChildNodes()) {
+			select.removeChild(select.lastChild);
+		}
+		quiz.style.visibility = "collapse";
+		quizHeading.style.visibility = "collapse";
 	}
 };
 
@@ -223,4 +235,8 @@ window.onload = function WindowLoad(event) {
 	var selectHeading = document.getElementById("selectTopicsHeading");
 	select.style.visibility = "collapse";
 	selectHeading.style.visibility = "collapse";
+	var quiz = document.getElementById("selectQuiz");
+	var quizHeading = document.getElementById("selectQuizHeading");
+	quiz.style.visibility = "collapse";
+	quizHeading.style.visibility = "collapse";
 }
