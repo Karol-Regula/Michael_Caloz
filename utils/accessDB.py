@@ -35,7 +35,12 @@ def addAccessEntry(time, subject, tipe, topic):
 def getInfo():
   initializeAccessDB()
   q = 'SELECT * FROM clicks'
-  c.execute(q)
+  try:
+    c.execute(q)
+  except:
+    c.execute("CREATE TABLE clicks (time TEXT, subject TEXT, tipe TEXT, topic TEXT)")
+    c.execute(q)
+    
   totalDB = c.fetchall()
   retFormat = {}
   for i in range(len(totalDB)):
