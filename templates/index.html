@@ -40,6 +40,7 @@
 
 	<h2>Subjects</h2>
 	<select id="selectSubjects" onchange="setTopics({{topics}});setQuiz();">
+    <option></option>
 	  {% for subject in subjects%}
 	  <option value={{type}}>{{subject}}</option>
 	  {%endfor%}
@@ -47,6 +48,7 @@
 
 	<h2>Types</h2>
 	<select id="selectTypes" onchange="setTopics({{topics}});setQuiz();">
+    <option></option>
 	  {% for type in types%}
 	  <option value={{type}}>{{type}}</option>
 	  {%endfor%}
