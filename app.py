@@ -40,7 +40,8 @@ def placeholder1():
         #homepage changes depending on whether admin is logged in or not
         if 'username' in session:
                 admin = True
-	return render_template('index.html', subjects=database.getSubjects(), types=['Questions', 'Notes', 'Definitions'], topics=database.subjectTopic(), admin=admin);
+	return render_template('index.html', subjects=database.getSubjects(), types=['Questions', 'Notes', 'Definitions'], topics=database.subjectTopic())
+#, admin=admin);
 
 @app.route("/slash")
 def placeholder0():
