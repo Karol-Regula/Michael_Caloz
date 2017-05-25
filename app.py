@@ -88,8 +88,8 @@ def login():
 @app.route("/admin")
 def admin():
         #add something that shows data from access.db
-        info = accessDB.getInfo()
-        return render_template('index.html', data=info);
+        info = accessDB.getInfoArray()
+        return render_template('admin.html', subjects=info);
 
 @app.route("/logout/", methods=['POST'])
 def logout():
