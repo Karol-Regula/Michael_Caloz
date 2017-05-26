@@ -163,7 +163,8 @@ var getContent = function() {
         	if (mType=='Notes') {
         		displayNotes(response);
         	} else if (mType=='Questions') {
-        		displayQuestions(response);
+        		//displayQuestions(response);
+		    dispq(reponse);
         	} else if (mType=='Definitions') {
         		displayDefinitions(response);
         	}
@@ -183,7 +184,8 @@ var getContent = function() {
         success: function(response){
         	response = JSON.parse(response)
 			//		console.log(response)
-			displayQuestions(response);
+			//displayQuestions(response);
+	    dispq(response);
         },
         error: function(textStatus, errorThrown){
         	console.log(textStatus)
@@ -222,6 +224,43 @@ var displayNotes = function(notes) {
 		row.appendChild(createContentNode(notes[i]));
 		content.appendChild(row);
 	}
+}
+
+var dispq = function(qs) {
+    clearContent();
+
+    for (i=0; i<contentCap; i++) {
+	
+	q = qs[i];
+	
+	var this_q = document.createElement("div");
+	this_q.setAttribute("class","aContent");
+	var answerList = document.createElement("ul");
+	answerList.setAttribute("class","answerList");
+	
+	var keys = ['Question','A','B','C','D','E'];
+	for (j=0; j<keys.length; j++) {
+	    if (j==0) {
+		var theq = document.createElement("p");
+		theq.setAttribute("class","question");
+		theq.innerHTML = q[keys[j]];
+		this_q.appendChild(theq);
+	    } else {
+		var thisAns = document.createElement("ul");
+		if (keys[j] == q['Answer']) {
+		    thisAns.setAttribute("class","answer right");
+		    thisAns.addEventListener('click', function(e) { this.setAttribute("style","color: green;"); });
+		} else {
+		    thisAns.addEventListener('click', function(e) { this.setAttribute("style","color: red;"); });
+		    thisAns.setAttribute("class","answer wrong");
+		}
+		thisAns.innerHTML = q[keys[j]];
+		answerList.appendChild(thisAns);
+	    }
+	}
+	this_q.append(answerList);
+	content.appendChild(this_q);
+    }
 }
 
 var displayQuestions = function(qs) {
