@@ -2,8 +2,6 @@ import sqlite3
 from os import urandom
 from hashlib import sha1
 
-tableCreateQuery = "CREATE TABLE Accounts (username TEXT, password TEXT, salt TEXT, defaultPW TEXT)"
-
 def initializeDB():
   global c, db
   file = 'data/admin.db'
@@ -19,7 +17,8 @@ def closeDB():
 
 #Ask Yvonne for default password
 def initializeAdmin():
-        initializeDB()        
+        initializeDB()
+        tableCreateQuery = "CREATE TABLE IF NOT EXISTS Accounts (username TEXT, password TEXT, salt TEXT, defaultPW TEXT)"
         c.execute(tableCreateQuery)
         user = "Admin"
         adminQuery = "INSERT INTO Accounts VALUES (?,?,?,?)"
@@ -96,9 +95,10 @@ def getDefault(user):
         closeDB()
         return password
 
-#print getDefault("Admin")
-#print changePass("Admin","passChanged!")
-#print getPassword("Admin")
+initializeAdmin()
+print getDefault("Admin")
+print changePass("Admin","passChanged!")
+print getPassword("Admin")
 
 # Checks if user already exists
 # Returns True if exists, False if doesn't

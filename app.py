@@ -81,7 +81,7 @@ def login():
         if text == "":#if no error message, succesful go back home
                 session["username"] = user
                 print text
-                return redirect("/")
+                return redirect("/admin")
         else:
                 return render_template("admin.html", login_error=text)
         
