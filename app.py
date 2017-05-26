@@ -73,17 +73,17 @@ def getContent():
         accessDB.addAccessEntry(time, subj, theType, topic)
 	return database.content(subj, theType, topic)
 
-@app.route("/login", methods=["POST"])
+@app.route("/login/", methods=["POST"])
 def login():
         user = request.form["admin"]
         pw = request.form["pass"]
-        text = account.login(un, pw)#error message
+        text = accounts.login(user, pw)#error message
         if text == "":#if no error message, succesful go back home
                 session["username"] = user
                 print text
                 return redirect("/")
         else:
-                return render_template("login.html", login_error=text)
+                return render_template("admin.html", login_error=text)
         
 @app.route("/admin")
 def admin():
