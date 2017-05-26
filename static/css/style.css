@@ -12,7 +12,11 @@ tr {
 }
 
 td {
-	border: solid 1px #000;
+    border: solid 1px #000;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
 }
 
 .answer {
@@ -20,9 +24,9 @@ td {
 }
 
 .wrong {
-	font-style: italic;
+    /*font-style: italic;*/
 }
 
 .right {
-	font-style: bold;
+    /*font-style: bold;*/
 }

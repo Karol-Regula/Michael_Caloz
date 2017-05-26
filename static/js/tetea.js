@@ -242,9 +242,13 @@ var displayQuestions = function(qs) {
 		q = qs[i]
 		console.log(q);
 		var j=0;
-		for (j=0; j<keys.length; j++) {
-			var item = createContentNode(q[keys[j]])
-
+	    for (j=0; j<keys.length; j++) {
+		if(j==0){
+		    var item = createContentNode(i+1+". <br>"+q[keys[j]])
+		}
+		else{
+		    var item = createContentNode(q[keys[j]])
+		}
 			if (keys[j]=='Question') {
 				item.setAttribute("class","question")
 			}
