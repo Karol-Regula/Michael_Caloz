@@ -89,6 +89,7 @@ def login():
 def admin():
         #add something that shows data from access.db
         info = accessDB.getInfoArray()
+        #app.run(info)
         return render_template('admin.html', subjects=info);
 
 @app.route("/logout/", methods=['POST'])
