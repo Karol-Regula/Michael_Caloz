@@ -119,12 +119,15 @@ bayleSS -- 2017-05-24 21:19
 
 karolR -- 2017-05-25 10:33
 - added two app.py ajax routes for returning quiz amount per subject and quiz data
+- used ajax to return quiz amount in new dropdown on frontend
+- used ajax to return quiz content upon request
+- removed several links in index.html that caused 404 errors
 
 emmaV -- 2017-05-25 12:12
 - different quizzes now displayed on the page
 - start changing formatting for quiz questions
 
-yvonneC -- 2017-05-25 2:53
+yvonneC -- 2017-05-25 14:53
 - initialized the admin account with default password
 - wrote methods to retrieve default password in database and real password in database
 - also wrote backend method to change passwords in Accounts database
@@ -137,3 +140,6 @@ felixRB -- 2017-05-25 23:30
 
 bayleSS -- 2017-05-26 00:15
 - made the pretty pretty amazing graphs for frequencies!
+
+karolR -- 2017-05-26 09:17
+- added drop-down login menu
