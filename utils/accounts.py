@@ -23,8 +23,8 @@ def initializeAdmin():
   user = "Admin"
   adminQuery = "INSERT INTO Accounts VALUES (?,?,?,?)"
   salt = urandom(10).encode('hex')
-  password = sha1("stuff"+salt).hexdigest()
-  default = sha1("stuff"+salt).hexdigest()
+  password = sha1("pass"+salt).hexdigest()
+  default = sha1("pass"+salt).hexdigest()
   c.execute(adminQuery, (user, password, salt, default))
   ret = "Admin account not created. Now login."
   closeDB()
@@ -56,7 +56,7 @@ def login(user,password):
   except: # TABLE does NOT exist
     ret = "Admin account does not exist. Please contact administator."
   closeDB()
-  ret = ""
+  #ret = ""
   return ret
 
 #gives admin the ability to change the password
@@ -94,7 +94,7 @@ def getDefault(user):
     closeDB()
   return password
 
-initializeAdmin()
+#initializeAdmin()
 #print getDefault("Admin")
 #print changePass("Admin","passChanged!")
 #print getPassword("Admin")
