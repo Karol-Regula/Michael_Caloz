@@ -7,27 +7,41 @@
     <div id="chart_div"></div>
 
     <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart","bar"]});
-      google.charts.setOnLoadCallback(drawBarColors);
-      
-      function drawBarColors() {
-      var data = google.visualization.arrayToDataTable(
-      {{subjects}}
-      );
+      google.charts.load('current', {packages:['corechart','bar']});
+      google.charts.setOnLoadCallback(drawBasic);
+      var allSubjects = [["subject","frequency"]]
+      var temp = []
+      {% for element in subjects %}
+      {% if loop.index0 != 0 %}
+	{% for e in element %}
+	  {% if loop.index < 2 %}
+	    temp.push("{{ e }}");
+          {% else %}
+	    temp.push({{e}});
+          {% endif %}
+        {% endfor %}
+        allSubjects.push(temp);
+        temp = []
+     {% endif %}
+     {% endfor %}
+					    
+					    function drawBasic() {
+					    var data = google.visualization.arrayToDataTable(
+					    allSubjects
+					    );
 
-      var options = {
-      title: 'click frequency of different subjects',
-      chartArea: {width: '50%'},
-      colors: ['#b0120a', '#ffab91'],
-      hAxis: {
-      title: 'Total Frequency',
-      minValue: 0
-      },
-      vAxis: {
-      title: 'Subject'
-      }
-      };
-      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+					    var options = {
+					    title: 'click frequency of different subjects',
+					    chartArea: {width: '50%'},
+					    hAxis: {
+					    title: 'Total Frequency',
+					    minValue: 0
+					    },
+					    vAxis: {
+					    title: 'Subject'
+					    }
+					    };
+					    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
       chart.draw(data, options);
       }
     </script>

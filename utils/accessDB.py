@@ -54,7 +54,7 @@ def getInfo():
 
 def getInfoArray():
     dictionary = getInfo()
-    retArray = []
+    retArray = [["subject","frequency"]]
     for item in dictionary:
         retArray.append([item, dictionary[item]])
     return retArray
