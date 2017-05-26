@@ -39,25 +39,23 @@ def login(user,password):
   query = ("SELECT * FROM Accounts WHERE username=?")
   ret = "n/a"
   
-  # try: # TABLE EXISTS
-  # 	sel = c.execute(query,(user,))
-  # 
-  # 	# Check if pass matches
-  # 	# record = (user, password, salt)
-  # 	for record in sel:
-  # 		password = sha1(password+record[2]).hexdigest()
-  # 		if (password==record[1]):
-  # 			ret = ""
-  # 		else: #password doesn't match
-  # 			ret = "Wrong username or password"
-  # 
-  # 	if ret=="n/a": # no records
-  # 		ret = "Username does not exist"
-  # 
-  # except: # TABLE does NOT exist
-  #               ret = "Admin account does not exist. Please contact administator."
-  # 
-  #       closeDB()
+  try: # TABLE EXISTS
+    sel = c.execute(query,(user,))
+    # Check if pass matches
+    # record = (user, password, salt)
+    for record in sel:
+      password = sha1(password+record[2]).hexdigest()
+      if (password==record[1]):
+  	ret = ""
+      else: #password doesn't match
+  	ret = "Wrong username or password"
+        
+      if ret=="n/a": # no records
+  	ret = "Username does not exist"
+        
+  except: # TABLE does NOT exist
+    ret = "Admin account does not exist. Please contact administator."
+  closeDB()
   ret = ""
   return ret
 
