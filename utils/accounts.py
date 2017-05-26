@@ -96,9 +96,9 @@ def getDefault(user):
         closeDB()
         return password
 
-#print getDefault("Admin")
-#print changePass("Admin","passChanged!")
-#print getPassword("Admin")
+print getDefault("Admin")
+print changePass("Admin","passChanged!")
+print getPassword("Admin")
 
 # Checks if user already exists
 # Returns True if exists, False if doesn't
