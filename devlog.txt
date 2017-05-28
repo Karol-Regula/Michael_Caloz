@@ -149,3 +149,6 @@ emmaV & felixRB -- 2017-05-26 12:27
 
 felixRB -- 2017-05-28 11:29
 -more prettization, ie added numberings and such
+
+felixRB -- 2017-05-28 2:00
+-changed the setup used to present notes, now with css styling and in a div instead of a table
