@@ -167,7 +167,8 @@ var getContent = function() {
         		//displayQuestions(response);
 		    dispq(reponse);
         	} else if (mType=='Definitions') {
-        		displayDefinitions(response);
+        	    //displayDefinitions(response);
+		    dispd(response);
         	}
         },
         error: function(textStatus, errorThrown){
@@ -346,6 +347,48 @@ var displayQuestions = function(qs) {
 		this_row.setAttribute("class","qitem");
 		content.appendChild(this_row);
 	}
+}
+
+var dispd = function(defs){
+    clearContent();
+
+    var hold = document.createElement("div");
+    hold.setAttribute("class", "holdDefs");
+
+    var row = document.createElement("tr");
+    var i=0;
+    var keys = ['Word', 'Definition'];
+    for (i=0; i<keys.length; i++) {
+	row.appendChild(createContentNode(keys[i]));
+    }
+    console.log(row);
+    row.setAttribute("class", "def_header");
+    hold.appendChild(row);
+    //content.appendChild(row);
+
+    var i=0;
+    for (i=0; i<contentCap; i++) {
+	var this_row = document.createElement("tr");
+	d = defs[i]
+	var j=0;
+	
+	var itemWord = createContentNode(d[keys[0]])
+	var itemDef = createContentNode(d[keys[1]])
+	itemDef.setAttribute("style","visibility: hidden;");
+	itemDef.setAttribute("id", String(i) + "definitionActual");
+	itemWord.setAttribute("id", String(i) + "definition");
+	itemWord.addEventListener('click', function(e) { document.getElementById(this.getAttribute("id") + "Actual").setAttribute("style","visibility: visible;");});
+	this_row.appendChild(itemWord);
+	this_row.appendChild(itemDef);
+
+	this_row.setAttribute("class", "defs");
+	
+	hold.appendChild(this_row);
+    }
+
+    content.appendChild(hold);
+    
+    //console.log("displaying Definitions");
 }
 
 var displayDefinitions = function(defs) {

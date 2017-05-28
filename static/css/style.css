@@ -45,3 +45,23 @@
     margin-right: 10px
     
 }
+
+/*THE STYLING FOR THE DEFS*/
+
+.holdDefs{
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.def_header{
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 30 px;
+}
+
+.defs{
+    padding-right: 10px;
+    padding-left: 100px;
+}
