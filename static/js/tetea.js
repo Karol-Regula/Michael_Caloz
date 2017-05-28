@@ -243,7 +243,7 @@ var dispq = function(qs) {
 	    if (j==0) {
 		var theq = document.createElement("p");
 		theq.setAttribute("class","question");
-		theq.innerHTML = q[keys[j]];
+		theq.innerHTML = (i+1)+". "+q[keys[j]];
 		this_q.appendChild(theq);
 	    } else {
 		var thisAns = document.createElement("ul");
