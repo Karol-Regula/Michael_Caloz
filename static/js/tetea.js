@@ -161,7 +161,8 @@ var getContent = function() {
         success: function(response){
         	response = JSON.parse(response)
         	if (mType=='Notes') {
-        		displayNotes(response);
+        	    //displayNotes(response);
+		    dispn(response);
         	} else if (mType=='Questions') {
         		//displayQuestions(response);
 		    dispq(reponse);
@@ -213,6 +214,47 @@ var createContentNode = function(content) {
 	var node = document.createElement("td");
 	node.innerHTML = content;
 	return node;
+}
+
+var dispn = function(notes){
+    clearContent();
+
+    var cont = document.createElement("div");
+    cont.setAttribute("class", "aNote");
+    
+    //header
+    var row = document.createElement("ul");
+    row.setAttribute("class", "notes_header");
+    row.innerHTML = "Notes:";
+    cont.appendChild(row);
+    //explanation
+    var row = document.createElement("ul");
+    row.setAttribute("class", "notes_explanation");
+    row.innerHTML = "Use these notes to gain a better understanding of the afformentioned topic.";
+    cont.appendChild(row);
+    
+    var i=0;
+    for(i=0; i<contentCap; i++){
+	if(notes[i] != null){
+	    var row = document.createElement("ul");
+	    row.setAttribute("class", "one_note");
+	    row.innerHTML = (i+1)+". "+notes[i];
+	    cont.appendChild(row);
+	}
+    }
+    content.appendChild(cont);
+    
+    /*
+    var i=0;
+    for (i=0; i<contentCap; i++) {
+	var row = document.createElement("div");
+	row.setAttribute("class", "aNote");
+	row.innerHTML = notes[i];
+
+	content.appendChild(row);
+	
+    }
+    */
 }
 
 var displayNotes = function(notes) {

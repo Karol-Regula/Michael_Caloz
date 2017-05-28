@@ -1,8 +1,15 @@
+/* THE STYLING FOR QUESTIONS */
 .aContent {
     border: 1px solid black;
     background-color: white;
     border-radius: 10px;
     margin-bottom: 20px;
+}
+
+.question{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
 }
 
 .answer {
@@ -15,4 +22,26 @@
 
 .right {
     /*font-style: bold;*/
+}
+
+/*THE STYLING FOR NOTES*/
+.aNote{
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.notes_header{
+    /*font-size: 20 px;*/
+    font-weight: bold;
+}
+
+.notes_explanation{
+
+}
+
+.one_note{
+    margin-right: 10px
+    
 }
