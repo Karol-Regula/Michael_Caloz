@@ -1,11 +1,23 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import utils, datetime, time
+import utils, datetime, time, os
 from os import urandom
 from utils import database, accounts, accessDB
 import json
 
+
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = '/path/to/the/uploads'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+
 app = Flask(__name__)
-app.secret_key = urandom(20)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+
+
+
+#app = Flask(__name__)
+#app.secret_key = urandom(20)
 
 # Returns comma-separated str of topics available
 # for the requested material type
@@ -102,7 +114,11 @@ def login():
         else:
                 return render_template("admin.html", login_error=text)
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+        
 '''def admin():
         #add something that shows data from access.db
         info = accessDB.getInfoArray()
@@ -121,8 +137,9 @@ def upload_file():
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
-        if file and allowed_file(file.filename):
+        else:
             filename = secure_filename(file.filename)
+            print filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('uploaded_file',
                                     filename=filename))
@@ -135,7 +152,7 @@ def upload_file():
          <input type=submit value=Upload>
     </form>
     '''
-
+        
 @app.route("/logout/", methods=['POST'])
 def logout():
         session.pop("username")
