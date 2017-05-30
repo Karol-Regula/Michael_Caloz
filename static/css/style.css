@@ -65,3 +65,11 @@
     padding-right: 10px;
     padding-left: 100px;
 }
+
+.definition {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    width: 200px;
+    margin: auto;
+}
