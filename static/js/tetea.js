@@ -198,6 +198,7 @@ var getContent = function() {
 }
 
 var contentCap = 10;
+var contentCapNotes = 100;
 var content = null;
 
 //clears content section of page
@@ -235,7 +236,7 @@ var dispn = function(notes){
     cont.appendChild(row);
     
     var i=0;
-    for(i=0; i<contentCap; i++){
+    for(i=0; i<contentCapNotes; i++){
 	if(notes[i] != null){
 	    var row = document.createElement("ul");
 	    row.setAttribute("class", "one_note");
@@ -262,7 +263,7 @@ var displayNotes = function(notes) {
 	clearContent();
 
 	var i=0;
-	for (i=0; i<contentCap; i++) {
+	for (i=0; i<contentCapNotes; i++) {
 		row = document.createElement("tr")
 		row.appendChild(createContentNode(notes[i]));
 		content.appendChild(row);
