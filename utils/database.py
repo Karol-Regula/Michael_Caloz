@@ -265,6 +265,39 @@ def returnQuizAmount(subject):
   print "a: " + str(a)
   return a
 
+#returns data for requested definition set, scalable
+def returnDefinition(definitionNumber, subject):
+  initializeDB()
+  definitionNumber = int(definitionNumber)
+  out = []
+  q = "SELECT Word, Definition FROM definitions WHERE subject =?"
+  c.execute(q, (subject,))
+  whole = c.fetchall()
+  for i in whole:
+    out.append({'Word': i[0], 'Definition':i[1]})
+  a = (definitionNumber * 10) - 10
+  b = (definitionNumber * 10)
+  print "a: " + str(a) + "b: " + str(b)
+  out = out[a:b]
+  closeDB()
+  return json.dumps(out)
+
+#returns amount of available definition sets for a particular subject, use for returnDefinition()
+def returnDefinitionAmount(subject):
+  initializeDB()
+  out = []
+  q = "SELECT Word, Definition FROM definitions WHERE subject =?"  
+  c.execute(q, (subject,))
+  whole = c.fetchall()
+  for i in whole:
+    out.append({'Word': i[0], 'Definition':i[1]})
+  print "len(out): " + str(len(out))
+  a = (len(out) / 10)
+  closeDB()
+  print "a: " + str(a)
+  return a
+
+
 #print returnQuiz(2, "Civics");
 #print returnQuiz(5, "Civics");
 #print returnQuizAmount("Civics");

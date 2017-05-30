@@ -87,7 +87,6 @@ var setTopics = function(topics) {
 
 //sets quizzes when form data is changed
 var setQuiz = function() {
-	console.log("setQuiz:");
 	var subjPicked = selected("selectSubjects");
 	var typePicked = selected("selectTypes");
 	var quiz = document.getElementById("selectQuiz");
@@ -96,6 +95,7 @@ var setQuiz = function() {
 	var subj = selected("selectSubjects");
 	
 	if (typePicked=='Questions') {
+		console.log("setQuiz:");
 		quiz.style.visibility = "visible";
 		quizHeading.style.visibility = "visible";
 		
@@ -130,6 +130,52 @@ var setQuiz = function() {
 	}
 };
 
+
+//sets definition sets when form data is changed
+var setDefinition = function() {
+	var subjPicked = selected("selectSubjects");
+	var typePicked = selected("selectTypes");
+	var definition = document.getElementById("selectDefinition");
+	var definitionHeading = document.getElementById("selectDefinitionHeading");
+	
+	var subj = selected("selectSubjects");
+	
+	if (typePicked=='Definitions') {
+		console.log("setDefinition:");
+		definition.style.visibility = "visible";
+		definitionHeading.style.visibility = "visible";
+		
+		$.ajax({
+			traditional: true,
+					type: "GET",
+					url: "/getDefinitionAmount/",
+					data: {subject: subj},
+					dataType: "text",
+					success: function(response){
+						console.log("SucessDefinition: " + response);
+						var amounts = [];
+						var i = 1;
+						while (i < parseInt(response)){
+							amounts.push(i);
+							i++;
+						}
+						setDropdown(amounts, "selectDefinition");
+					},
+					error: function(textStatus, errorThrown){
+						console.log(textStatus)
+						console.log(errorThrown)
+					}
+		})
+		
+	} else {
+		while (definition.hasChildNodes()) {
+			definition.removeChild(definition.lastChild);
+		}
+		definition.style.visibility = "collapse";
+		definitionHeading.style.visibility = "collapse";
+	}
+};
+
 // Runs upon submission
 // Gets content based on subj/type/topic
 var getContent = function() {
@@ -146,6 +192,8 @@ var getContent = function() {
 	//only get number if applicable
 	if (mType=='Questions') {
 		mNumber = selected("selectQuiz");
+	} else if (mType=='Definitions') {
+		mNumber = selected("selectDefinition");
 	} else {
 		mNumber = "";
 	}
@@ -177,6 +225,7 @@ var getContent = function() {
         }
 	})
 }else{
+	if (mType == "Questions"){
 	$.ajax({
 		traditional: true,
         type: "GET",
@@ -194,6 +243,23 @@ var getContent = function() {
         	console.log(errorThrown)
         }
 	})
+}else{
+	$.ajax({
+		traditional: true,
+        type: "GET",
+        url: "/getDefinition/",
+        data: {subject: subj, number:mNumber},
+        dataType: "text",
+        success: function(response){
+        	response = JSON.parse(response)
+	    dispd(response);
+        },
+        error: function(textStatus, errorThrown){
+        	console.log(textStatus)
+        	console.log(errorThrown)
+        }
+	})
+}
 }
 }
 
@@ -433,4 +499,8 @@ window.onload = function WindowLoad(event) {
 	var quizHeading = document.getElementById("selectQuizHeading");
 	quiz.style.visibility = "collapse";
 	quizHeading.style.visibility = "collapse";
+	var definition = document.getElementById("selectDefinition");
+	var definitionHeading = document.getElementById("selectDefinitionHeading");
+	definition.style.visibility = "collapse";
+	definitionHeading.style.visibility = "collapse";
 }

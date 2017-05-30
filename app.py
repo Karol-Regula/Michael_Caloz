@@ -49,6 +49,23 @@ def getQuiz():
 	subject = request.args['subject']
 	number = request.args['number']
 	return database.returnQuiz(number, subject)
+	
+	
+# Returns number of available definition sets
+@app.route("/getDefinitionAmount/", methods=["GET"])
+def getDefinitionAmount():
+	subject = request.args['subject']
+	print "getDefinitionAmount():"
+	amount = database.returnDefinitionAmount(subject)
+	return str(amount)
+	
+# Returns content of the reuqested definition set
+@app.route("/getDefinition/", methods=["GET"])
+def getDefinition():
+	subject = request.args['subject']
+	number = request.args['number']
+	return database.returnDefinition(number, subject)
+	
 
 @app.route("/")
 def placeholder1():
