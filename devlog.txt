@@ -160,3 +160,6 @@ karolR -- 2017-05-30 11:47
 
 emmaV & felixR -- 2017-05-30 12:30
 - start making definitions look like flashchards
+
+yvonneC & karolR & bayleSS -- 2017-05-30 12:35
+-began adding uploading sql database functionality
