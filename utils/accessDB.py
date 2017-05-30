@@ -59,6 +59,6 @@ def getInfoArray():
         retArray.append([item, dictionary[item]])
     return retArray
 
-print getInfo()
-print getInfoArray()    
+#print getInfo()
+#print getInfoArray()    
 
