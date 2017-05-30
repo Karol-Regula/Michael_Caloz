@@ -152,6 +152,8 @@ felixRB -- 2017-05-28 11:29
 
 felixRB -- 2017-05-28 2:00
 -changed the setup used to present notes, now with css styling and in a div instead of a table
-
-felixRB -- 2017-05-28 3:00
 -worked on the presentation of the definitions
+
+karolR -- 2017-05-30 11:47
+- all notes for a particular subject-topic are now displayed
+- definitions are displayed in a similar way to questions, the user can pick from sets of 10
