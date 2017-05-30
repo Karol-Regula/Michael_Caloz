@@ -1,5 +1,6 @@
 //gets selected of dropdown with id thisselect
 var selected = function(thisSelect) {
+    console.log(thisSelect);
 	var typeSelect = document.getElementById(thisSelect);
 	var typePicked = typeSelect.options[typeSelect.selectedIndex].text;
 	return typePicked;
@@ -416,11 +417,28 @@ var displayQuestions = function(qs) {
 	}
 }
 
-var dispd = function(defs){
+var dispd = function(defs) {
+    clearContent();
+
+    var i=0;
+    for (i=0; i<contentCap; i++) {
+	def = defs[i];
+	if (def==null) { break;}
+
+	var thisOne = document.createElement("div");
+	thisOne.setAttribute("class","aContent definition");
+	thisOne.setAttribute("word", def['Word']);
+	thisOne.setAttribute("definition", def['Definition']);
+	thisOne.innerHTML = thisOne.getAttribute("word");
+	content.appendChild(thisOne);
+    }
+}
+
+var dispd2 = function(defs){
     clearContent();
 
     var hold = document.createElement("div");
-    hold.setAttribute("class", "holdDefs");
+    hold.setAttribute("class", "aContent");
 
     var row = document.createElement("tr");
     var i=0;
