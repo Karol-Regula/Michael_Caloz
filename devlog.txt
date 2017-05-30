@@ -157,3 +157,6 @@ felixRB -- 2017-05-28 2:00
 karolR -- 2017-05-30 11:47
 - all notes for a particular subject-topic are now displayed
 - definitions are displayed in a similar way to questions, the user can pick from sets of 10
+
+emmaV & felixR -- 2017-05-30 12:30
+- start making definitions look like flashchards
