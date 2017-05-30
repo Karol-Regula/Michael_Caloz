@@ -430,6 +430,23 @@ var dispd = function(defs) {
 	thisOne.setAttribute("word", def['Word']);
 	thisOne.setAttribute("definition", def['Definition']);
 	thisOne.innerHTML = thisOne.getAttribute("word");
+
+
+
+	
+	thisOne.addEventListener('click',
+				 function(e){
+				     console.log(this.getAttribute("word"));
+				     console.log(this.innerHTML);
+				     if(this.innerHTML == this.getAttribute("word")){
+					 console.log(this);
+					 this.innerHTML = this.getAttribute("definition");  }
+				     else{
+					 console.log("else");
+					 this.innerHTML = this.getAttribute("word");  }
+				 });
+					 
+	
 	content.appendChild(thisOne);
     }
 }
