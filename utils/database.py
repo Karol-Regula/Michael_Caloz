@@ -313,7 +313,7 @@ def convertDB(filename):
   return
 
 
-convertDB('sqlDbORIGINAL.sql')
+#convertDB('sqlDbORIGINAL.sql')
 
 
 #print returnQuiz(2, "Civics");
