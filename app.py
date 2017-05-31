@@ -142,7 +142,8 @@ def upload_file():
       filename = secure_filename(file.filename)
       print filename
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-      print msg
+      database.convertDB(filename);
+      msg = "Database has been replaced sucessfully."
       return redirect(url_for('upload_file',filename=filename, message=msg))
   return render_template('admin.html', subjects=info, message=msg)
 
