@@ -62,7 +62,17 @@
     
     <!-- THE ACTUAL STUFF -->
     <div class="jumbotron">
-      <b>USERNAME: "Admin"<br>PASSWORD: "pass"</b>
+      <b>USERNAME: "Admin"<br>PASSWORD: "pass"</b><br>
+      
+      
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+      <b style="color:red">{{ message }}</b>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      
       
       <h2>Subjects</h2>
       <select id="selectSubjects" onchange="setTopics({{topics}});setQuiz();setDefinition();">

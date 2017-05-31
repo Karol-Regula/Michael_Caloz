@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import utils, datetime, time, os
 from os import urandom
 #from os.path import join, dirname, realpath
@@ -108,7 +108,8 @@ def login():
     print text
     return redirect("/admin")
   else:
-    return render_template("admin.html", login_error=text)
+    flash(text);
+    return redirect("/")
 
 def allowed_file(filename):
   return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
