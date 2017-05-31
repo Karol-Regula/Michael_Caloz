@@ -4,7 +4,7 @@ import sqlite3
 import json
 
 from subprocess import Popen, PIPE
-from os import remove, execlp, fork
+import os
 
 f = "database.db"
 
@@ -307,8 +307,13 @@ def returnDefinitionAmount(subject):
   
   
 def convertDB(filename):
-  p = Popen( ['./', filename, sqlToSqlite.sh], stdin = PIPE, stdout = PIPE )
+  #p = Popen( ['./', "uploads/" + filename, 'sqlToSqlite.sh'], stdin = PIPE, stdout = PIPE )
+  os.system('./sqlToSqlite.sh ../uploads/' + filename +  "| sqlite3 mysqlite3.db")
+  os.system('mv ');
   return
+
+
+convertDB('sqlDbORIGINAL.sql')
 
 
 #print returnQuiz(2, "Civics");
