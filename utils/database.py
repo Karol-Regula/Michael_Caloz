@@ -3,6 +3,9 @@ import csv
 import sqlite3
 import json
 
+from subprocess import Popen, PIPE
+from os import remove, execlp, fork
+
 f = "database.db"
 
 #database headings
@@ -301,6 +304,11 @@ def returnDefinitionAmount(subject):
   closeDB()
   print "a: " + str(a)
   return a
+  
+  
+def convertDB(filename):
+  p = Popen( ['./', filename, sqlToSqlite.sh], stdin = PIPE, stdout = PIPE )
+  return
 
 
 #print returnQuiz(2, "Civics");
