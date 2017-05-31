@@ -175,3 +175,14 @@ karolR -- 2017-05-31 9:08
 yvonneC & karolR -- 2017-05-31 10:13
 - trailing questions/definitions that do not add up to 10 are now displayed as their own quiz
 - fixed bug in js that stopped an entire quiz from being displayed
+
+emmaV -- 2017-05-31 12:25
+- Made flashcards more flashcard-looking
+- Handle overflowing definitions and make it nice-looking
+<<<<<<< HEAD
+- Start using pretty dropdowns
+=======
+
+yvonneC -- 2017-05-31 12:33
+- incorporated error message for uploading files so that user must select a file and it must be an .sql file
+>>>>>>> eecad62543c678cc657803ddbe47f408b14953fa

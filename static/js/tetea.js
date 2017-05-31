@@ -548,3 +548,9 @@ window.onload = function WindowLoad(event) {
 	definition.style.visibility = "collapse";
 	definitionHeading.style.visibility = "collapse";
 }
+
+$(dropdown).on('click', '#tester li a', function () {
+    console.log("Selected Option:"+$(this).text());
+    var button = document.getElementById("tester-button");
+    button.innerHTML = $(this).text();
+});

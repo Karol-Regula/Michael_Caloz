@@ -67,9 +67,20 @@
 }
 
 .definition {
-    padding-top: 20px;
-    padding-bottom: 20px;
     text-align: center;
-    width: 200px;
+    width: 400px;
+    height: 100px;
     margin: auto;
+    margin-bottom: 30px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
 }
