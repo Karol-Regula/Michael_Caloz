@@ -308,13 +308,13 @@ def returnDefinitionAmount(subject):
   
 def convertDB(filename):
   os.system('./sqlToSqlite.sh uploads/' + filename +  '| sqlite3 data/databaseNEW.db')
-  os.rename('data/database.db data/databaseOLD.db');
-  os.rename('data/databaseNEW.db data/database1.db');
+  os.rename('data/database.db', 'data/databaseOLD.db');
+  os.rename('data/databaseNEW.db', 'data/database1.db');
   #deduplicateDatabase();
   return
 
 
-convertDB('sqlDbORIGINAL.sql')
+#convertDB('sqlDbORIGINAL.sql')
 
 
 #print returnQuiz(2, "Civics");
