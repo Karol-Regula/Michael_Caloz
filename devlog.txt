@@ -179,3 +179,6 @@ yvonneC & karolR -- 2017-05-31 10:13
 emmaV -- 2017-05-31 12:25
 - Made flashcards more flashcard-looking
 - Handle overflowing definitions and make it nice-looking
+
+yvonneC -- 2017-05-31 12:33
+- incorporated error message for uploading files so that user must select a file and it must be an .sql file
