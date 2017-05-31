@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import utils, datetime, time, os
 from os import urandom
-from os.path import join, dirname, realpath
+#from os.path import join, dirname, realpath
 from utils import database, accounts, accessDB
 import json
 
@@ -139,15 +139,6 @@ def upload_file():
       return redirect(url_for('upload_file',filename=filename))
   info = accessDB.getInfoArray()
   return render_template('admin.html', subjects=info)
-  '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    </form>
-    '''
 
 @app.route("/logout/", methods=['POST'])
 def logout():

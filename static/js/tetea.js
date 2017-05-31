@@ -110,7 +110,7 @@ var setQuiz = function() {
 						console.log("SucessQuiz: " + response);
 						var amounts = [];
 						var i = 1;
-						while (i < parseInt(response)){
+						while (i <= parseInt(response)){
 							amounts.push(i);
 							i++;
 						}
@@ -156,7 +156,7 @@ var setDefinition = function() {
 						console.log("SucessDefinition: " + response);
 						var amounts = [];
 						var i = 1;
-						while (i < parseInt(response)){
+						while (i <= parseInt(response)){
 							amounts.push(i);
 							i++;
 						}

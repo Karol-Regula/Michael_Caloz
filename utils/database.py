@@ -261,6 +261,9 @@ def returnQuizAmount(subject):
       out.append({"Question": i[0], "A": i[1], "B": i[2], "C": i[3], "D":i[4], "E":i[5], "Answer": i[6]})
   print "len(out): " + str(len(out))
   a = (len(out) / 10)
+  print len(out)
+  if a * 10 < len(out):
+    a += 1
   closeDB()
   print "a: " + str(a)
   return a
@@ -293,6 +296,8 @@ def returnDefinitionAmount(subject):
     out.append({'Word': i[0], 'Definition':i[1]})
   print "len(out): " + str(len(out))
   a = (len(out) / 10)
+  if a * 10 < len(out):
+    a += 1
   closeDB()
   print "a: " + str(a)
   return a

@@ -171,3 +171,7 @@ karolR -- 2017-05-31 9:08
 - uploading files now works, added folder for uploads
 - added graph back to admin packages
 - indentation fixes in app.py
+
+yvonneC & karolR -- 2017-05-31 10:13
+- trailing questions/definitions that do not add up to 10 are now displayed as their own quiz
+- fixed bug in js that stopped an entire quiz from being displayed
