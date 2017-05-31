@@ -115,9 +115,7 @@ def allowed_file(filename):
 
         
 '''def admin():
-#add something that shows data from access.db
 info = accessDB.getInfoArray()
-#app.run(info)
 return render_template('admin.html', subjects=info)'''
 
 
@@ -139,7 +137,9 @@ def upload_file():
       print filename
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
       return redirect(url_for('upload_file',filename=filename))
-  return '''
+  info = accessDB.getInfoArray()
+  return render_template('admin.html', subjects=info)
+  '''
     <!doctype html>
     <title>Upload new File</title>
     <h1>Upload new File</h1>
