@@ -179,3 +179,4 @@ yvonneC & karolR -- 2017-05-31 10:13
 emmaV -- 2017-05-31 12:25
 - Made flashcards more flashcard-looking
 - Handle overflowing definitions and make it nice-looking
+- Start using pretty dropdowns
