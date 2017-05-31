@@ -166,3 +166,8 @@ yvonneC & karolR & bayleSS -- 2017-05-30 12:35
 
 felixRB -- 2017-05-30 8:30
 -used JS to make functioning notecards for the defenitions section of the project
+
+karolR -- 2017-05-31 9:08
+- uploading files now works, added folder for uploads
+- added graph back to admin packages
+- indentation fixes in app.py
