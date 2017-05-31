@@ -146,7 +146,7 @@ def upload_file():
         database.convertDB(filename);
         msg = "Database has been replaced sucessfully."
         return redirect(url_for('upload_file',filename=filename, message=msg))
-      return render_template('admin.html', subjects=info, message=msg)
+    return render_template('admin.html', subjects=info, message=msg)
   return redirect("/")
     
 @app.route("/logout/", methods=['POST'])
