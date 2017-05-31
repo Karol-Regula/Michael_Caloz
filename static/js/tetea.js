@@ -526,6 +526,14 @@ var displayDefinitions = function(defs) {
 	console.log("displaying Definitions");
 }
 
+function dropdown(val) {
+  var y = document.getElementsByClassName('btn btn-primary dropdown-toggle');
+	var val = y.innerHTML;
+	console.log(val);
+	console.log(y);
+  var aNode = y[0].innerHTML = val + ' <span class="caret"></span>';
+}
+
 window.onload = function WindowLoad(event) {
 	var select = document.getElementById("selectTopics");
 	var selectHeading = document.getElementById("selectTopicsHeading");

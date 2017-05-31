@@ -72,6 +72,17 @@
         {%endfor%}
       </select>
       
+      <!--
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Subject
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            {% for type in types%}
+            <li><a href="#" onclick="dropdown();">{{type}}</a></li> 
+            {%endfor%}
+          </ul>
+        </div>-->
+      
       <h2>Types</h2>
       <select id="selectTypes" onchange="setTopics({{topics}});setQuiz();setDefinition();">
         <option></option>
@@ -91,6 +102,17 @@
       <h2 id="selectDefinitionHeading">Definition Sets</h2>
       <select id="selectDefinition">
       </select>
+      
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">JavaScript</a></li>
+          </ul>
+        </div>
+
       
       <br><br>
       <input type="submit" value="Submit" onclick="getContent();">
