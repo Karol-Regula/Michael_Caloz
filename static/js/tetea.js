@@ -365,7 +365,8 @@ var dispq = function(qs) {
 		    thisAns.addEventListener('click', function(e) { this.setAttribute("style","color: red;"); });
 		    thisAns.setAttribute("class","answer wrong");
 		}
-		thisAns.innerHTML = q[keys[j]];
+		var letters = ['a', 'b', 'c', 'd', 'e']
+		thisAns.innerHTML = letters[j-1]+") "+q[keys[j]];
 		answerList.appendChild(thisAns);
 	    }
 	}
