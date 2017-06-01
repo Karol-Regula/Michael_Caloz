@@ -171,6 +171,10 @@ var setQuiz = function() {
 						//console.log("SucessQuiz: " + response);
 						var amounts = [];
 						var i = 1;
+						if (response.length==0) {
+							alert("No quizzes available based on your selections.");
+							return ;
+						}
 						while (i <= parseInt(response)){
 							amounts.push(i);
 							i++;
@@ -225,6 +229,19 @@ var setDefinition = function() {
 					success: function(response){
 						//console.log("SucessDefinition: " + response);
 						var amounts = [];
+						console.log(response);
+						if (response==0) {
+
+							definitionOuter.style.display = "none";
+							definitionHeading.style.display = "none";
+							//definitionHeading.innerHTML = "No definitions available based on your selections.";
+							definitionOuter.appendChild(document.createElement("br"));
+    						var msg = document.createElement("p");
+    						msg.innerHTML = "No notes available based on your selections.";
+    						definitionOuter.appendChild(msg);
+    						return ;
+						}
+
 						var i = 1;
 						while (i <= parseInt(response)){
 							amounts.push(i);
@@ -362,6 +379,14 @@ var createContentNode = function(content) {
 var dispn = function(notes){
     clearContent();
 
+    if (notes.length==0) {
+    	content.appendChild(document.createElement("br"));
+    	var msg = document.createElement("p");
+    	msg.innerHTML = "No notes available based on your selections.";
+    	content.appendChild(msg);
+    	return ;
+    }
+
     var cont = document.createElement("div");
     cont.setAttribute("class", "aNote");
     
@@ -413,6 +438,14 @@ var displayNotes = function(notes) {
 
 var dispq = function(qs) {
     clearContent();
+
+    if (qs.length==0) {
+    	content.appendChild(document.createElement("br"));
+    	var msg = document.createElement("p");
+    	msg.innerHTML = "No questions available based on your selections.";
+    	content.appendChild(msg);
+    	return ;
+    }
 
     for (i=0; i<contentCap; i++) {
 	
