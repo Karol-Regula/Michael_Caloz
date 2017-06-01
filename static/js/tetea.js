@@ -492,11 +492,21 @@ var dispq = function(qs) {
 		this_q.appendChild(theq);
 	    } else {
 		var thisAns = document.createElement("ul");
+		thisAns.addEventListener('click', function(e) {
+
+			var x=0;
+			var lst = this.parentElement.childNodes;
+			console.log(lst);
+			for (x=0; x<lst.length; x++) {
+				console.log(lst[x]);
+				lst[x].setAttribute("style","font-style: normal;");
+			}
+
+			this.setAttribute("style","font-style: italic;");
+		});
 		if (keys[j] == q['Answer']) {
 		    thisAns.setAttribute("class","answer right");
-		    thisAns.addEventListener('click', function(e) { this.setAttribute("style","color: green;"); });
 		} else {
-		    thisAns.addEventListener('click', function(e) { this.setAttribute("style","color: red;"); });
 		    thisAns.setAttribute("class","answer wrong");
 		}
 		var letters = ['a', 'b', 'c', 'd', 'e']
