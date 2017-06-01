@@ -116,7 +116,7 @@ var setTopics = function(topics) {
 	topics = JSON.parse(topics);
 	var subjPicked = selected("selectSubjects");
 	var typePicked = selected("selectTypes");
-	var select = document.getElementById("selectTopics");
+	var select = document.getElementById("selectTopics-inner");
 	var selectOuter = document.getElementById("selectTopics");
 	var selectHeading = document.getElementById("selectTopicsHeading");
 
