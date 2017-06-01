@@ -6,6 +6,17 @@ var selected_old = function(thisSelect) {
 	return typePicked;
 }
 
+//gets selected of dropdown with id thisselect
+var selected = function(thisSelect) {
+	console.log("selected");
+	thisSelect = thisSelect.concat('-button');
+  console.log("thisSelect: ".concat(thisSelect));
+	var typeSelect = document.getElementById(thisSelect);
+	var typePicked = typeSelect.innerHTML;
+	console.log(typePicked);
+	return typePicked;
+}
+
 // Updates thisSelect menu based on the choice
 // made in the lastSelect menu (using the function fxn)
 // NOT USING RN, keeping for ajax
