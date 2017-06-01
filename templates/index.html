@@ -2,30 +2,31 @@
 
 {% block login %}
 <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Administrator Login</b><span class="caret"></span></a>
-            <ul id="login-dp" class="dropdown-menu">
-              <li>
-                <div class="row">
-                  <div class="col-md-12">
-                    <form class="form" role="form" method="POST" action="/login/" accept-charset="UTF-8">
-                      <div class="form-group">
-                        Username: <input class="form-control" placeholder="Username" type="text" name="admin" required>
-                        <br/>
-                        Password:&thinsp; <input class="form-control" type="password" name="pass" placeholder="Password" required>                        
-                        <br/>                        
-                        <input class="btn btn-primary btn-block" type="submit" name="button" value="login" action="login">
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </li>
-            </ul>
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Administrator Login</b><span class="caret"></span></a>
+  <ul id="login-dp" class="dropdown-menu">
+    <li>
+      <div class="row">
+        <div class="col-md-12">
+          <form class="form" role="form" method="POST" action="/login/" accept-charset="UTF-8">
+            <div class="form-group">
+              Username: <input class="form-control" placeholder="Username" type="text" name="admin" required>
+              <br/>
+              Password:&thinsp; <input class="form-control" type="password" name="pass" placeholder="Password" required>                        
+              <br/>                        
+              <input class="btn btn-primary btn-block" type="submit" name="button" value="login" action="login">
+            </div>
+          </form>
+        </div>
+      </div>
+    </li>
+  </ul>
 </li>
 {% endblock %}
 
 
 {% block data %}
-<b>USERNAME: "Admin"<br>PASSWORD: "pass"</b>
+<b>USERNAME: "Admin"<br>PASSWORD: "pass"</b><br>
+
 
 {% with messages = get_flashed_messages() %}
 {% if messages %}
@@ -59,7 +60,6 @@
   </ul>
 </div>
 
-
 <h2 id="selectTopicsHeading">Topics</h2>
 <select id="selectTopics">
 </select>
@@ -77,7 +77,10 @@
 
 <div id="content">
 </div>
+<br>
+
 
 <br>
 
 {% endblock %}
+
