@@ -138,13 +138,14 @@ var setQuiz = function() {
 	var subjPicked = selected("selectSubjects");
 	var typePicked = selected("selectTypes");
 	var quiz = document.getElementById("selectQuiz-inner");
+	var quizOuter = document.getElementById("selectQuiz");
 	var quizHeading = document.getElementById("selectQuizHeading");
 	
 	var subj = selected("selectSubjects");
 	
 	if (typePicked=='Questions') {
 		//console.log("setQuiz:");
-		quiz.style.visibility = "visible";
+		quizOuter.style.visibility = "visible";
 		quizHeading.style.visibility = "visible";
 		
 		while (quiz.hasChildNodes()) {
@@ -174,14 +175,10 @@ var setQuiz = function() {
 		})
 		
 	} else {
-		console.log("removing nodes");
-		console.log(quiz);
-		console.log(quiz.hasChildNodes());
 		while (quiz.hasChildNodes()) {
 			quiz.removeChild(quiz.lastChild);
 		}
-		console.log(quiz.hasChildNodes());
-		//quiz.style.visibility = "collapse";
+		quizOuter.style.visibility = "collapse";
 		quizHeading.style.visibility = "collapse";
 	}
 };
@@ -192,13 +189,14 @@ var setDefinition = function() {
 	var subjPicked = selected("selectSubjects");
 	var typePicked = selected("selectTypes");
 	var definition = document.getElementById("selectDefinition-inner");
+	var definitionOuter = document.getElementById("selectDefinition");
 	var definitionHeading = document.getElementById("selectDefinitionHeading");
 	
 	var subj = selected("selectSubjects");
 	
 	if (typePicked=='Definitions') {
 		//console.log("setDefinition:");
-		definition.style.visibility = "visible";
+		definitionOuter.style.visibility = "visible";
 		definitionHeading.style.visibility = "visible";
 		
 		while (definition.hasChildNodes()) {
@@ -228,14 +226,10 @@ var setDefinition = function() {
 		})
 		
 	} else {
-		console.log("removing nodes");
-		console.log(definition);
-		console.log(definition.hasChildNodes());
 		while (definition.hasChildNodes()) {
 			definition.removeChild(definition.lastChild);
 		}
-		console.log(definition.hasChildNodes());
-		//definition.style.visibility = "collapse";
+		definitionOuter.style.visibility = "collapse";
 		definitionHeading.style.visibility = "collapse";
 	}
 };
@@ -606,13 +600,17 @@ var addDropListeners = function() {
 		if (dropId.substring(0,6)=="select") {
 			$(dropdown).on('click', '#'.concat(dropId).concat(' li a'), function() {
 				var id = "select".concat(this.getAttribute("class").substring(4));
-    			var button = document.getElementById(id);
-    			button.innerHTML = $(this).text();
-    			button.setAttribute("picked",$(this).text());
-					//setTopics({{topics}});
-					setQuiz();
-					setDefinition();
-					//addDropListeners();
+				if (id != "selectSubjects" && id != "selectTypes"){
+					id = this.getAttribute("class").substring(4);
+				}
+				console.log('id: '.concat(id));
+    		var button = document.getElementById(id);
+    		button.innerHTML = $(this).text();
+    		button.setAttribute("picked",$(this).text());
+				//setTopics({{topics}});
+				setQuiz();
+				setDefinition();
+				//addDropListeners();
     		});
 		}
 	}
@@ -625,11 +623,11 @@ window.onload = function WindowLoad(event) {
 	selectHeading.style.visibility = "collapse";
 	var quiz = document.getElementById("selectQuiz");
 	var quizHeading = document.getElementById("selectQuizHeading");
-	//quiz.style.visibility = "collapse";
+	quiz.style.visibility = "collapse";
 	quizHeading.style.visibility = "collapse";
 	var definition = document.getElementById("selectDefinition");
 	var definitionHeading = document.getElementById("selectDefinitionHeading");
-	//definition.style.visibility = "collapse";
+	definition.style.visibility = "collapse";
 	definitionHeading.style.visibility = "collapse";
 	addDropListeners();
 }
