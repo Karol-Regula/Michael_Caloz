@@ -187,6 +187,10 @@ var setQuiz = function() {
 		while (quiz.hasChildNodes()) {
 			quiz.removeChild(quiz.lastChild);
 		}
+		var caret = document.createElement('span');
+		caret.setAttribute('class', 'caret');
+		quizOuter.innerHTML = 'Pick a quiz ';
+		quizOuter.appendChild(caret);
 		quizOuter.style.visibility = "collapse";
 		quizHeading.style.visibility = "collapse";
 	}
@@ -238,6 +242,10 @@ var setDefinition = function() {
 		while (definition.hasChildNodes()) {
 			definition.removeChild(definition.lastChild);
 		}
+		var caret = document.createElement('span');
+		caret.setAttribute('class', 'caret');
+		definitionOuter.innerHTML = 'Pick a definition set ';
+		definitionOuter.appendChild(caret);
 		definitionOuter.style.visibility = "collapse";
 		definitionHeading.style.visibility = "collapse";
 	}
