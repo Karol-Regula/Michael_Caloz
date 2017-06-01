@@ -12,7 +12,24 @@ html {
 body {
   margin: 0;
   background-color: rgb(160, 209, 162) !important;
+  font-family: Ubuntu !important;
 }
+
+.aContent{
+  background-color: #ccffce !important;
+  border-color: rgb(91, 198, 134) !important;
+  border-width: 2px !important;
+}
+.aNote{
+  background-color: #ccffce !important;
+  border-color: rgb(91, 198, 134) !important;
+  border-width: 2px !important;
+}
+.navbar-main{
+  color: rgb(0, 0, 0) !important;
+  font-size: 15px;
+}
+
 article,
 aside,
 details,
@@ -6753,8 +6770,5 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important;
-}
-.aContent{
-  background-color: #99c995 !important;
 }
 /*# sourceMappingURL=bootstrap.css.map */
