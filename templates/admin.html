@@ -8,7 +8,7 @@
 <script type="text/javascript">
   google.charts.load('current', {packages:['corechart','bar']});
   google.charts.setOnLoadCallback(drawBasic);
-  var allSubjects = [["subject","frequency", "{ role: 'style' }"]]
+  var allSubjects = [["Subject","Frequency", { role: 'style' }]]
   var temp = []
   {% for element in subjects %}
   {% if loop.index0 != 0 %}
@@ -30,12 +30,13 @@
 		     );
 
 		     var options = {
-		     title: 'click frequency of different subjects',
+  title: 'Access Frequency of Different Subjects',
+  colors: ['#01b230'],
 		     chartArea: {width: '50%'},
 		     hAxis: {
 		     title: 'Total Frequency',
 		     minValue: 0
-		     },
+                     },
 		     vAxis: {
 		     title: 'Subject'
 		     }
