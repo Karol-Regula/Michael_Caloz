@@ -1,5 +1,5 @@
 //gets selected of dropdown with id thisselect
-var selected = function(thisSelect) {
+var selected_old = function(thisSelect) {
     console.log(thisSelect);
 	var typeSelect = document.getElementById(thisSelect);
 	var typePicked = typeSelect.options[typeSelect.selectedIndex].text;
@@ -38,7 +38,7 @@ var setSelect = function(lastSelect,fxn,thisSelect) {
 // the information in to_add (which is either values
 // separated by commas, or an array)
 var setDropdown = function(to_add, thisSelect) {
-	console.log("setDropdown:" + String(to_add) + String(thisSelect))
+	//console.log("setDropdown:" + String(to_add) + String(thisSelect))
 	if (to_add instanceof String) {
 		// str of comma separated vals
 		var topicList = to_add.split(",");
@@ -65,7 +65,7 @@ var setDropdown = function(to_add, thisSelect) {
 
 //sets topics when form data is changed
 var setTopics = function(topics) {
-	console.log("setTopics: " + String(topics));
+	//console.log("setTopics: " + String(topics));
 	var subjPicked = selected("selectSubjects");
 	var typePicked = selected("selectTypes");
 	var select = document.getElementById("selectTopics");
@@ -96,7 +96,7 @@ var setQuiz = function() {
 	var subj = selected("selectSubjects");
 	
 	if (typePicked=='Questions') {
-		console.log("setQuiz:");
+		//console.log("setQuiz:");
 		quiz.style.visibility = "visible";
 		quizHeading.style.visibility = "visible";
 		
@@ -107,7 +107,7 @@ var setQuiz = function() {
 					data: {subject: subj},
 					dataType: "text",
 					success: function(response){
-						console.log("SucessQuiz: " + response);
+						//console.log("SucessQuiz: " + response);
 						var amounts = [];
 						var i = 1;
 						while (i <= parseInt(response)){
@@ -142,7 +142,7 @@ var setDefinition = function() {
 	var subj = selected("selectSubjects");
 	
 	if (typePicked=='Definitions') {
-		console.log("setDefinition:");
+		//console.log("setDefinition:");
 		definition.style.visibility = "visible";
 		definitionHeading.style.visibility = "visible";
 		
@@ -153,7 +153,7 @@ var setDefinition = function() {
 					data: {subject: subj},
 					dataType: "text",
 					success: function(response){
-						console.log("SucessDefinition: " + response);
+						//console.log("SucessDefinition: " + response);
 						var amounts = [];
 						var i = 1;
 						while (i <= parseInt(response)){
@@ -529,9 +529,25 @@ var displayDefinitions = function(defs) {
 function dropdown(val) {
   var y = document.getElementsByClassName('btn btn-primary dropdown-toggle');
  	var val = y.innerHTML;
- 	console.log(val);
- 	console.log(y);
+ 	//console.log(val);
+ 	//console.log(y);
   var aNode = y[0].innerHTML = val + ' <span class="caret"></span>';
+}
+
+var addDropListeners = function() {
+	var dropdowns = document.getElementsByClassName("dropdown-menu");
+	var i;
+	for (i=0; i<dropdowns.length; i++) {
+		var drpdwn = dropdowns[i];
+		var dropId = drpdwn.getAttribute("id");
+		if (dropId.substring(0,6)=="select") {
+			$(dropdown).on('click', '#'.concat(dropId).concat(' li a'), function() {
+				var id = "select".concat(this.getAttribute("class").substring(4));
+    			var button = document.getElementById(id.concat("-button"));
+    			button.innerHTML = $(this).text();
+    		});
+		}
+	}
 }
 
 window.onload = function WindowLoad(event) {
@@ -547,10 +563,8 @@ window.onload = function WindowLoad(event) {
 	var definitionHeading = document.getElementById("selectDefinitionHeading");
 	definition.style.visibility = "collapse";
 	definitionHeading.style.visibility = "collapse";
-}
 
-$(dropdown).on('click', '#tester li a', function () {
-    console.log("Selected Option:"+$(this).text());
-    var button = document.getElementById("tester-button");
-    button.innerHTML = $(this).text();
-});
+	addDropListeners();
+	var subjsBtn = document.getElementById("selectSubjects-button");
+	subjsBtn.innerHTML = "Pick a subject";
+}

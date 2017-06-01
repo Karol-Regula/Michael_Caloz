@@ -73,33 +73,29 @@
       {% endif %}
       {% endwith %}
       
-      
       <h2>Subjects</h2>
-      <select id="selectSubjects" onchange="setTopics({{topics}});setQuiz();setDefinition();">
-        <option></option>
-        {% for subject in subjects%}
-        <option value={{type}}>{{subject}}</option>
-        {%endfor%}
-      </select>
-      
-      <!--
       <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Subject
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            {% for type in types%}
-            <li><a href="#" onclick="dropdown();">{{type}}</a></li> 
-            {%endfor%}
-          </ul>
-        </div>-->
+        <button id="selectSubjects-button" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pick a subject
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" id="selectSubjects">
+          {% for subject in subjects %}
+          <li><a href="#" class="linkSubjects">{{subject}}</a></li>
+          {%endfor%}
+        </ul>
+      </div>
       
       <h2>Types</h2>
-      <select id="selectTypes" onchange="setTopics({{topics}});setQuiz();setDefinition();">
-        <option></option>
-        {% for type in types%}
-        <option value={{type}}>{{type}}</option>
-        {%endfor%}
-      </select>
+      <div class="dropdown">
+        <button id="selectTypes-button" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pick a material type
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" id="selectTypes">
+          {% for type in types %}
+          <li><a href="#" class="linkTypes">{{type}}</a></li>
+          {%endfor%}
+        </ul>
+      </div>
       
       <h2 id="selectTopicsHeading">Topics</h2>
       <select id="selectTopics">
@@ -112,25 +108,9 @@
       <h2 id="selectDefinitionHeading">Definition Sets</h2>
       <select id="selectDefinition">
       </select>
-      
-      <div class="dropdown">
-        <button id="tester-button" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu" id="tester">
-            <li><a href="#">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-          </ul>
-        </div>
-
-      
+            
       <br><br>
       <input type="submit" value="Submit" onclick="getContent();">
-      
-      
-      <br>
-      <br><div class="aContent definition" word="Neolithic Revolution" definition="Neolithic revolution entailed the the domestication of plants and animals, and occurred in the Late Stone Age.">Neolithic revolution entailed the the domestication of plants and animals, and occurred in the Late Stone Age. Neolithic revolution entailed the the domestication of plants and animals, and occurred in the Late Stone Age.Neolithic revolution entailed the the domestication of plants and animals, and occurred in the Late Stone Age.Neolithic revolution entailed the the domestication of plants and animals, and occurred in the Late Stone Age.Neolithic revolution entailed the the domestication of plants and animals, and occurred in the Late Stone Age.Neolithic revolution entailed the the domestication of plants and animals, and occurred in the Late Stone Age.Neolithic revolution entailed the the domestication of plants and animals, and occurred in the Late Stone Age.Neolithic revolution entailed the the domestication of plants and animals, and occurred in the Late Stone Age.Neolithic revolution entailed the the domestication of plants and animals, and occurred in the Late Stone Age.Neolithic revolution entailed the the domestication of plants and animals, and occurred in the Late Stone Age.Neolithic revolution entailed the the domestication of plants and animals, and occurred in the Late Stone Age.Neolithic revolution entailed the the domestication of plants and animals, and occurred in the Late Stone Age.</div>
-      <br>
       
       <div id="content">
       </div>
