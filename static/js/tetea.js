@@ -8,11 +8,11 @@ var selected_old = function(thisSelect) {
 
 //gets selected of dropdown with id thisselect
 var selected = function(thisSelect) {
-	console.log("selected");
+	//console.log("selected");
 	thisSelect = thisSelect.concat('-button');
-  console.log("thisSelect: ".concat(thisSelect));
+ 	//console.log("thisSelect: ".concat(thisSelect));
 	var typeSelect = document.getElementById(thisSelect);
-	var typePicked = typeSelect.innerHTML;
+	var typePicked = typeSelect.getAttribute("picked");
 	console.log(typePicked);
 	return typePicked;
 }
@@ -48,7 +48,7 @@ var setSelect = function(lastSelect,fxn,thisSelect) {
 // resets dropdown with id thisSelect to contain
 // the information in to_add (which is either values
 // separated by commas, or an array)
-var setDropdown = function(to_add, thisSelect) {
+var setDropdown_old = function(to_add, thisSelect) {
 	//console.log("setDropdown:" + String(to_add) + String(thisSelect))
 	if (to_add instanceof String) {
 		// str of comma separated vals
@@ -73,6 +73,40 @@ var setDropdown = function(to_add, thisSelect) {
 		select.appendChild(node)
 	}
 };
+
+var setDropdown = function(to_add, thisSelect) {
+	if (to_add instanceof String) { // str of comma separated vals
+		var topicList = to_add.split(",");
+	} else {
+		var topicList = to_add;
+	}
+
+	var drpdwn = document.createElement("dropdown");
+
+	var button = document.createElement("button");
+	button.setAttribute("class","btn btn-primary dropdown-toggle");
+	button.setAttribute("type","button");
+	button.setAttribute("data-toggle","dropdown");
+	button.setAttribute("id", thisSelect.concat('-button'));
+	var spn = document.createElement("span");
+	spn.setAttribute("class","caret");
+	button.appendChild(spn);
+
+	var list = document.createElement("ul");
+	list.setAttribute("class", "dropdown-menu");
+	list.setAttribute("id","thisSelect");
+	var i=0;
+	for (i=0; i<topicList.length; i++){
+		var listItem = document.createElement("li");
+		var link = document.createElement("a");
+		link.setAttribute("href","#");
+		link.setAttribute("class", "link".concat(thisSelect.substring(6)));
+		link.innerHTML = topicList[i];
+		listItem.appendChild(link);
+		list.appendChild(listItem);
+	}
+	drpdwn.appendChild(list);
+}
 
 //sets topics when form data is changed
 var setTopics = function(topics) {
@@ -556,6 +590,7 @@ var addDropListeners = function() {
 				var id = "select".concat(this.getAttribute("class").substring(4));
     			var button = document.getElementById(id.concat("-button"));
     			button.innerHTML = $(this).text();
+    			button.setAttribute("picked",$(this).text());
     		});
 		}
 	}
@@ -576,6 +611,4 @@ window.onload = function WindowLoad(event) {
 	definitionHeading.style.visibility = "collapse";
 
 	addDropListeners();
-	var subjsBtn = document.getElementById("selectSubjects-button");
-	//subjsBtn.innerHTML = "Pick a subject";
 }
