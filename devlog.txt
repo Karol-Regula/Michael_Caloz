@@ -202,3 +202,6 @@ yvonneC & karolR -- 2017-06-01 10:07
 emmaV -- 2017-06-01 11:22
 - change dropdown hide/show so that there aren't random empty spaces
 - quiz scoring
+
+felixRB -- 207-06-01 18:00
+-added a quick bug fix for scrolling in firefox
