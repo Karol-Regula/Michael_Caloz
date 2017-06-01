@@ -531,7 +531,7 @@ function dropdown(val) {
  	var val = y.innerHTML;
  	//console.log(val);
  	//console.log(y);
-  var aNode = y[0].innerHTML = val + ' <span class="caret"></span>';
+  //var aNode = y[0].innerHTML = val + ' <span class="caret"></span>';
 }
 
 var addDropListeners = function() {
@@ -566,5 +566,5 @@ window.onload = function WindowLoad(event) {
 
 	addDropListeners();
 	var subjsBtn = document.getElementById("selectSubjects-button");
-	subjsBtn.innerHTML = "Pick a subject";
+	//subjsBtn.innerHTML = "Pick a subject";
 }
