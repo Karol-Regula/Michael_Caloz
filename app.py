@@ -80,7 +80,7 @@ def placeholder1():
   #homepage changes depending on whether admin is logged in or not
   if 'username' in session:
     admin = True
-  return render_template('index.html', subjects=database.getSubjects(), types=['Questions', 'Notes', 'Definitions'], topics=database.subjectTopic())
+  return render_template('index.html', subjects=database.getSubjects(), types=['Questions', 'Notes', 'Definitions'], topics=database.subjectTopic(), title = "Text Tetea")
 #, admin=admin);
 
 @app.route("/slash")
@@ -124,6 +124,7 @@ return render_template('admin.html', subjects=info)'''
 def upload_file():
   if 'username' in session:
     msg = ""
+    title = "Tetea Admin"
     info = accessDB.getInfoArray()
     if request.method == 'POST':
       # check if the post request has the file part
@@ -136,20 +137,19 @@ def upload_file():
       if file.filename == '':
         msg = "Please select a file first"
         #flash('No selected file')
-        return render_template('admin.html', subjects = info, message=msg)
+        return render_template('admin.html', subjects = info, message=msg,title=title)
       if '.sql' not in file.filename:
         msg = "Only SQL files are accepted"
-        return render_template('admin.html', subjects = info, message=msg)
+        return render_template('admin.html', subjects = info, message=msg, title=title)
       else:
         filename = secure_filename(file.filename)
         print filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        database.convertDB(filename);
-        msg = "Database has been replaced sucessfully."
-        return redirect(url_for('upload_file',filename=filename, message=msg))
-    return render_template('admin.html', subjects=info, message=msg)
-  return redirect("/")
-    
+        print msg
+        return redirect(url_for('upload_file',filename=filename, message=msg, title=title))
+      return render_template('admin.html', subjects=info, message=msg, title=title)
+    return redirect("/")
+  
 @app.route("/logout/", methods=['POST'])
 def logout():
   session.pop("username")

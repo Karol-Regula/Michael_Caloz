@@ -1,59 +1,54 @@
-<!DOCTYPE html>
-<!--should be given the dictionary w sybject:freq -- call it subjects -->
-<html>
-  <head>
-    <title>Tetea Admin</title>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <div id="chart_div"></div>
-    {{login_error}}
+{% extends "layout.html" %}
 
-    <script type="text/javascript">
-      google.charts.load('current', {packages:['corechart','bar']});
-      google.charts.setOnLoadCallback(drawBasic);
-      var allSubjects = [["subject","frequency"]]
-      var temp = []
-      {% for element in subjects %}
-      {% if loop.index0 != 0 %}
-	{% for e in element %}
-	  {% if loop.index < 2 %}
-	    temp.push("{{ e }}");
-          {% else %}
-	    temp.push({{e}});
-          {% endif %}
-        {% endfor %}
-        allSubjects.push(temp);
-        temp = []
-     {% endif %}
-     {% endfor %}
-					    
-					    function drawBasic() {
-					    var data = google.visualization.arrayToDataTable(
-					    allSubjects
-					    );
+{% block data %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<div id="chart_div"></div>
+{{login_error}}
 
-					    var options = {
-					    title: 'click frequency of different subjects',
-					    chartArea: {width: '50%'},
-					    hAxis: {
-					    title: 'Total Frequency',
-					    minValue: 0
-					    },
-					    vAxis: {
-					    title: 'Subject'
-					    }
-					    };
-					    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-      chart.draw(data, options);
-      }
-    </script>
-      <h1>Upload New Database File</h1>
-      <form method=post enctype=multipart/form-data>
-        <p><input type=file name=file>
-           <input type=submit value=Upload></p>
-      </form>
-      <i> {{ message }} </i>
-  </head>
+<script type="text/javascript">
+  google.charts.load('current', {packages:['corechart','bar']});
+  google.charts.setOnLoadCallback(drawBasic);
+  var allSubjects = [["subject","frequency"]]
+  var temp = []
+  {% for element in subjects %}
+  {% if loop.index0 != 0 %}
+  {% for e in element %}
+  {% if loop.index < 2 %}
+		     temp.push("{{ e }}");
+		     {% else %}
+		     temp.push({{e}});
+		     {% endif %}
+		     {% endfor %}
+		     allSubjects.push(temp);
+		     temp = []
+		     {% endif %}
+		     {% endfor %}
+		     
+		     function drawBasic() {
+		     var data = google.visualization.arrayToDataTable(
+		     allSubjects
+		     );
 
-  
+		     var options = {
+		     title: 'click frequency of different subjects',
+		     chartArea: {width: '50%'},
+		     hAxis: {
+		     title: 'Total Frequency',
+		     minValue: 0
+		     },
+		     vAxis: {
+		     title: 'Subject'
+		     }
+		     };
+		     var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+		     chart.draw(data, options);
+		     }
+		     </script>
+<h1>Upload New Database File</h1>
+<form method=post enctype=multipart/form-data>
+  <p><input type=file name=file>
+    <input type=submit value=Upload></p>
+</form>
+<i> {{ message }} </i>
 
-</html>
+{% endblock %}
