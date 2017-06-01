@@ -195,6 +195,9 @@ yvonneC -- 2017-05-31 22:48
 - integrated admin.html to rest of website so it looks like it's part of Tetea
 - integrated logout functionality where admins will only be able to access the homepage after logging out
 
+yvonneC & karolR -- 2017-06-01 10:07
+- stylized website so it's much prettier!
+- added logo image and changed colors and designs of buttons
+
 emmaV -- 2017-06-01 11:22
 - change dropdown hide/show so that there aren't random empty spaces
-- quiz scoring
