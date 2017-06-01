@@ -74,6 +74,9 @@
     margin-bottom: 30px;
     overflow: scroll;
     overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 ::-webkit-scrollbar {
