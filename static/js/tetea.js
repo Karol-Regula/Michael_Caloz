@@ -505,6 +505,25 @@ var dispq = function(qs) {
     }
 }
 
+var scoreQuiz = function() {
+	var qs = document.getElementsByClassName("aContent");
+	var score = 0;
+
+	var i=0;
+	for (i=0; i<qs.length; i++) { //for each question
+		var j=0;
+		q = qs[i];
+		for (j=0; j<q.childNodes; j++) { //for each answer
+			var ans = q[j];
+			if ((ans.getAttribute("class")=="answer right") &&
+				ans.getAttribute("style")=="font-style: italic;") {
+				score+=1;
+			}
+		}
+	}
+	return score;
+}
+
 var displayQuestions = function(qs) {
 	clearContent();
 
