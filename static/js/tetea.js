@@ -127,6 +127,9 @@ var setTopics = function(topics) {
 			select.removeChild(select.lastChild);
 		}
 		
+		var caret = document.createElement('span');
+		caret.setAttribute('class', 'caret');
+		selectOuter.appendChild(caret);
 		selectOuter.style.display = "block";
 		selectHeading.style.display = "block";
 		//console.log(subjPicked);
@@ -137,6 +140,10 @@ var setTopics = function(topics) {
 		while (select.hasChildNodes()) {
 			select.removeChild(select.lastChild);
 		}
+		var caret = document.createElement('span');
+		caret.setAttribute('class', 'caret');
+		selectOuter.innerHTML = "Pick a topic ";
+		selectOuter.appendChild(caret);
 		selectOuter.style.display = "none";
 		selectHeading.style.display = "none";
 	}
@@ -154,6 +161,9 @@ var setQuiz = function() {
 	
 	if (typePicked=='Questions') {
 		//console.log("setQuiz:");
+		var caret = document.createElement('span');
+		caret.setAttribute('class', 'caret');
+		quizOuter.appendChild(caret);
 		quizOuter.style.display = "block";
 		quizHeading.style.display = "block";
 		
@@ -194,7 +204,7 @@ var setQuiz = function() {
 		var caret = document.createElement('span');
 		caret.setAttribute('class', 'caret');
 		quizOuter.innerHTML = 'Pick a quiz ';
-		quizOuter.appendChild(caret);
+		//quizOuter.appendChild(caret);
 		quizOuter.style.display = "none";
 		quizHeading.style.display = "none";
 	}
@@ -213,6 +223,9 @@ var setDefinition = function() {
 	
 	if (typePicked=='Definitions') {
 		//console.log("setDefinition:");
+		var caret = document.createElement('span');
+		caret.setAttribute('class', 'caret');
+		definitionOuter.appendChild(caret);
 		definitionOuter.style.display = "block";
 		definitionHeading.style.display = "block";
 		
