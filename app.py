@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import utils, datetime, time, os
 from os import urandom
 #from os.path import join, dirname, realpath
@@ -108,7 +108,8 @@ def login():
     print text
     return redirect("/admin")
   else:
-    return render_template("admin.html", login_error=text)
+    flash(text);
+    return redirect("/")
 
 def allowed_file(filename):
   return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -121,32 +122,34 @@ return render_template('admin.html', subjects=info)'''
 
 @app.route("/admin", methods=['GET', 'POST'])
 def upload_file():
-  msg = ""
-  title = "Tetea Admin"
-  info = accessDB.getInfoArray()
-  if request.method == 'POST':
-    # check if the post request has the file part
-    if 'file' not in request.files:
-      #flash('No file part')
-      return redirect(request.url)
-    file = request.files['file']
-    # if user does not select file, browser also
-    # submit a empty part without filename
-    if file.filename == '':
-      msg = "Please select a file first"
-      #flash('No selected file')
-      return render_template('admin.html', subjects = info, message=msg,title=title)
-    if '.sql' not in file.filename:
-      msg = "Only SQL files are accepted"
-      return render_template('admin.html', subjects = info, message=msg, title=title)
-    else:
-      filename = secure_filename(file.filename)
-      print filename
-      file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-      print msg
-      return redirect(url_for('upload_file',filename=filename, message=msg, title=title))
-  return render_template('admin.html', subjects=info, message=msg, title=title)
-
+  if 'username' in session:
+    msg = ""
+    title = "Tetea Admin"
+    info = accessDB.getInfoArray()
+    if request.method == 'POST':
+      # check if the post request has the file part
+      if 'file' not in request.files:
+        #flash('No file part')
+        return redirect(request.url)
+      file = request.files['file']
+      # if user does not select file, browser also
+      # submit a empty part without filename
+      if file.filename == '':
+        msg = "Please select a file first"
+        #flash('No selected file')
+        return render_template('admin.html', subjects = info, message=msg,title=title)
+      if '.sql' not in file.filename:
+        msg = "Only SQL files are accepted"
+        return render_template('admin.html', subjects = info, message=msg, title=title)
+      else:
+        filename = secure_filename(file.filename)
+        print filename
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        print msg
+        return redirect(url_for('upload_file',filename=filename, message=msg, title=title))
+      return render_template('admin.html', subjects=info, message=msg, title=title)
+    return redirect("/")
+  
 @app.route("/logout/", methods=['POST'])
 def logout():
   session.pop("username")

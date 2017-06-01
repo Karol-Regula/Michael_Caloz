@@ -48,10 +48,9 @@ def login(user,password):
       if (password==record[1]):
   	ret = ""
       else: #password doesn't match
-  	ret = "Wrong username or password"
-        
-      if ret=="n/a": # no records
-  	ret = "Username does not exist"
+  	ret = "Wrong username or password"    
+    if ret=="n/a": # no records
+  	  ret = "Username does not exist"
         
   except: # TABLE does NOT exist
     ret = "Admin account does not exist. Please contact administator."
