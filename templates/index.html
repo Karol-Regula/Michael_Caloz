@@ -38,10 +38,10 @@
 
 <h2>Subjects</h2>
 <div class="dropdown">
-  <button id="selectSubjects-button" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" onclick="setTopics({{topics}});setQuiz();setDefinition();">Pick a subject
+  <button id="selectSubjects" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pick a subject
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" id="selectSubjects">
+  <ul class="dropdown-menu" id="selectSubjects-inner">
     {% for subject in subjects %}
     <li><a href="#" class="linkSubjects">{{subject}}</a></li>
     {%endfor%}
@@ -50,10 +50,10 @@
 
 <h2>Types</h2>
 <div class="dropdown">
-  <button id="selectTypes-button" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pick a material type
+  <button id="selectTypes" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pick a material type
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" id="selectTypes">
+  <ul class="dropdown-menu" id="selectTypes-inner">
     {% for type in types %}
     <li><a href="#" class="linkTypes">{{type}}</a></li>
     {%endfor%}
@@ -61,16 +61,31 @@
 </div>
 
 <h2 id="selectTopicsHeading">Topics</h2>
-<select id="selectTopics">
-</select>
+<div class="dropdown">
+  <button id="selectTopics" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pick a topic
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" id="selectTopics-inner">
+  </ul>
+</div>
 
 <h2 id="selectQuizHeading">Quizzes</h2>
-<select id="selectQuiz">
-</select>
+<div class="dropdown">
+  <button id="selectQuiz" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pick a quiz
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" id="selectQuiz-inner">
+  </ul>
+</div>
 
 <h2 id="selectDefinitionHeading">Definition Sets</h2>
-<select id="selectDefinition">
-</select>
+<div class="dropdown">
+  <button id="selectDefinition" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pick a defnition set
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" id="selectDefinition-inner">
+  </ul>
+</div>
 
 <br><br>
 <input type="submit" value="Submit" onclick="getContent();">
@@ -83,4 +98,3 @@
 <br>
 
 {% endblock %}
-

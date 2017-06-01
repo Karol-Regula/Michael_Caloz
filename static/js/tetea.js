@@ -1,6 +1,6 @@
 //gets selected of dropdown with id thisselect
 var selected_old = function(thisSelect) {
-    console.log(thisSelect);
+  console.log(thisSelect);
 	var typeSelect = document.getElementById(thisSelect);
 	var typePicked = typeSelect.options[typeSelect.selectedIndex].text;
 	return typePicked;
@@ -9,11 +9,10 @@ var selected_old = function(thisSelect) {
 //gets selected of dropdown with id thisselect
 var selected = function(thisSelect) {
 	//console.log("selected");
-	thisSelect = thisSelect.concat('-button');
  	//console.log("thisSelect: ".concat(thisSelect));
 	var typeSelect = document.getElementById(thisSelect);
 	var typePicked = typeSelect.getAttribute("picked");
-	console.log(typePicked);
+	//console.log(typePicked);
 	return typePicked;
 }
 
@@ -81,31 +80,34 @@ var setDropdown = function(to_add, thisSelect) {
 		var topicList = to_add;
 	}
 
-	var drpdwn = document.createElement("dropdown");
-
-	var button = document.createElement("button");
-	button.setAttribute("class","btn btn-primary dropdown-toggle");
-	button.setAttribute("type","button");
-	button.setAttribute("data-toggle","dropdown");
-	button.setAttribute("id", thisSelect.concat('-button'));
-	var spn = document.createElement("span");
-	spn.setAttribute("class","caret");
-	button.appendChild(spn);
-
-	var list = document.createElement("ul");
-	list.setAttribute("class", "dropdown-menu");
-	list.setAttribute("id","thisSelect");
+	// var drpdwn = document.createElement("dropdown");
+	// 
+	// var button = document.createElement("button");
+	// button.setAttribute("class","btn btn-primary dropdown-toggle");
+	// button.setAttribute("type","button");
+	// button.setAttribute("data-toggle","dropdown");
+	// button.setAttribute("id", thisSelect.concat('-button'));
+	// var spn = document.createElement("span");
+	// spn.setAttribute("class","caret");
+	// button.appendChild(spn);
+	// 
+	// var list = document.createElement("ul");
+	// list.setAttribute("class", "dropdown-menu");
+	// list.setAttribute("id","thisSelect");
+	
+	var thisSelectFull = thisSelect.concat('-inner');
+	var list = document.getElementById(thisSelectFull);
 	var i=0;
 	for (i=0; i<topicList.length; i++){
 		var listItem = document.createElement("li");
 		var link = document.createElement("a");
 		link.setAttribute("href","#");
-		link.setAttribute("class", "link".concat(thisSelect.substring(6)));
+		link.setAttribute("class", "link".concat(thisSelect));
 		link.innerHTML = topicList[i];
 		listItem.appendChild(link);
 		list.appendChild(listItem);
 	}
-	drpdwn.appendChild(list);
+	//drpdwn.appendChild(list);
 }
 
 //sets topics when form data is changed
@@ -135,7 +137,7 @@ var setTopics = function(topics) {
 var setQuiz = function() {
 	var subjPicked = selected("selectSubjects");
 	var typePicked = selected("selectTypes");
-	var quiz = document.getElementById("selectQuiz");
+	var quiz = document.getElementById("selectQuiz-inner");
 	var quizHeading = document.getElementById("selectQuizHeading");
 	
 	var subj = selected("selectSubjects");
@@ -144,6 +146,10 @@ var setQuiz = function() {
 		//console.log("setQuiz:");
 		quiz.style.visibility = "visible";
 		quizHeading.style.visibility = "visible";
+		
+		while (quiz.hasChildNodes()) {
+			quiz.removeChild(quiz.lastChild);
+		}
 		
 		$.ajax({
 			traditional: true,
@@ -168,10 +174,14 @@ var setQuiz = function() {
 		})
 		
 	} else {
+		console.log("removing nodes");
+		console.log(quiz);
+		console.log(quiz.hasChildNodes());
 		while (quiz.hasChildNodes()) {
 			quiz.removeChild(quiz.lastChild);
 		}
-		quiz.style.visibility = "collapse";
+		console.log(quiz.hasChildNodes());
+		//quiz.style.visibility = "collapse";
 		quizHeading.style.visibility = "collapse";
 	}
 };
@@ -181,7 +191,7 @@ var setQuiz = function() {
 var setDefinition = function() {
 	var subjPicked = selected("selectSubjects");
 	var typePicked = selected("selectTypes");
-	var definition = document.getElementById("selectDefinition");
+	var definition = document.getElementById("selectDefinition-inner");
 	var definitionHeading = document.getElementById("selectDefinitionHeading");
 	
 	var subj = selected("selectSubjects");
@@ -190,6 +200,10 @@ var setDefinition = function() {
 		//console.log("setDefinition:");
 		definition.style.visibility = "visible";
 		definitionHeading.style.visibility = "visible";
+		
+		while (definition.hasChildNodes()) {
+			definition.removeChild(definition.lastChild);
+		}
 		
 		$.ajax({
 			traditional: true,
@@ -214,10 +228,14 @@ var setDefinition = function() {
 		})
 		
 	} else {
+		console.log("removing nodes");
+		console.log(definition);
+		console.log(definition.hasChildNodes());
 		while (definition.hasChildNodes()) {
 			definition.removeChild(definition.lastChild);
 		}
-		definition.style.visibility = "collapse";
+		console.log(definition.hasChildNodes());
+		//definition.style.visibility = "collapse";
 		definitionHeading.style.visibility = "collapse";
 	}
 };
@@ -572,8 +590,8 @@ var displayDefinitions = function(defs) {
 }
 
 function dropdown(val) {
-  var y = document.getElementsByClassName('btn btn-primary dropdown-toggle');
- 	var val = y.innerHTML;
+  //var y = document.getElementsByClassName('btn btn-primary dropdown-toggle');
+ 	//var val = y.innerHTML;
  	//console.log(val);
  	//console.log(y);
   //var aNode = y[0].innerHTML = val + ' <span class="caret"></span>';
@@ -588,9 +606,13 @@ var addDropListeners = function() {
 		if (dropId.substring(0,6)=="select") {
 			$(dropdown).on('click', '#'.concat(dropId).concat(' li a'), function() {
 				var id = "select".concat(this.getAttribute("class").substring(4));
-    			var button = document.getElementById(id.concat("-button"));
+    			var button = document.getElementById(id);
     			button.innerHTML = $(this).text();
     			button.setAttribute("picked",$(this).text());
+					//setTopics({{topics}});
+					setQuiz();
+					setDefinition();
+					//addDropListeners();
     		});
 		}
 	}
@@ -599,16 +621,15 @@ var addDropListeners = function() {
 window.onload = function WindowLoad(event) {
 	var select = document.getElementById("selectTopics");
 	var selectHeading = document.getElementById("selectTopicsHeading");
-	select.style.visibility = "collapse";
+	//select.style.visibility = "collapse";
 	selectHeading.style.visibility = "collapse";
 	var quiz = document.getElementById("selectQuiz");
 	var quizHeading = document.getElementById("selectQuizHeading");
-	quiz.style.visibility = "collapse";
+	//quiz.style.visibility = "collapse";
 	quizHeading.style.visibility = "collapse";
 	var definition = document.getElementById("selectDefinition");
 	var definitionHeading = document.getElementById("selectDefinitionHeading");
-	definition.style.visibility = "collapse";
+	//definition.style.visibility = "collapse";
 	definitionHeading.style.visibility = "collapse";
-
 	addDropListeners();
 }
