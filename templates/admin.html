@@ -45,10 +45,16 @@
 		     chart.draw(data, options);
 		     }
 		     </script>
-<h1>Upload New Database File</h1>
+<br> <hr> <br>
+<h2>Upload New Database File</h2>
 <form method=post enctype=multipart/form-data>
-  <p><input type=file name=file>
-    <input type=submit value=Upload></p>
+  <p>
+    <label class="custom-file">
+      <input type="file" id="file" class="custom-file-input" name=file>
+      <span class="custom-file-control"></span>
+    </label>
+    <input type="submit" class="btn btn-primary" value="Upload">
+  </p>
 </form>
 <i> {{ message }} </i>
 

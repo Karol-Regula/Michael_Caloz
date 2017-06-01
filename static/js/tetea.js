@@ -167,7 +167,7 @@ var setQuiz = function() {
 		
 		for (var i = 0; i < quizOuter.childNodes.length; i++) {
     	if (quizOuter.childNodes[i].className == "caret") {
-      	definitionOuter.removeChild(quizOuter.childNodes[i]);
+      		quizOuter.removeChild(quizOuter.childNodes[i]);
       	break;
     	}        
 		}
@@ -496,27 +496,32 @@ var dispq = function(qs) {
 
 			var x=0;
 			var lst = this.parentElement.childNodes;
-			console.log(lst);
 			for (x=0; x<lst.length; x++) {
-				console.log(lst[x]);
 				lst[x].setAttribute("style","font-style: normal;");
 			}
 
 			this.setAttribute("style","font-style: italic;");
 		});
+		var letters = ['a', 'b', 'c', 'd', 'e']
+		thisAns.innerHTML = letters[j-1]+") "+q[keys[j]];
 		if (keys[j] == q['Answer']) {
 		    thisAns.setAttribute("class","answer right");
 		} else {
 		    thisAns.setAttribute("class","answer wrong");
 		}
-		var letters = ['a', 'b', 'c', 'd', 'e']
-		thisAns.innerHTML = letters[j-1]+") "+q[keys[j]];
 		answerList.appendChild(thisAns);
 	    }
 	}
 	this_q.append(answerList);
 	content.appendChild(this_q);
     }
+    var btn = document.createElement("button");
+	btn.innerHTML = "Score quiz";
+	btn.addEventListener("click",scoreQuiz);
+	content.appendChild(btn);
+	var p = document.createElement("p");
+	p.setAttribute("id", "quizScore");
+	content.appendChild(p);
 }
 
 var scoreQuiz = function() {
@@ -527,15 +532,17 @@ var scoreQuiz = function() {
 	for (i=0; i<qs.length; i++) { //for each question
 		var j=0;
 		q = qs[i];
-		for (j=0; j<q.childNodes; j++) { //for each answer
-			var ans = q[j];
+		answers = q.childNodes[1].childNodes;
+		for (j=0; j<answers.length; j++) { //for each answer
+			var ans = answers[j];
 			if ((ans.getAttribute("class")=="answer right") &&
 				ans.getAttribute("style")=="font-style: italic;") {
 				score+=1;
 			}
 		}
 	}
-	return score;
+	var p = document.getElementById("quizScore");
+	p.innerHTML = "Score: " + (score*10).toString().concat("%");
 }
 
 var displayQuestions = function(qs) {
