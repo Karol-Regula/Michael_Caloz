@@ -127,6 +127,16 @@ var setTopics = function(topics) {
 			select.removeChild(select.lastChild);
 		}
 		
+		for (var i = 0; i < selectOuter.childNodes.length; i++) {
+			if (selectOuter.childNodes[i].className == "caret") {
+				selectOuter.removeChild(selectOuter.childNodes[i]);
+				break;
+			}        
+		}
+		
+		var caret = document.createElement('span');
+		caret.setAttribute('class', 'caret');
+		selectOuter.appendChild(caret);
 		selectOuter.style.display = "block";
 		selectHeading.style.display = "block";
 		//console.log(subjPicked);
@@ -137,6 +147,7 @@ var setTopics = function(topics) {
 		while (select.hasChildNodes()) {
 			select.removeChild(select.lastChild);
 		}
+		selectOuter.innerHTML = "Pick a topic ";
 		selectOuter.style.display = "none";
 		selectHeading.style.display = "none";
 	}
@@ -153,7 +164,17 @@ var setQuiz = function() {
 	var subj = selected("selectSubjects");
 	
 	if (typePicked=='Questions') {
-		//console.log("setQuiz:");
+		
+		for (var i = 0; i < quizOuter.childNodes.length; i++) {
+    	if (quizOuter.childNodes[i].className == "caret") {
+      	definitionOuter.removeChild(quizOuter.childNodes[i]);
+      	break;
+    	}        
+		}
+		
+		var caret = document.createElement('span');
+		caret.setAttribute('class', 'caret');
+		quizOuter.appendChild(caret);
 		quizOuter.style.display = "block";
 		quizHeading.style.display = "block";
 		
@@ -191,10 +212,7 @@ var setQuiz = function() {
 		while (quiz.hasChildNodes()) {
 			quiz.removeChild(quiz.lastChild);
 		}
-		var caret = document.createElement('span');
-		caret.setAttribute('class', 'caret');
 		quizOuter.innerHTML = 'Pick a quiz ';
-		quizOuter.appendChild(caret);
 		quizOuter.style.display = "none";
 		quizHeading.style.display = "none";
 	}
@@ -213,6 +231,18 @@ var setDefinition = function() {
 	
 	if (typePicked=='Definitions') {
 		//console.log("setDefinition:");
+		
+		
+		for (var i = 0; i < definitionOuter.childNodes.length; i++) {
+    	if (definitionOuter.childNodes[i].className == "caret") {
+      	definitionOuter.removeChild(definitionOuter.childNodes[i]);
+      	break;
+    	}        
+		}
+		
+		var caret = document.createElement('span');
+		caret.setAttribute('class', 'caret');
+		definitionOuter.appendChild(caret);
 		definitionOuter.style.display = "block";
 		definitionHeading.style.display = "block";
 		
@@ -259,10 +289,7 @@ var setDefinition = function() {
 		while (definition.hasChildNodes()) {
 			definition.removeChild(definition.lastChild);
 		}
-		var caret = document.createElement('span');
-		caret.setAttribute('class', 'caret');
 		definitionOuter.innerHTML = 'Pick a definition set ';
-		definitionOuter.appendChild(caret);
 		definitionOuter.style.display = "none";
 		definitionHeading.style.display = "none";
 	}
@@ -465,11 +492,21 @@ var dispq = function(qs) {
 		this_q.appendChild(theq);
 	    } else {
 		var thisAns = document.createElement("ul");
+		thisAns.addEventListener('click', function(e) {
+
+			var x=0;
+			var lst = this.parentElement.childNodes;
+			console.log(lst);
+			for (x=0; x<lst.length; x++) {
+				console.log(lst[x]);
+				lst[x].setAttribute("style","font-style: normal;");
+			}
+
+			this.setAttribute("style","font-style: italic;");
+		});
 		if (keys[j] == q['Answer']) {
 		    thisAns.setAttribute("class","answer right");
-		    thisAns.addEventListener('click', function(e) { this.setAttribute("style","color: green;"); });
 		} else {
-		    thisAns.addEventListener('click', function(e) { this.setAttribute("style","color: red;"); });
 		    thisAns.setAttribute("class","answer wrong");
 		}
 		var letters = ['a', 'b', 'c', 'd', 'e']
@@ -480,6 +517,25 @@ var dispq = function(qs) {
 	this_q.append(answerList);
 	content.appendChild(this_q);
     }
+}
+
+var scoreQuiz = function() {
+	var qs = document.getElementsByClassName("aContent");
+	var score = 0;
+
+	var i=0;
+	for (i=0; i<qs.length; i++) { //for each question
+		var j=0;
+		q = qs[i];
+		for (j=0; j<q.childNodes; j++) { //for each answer
+			var ans = q[j];
+			if ((ans.getAttribute("class")=="answer right") &&
+				ans.getAttribute("style")=="font-style: italic;") {
+				score+=1;
+			}
+		}
+	}
+	return score;
 }
 
 var displayQuestions = function(qs) {
@@ -658,6 +714,18 @@ var addDropListeners = function() {
     		var button = document.getElementById(id);
     		button.innerHTML = $(this).text();
     		button.setAttribute("picked",$(this).text());
+				
+				for (var i = 0; i < button.childNodes.length; i++) {
+					if (button.childNodes[i].className == "caret") {
+						button.removeChild(button.childNodes[i]);
+						break;
+					}        
+				}
+				
+				var caret = document.createElement('span');
+				caret.setAttribute('class', 'caret');
+				button.appendChild(caret);
+				
 				setTopics(document.getElementById('topicSource').innerHTML);
 				setQuiz();
 				setDefinition();

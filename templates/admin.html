@@ -8,12 +8,12 @@
 <script type="text/javascript">
   google.charts.load('current', {packages:['corechart','bar']});
   google.charts.setOnLoadCallback(drawBasic);
-  var allSubjects = [["subject","frequency"]]
+  var allSubjects = [["subject","frequency", "{ role: 'style' }"]]
   var temp = []
   {% for element in subjects %}
   {% if loop.index0 != 0 %}
   {% for e in element %}
-  {% if loop.index < 2 %}
+  {% if loop.index != 2 %}
 		     temp.push("{{ e }}");
 		     {% else %}
 		     temp.push({{e}});

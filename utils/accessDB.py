@@ -56,7 +56,8 @@ def getInfoArray():
     dictionary = getInfo()
     retArray = [["subject","frequency"]]
     for item in dictionary:
-        retArray.append([item, dictionary[item]])
+        if item != "":
+            retArray.append([item, dictionary[item], "#01b230"])
     return retArray
 
 #print getInfo()
