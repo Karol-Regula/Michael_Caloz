@@ -79,7 +79,7 @@ def getDefinition():
 def placeholder1():
   #homepage changes depending on whether admin is logged in or not
   if 'username' in session:
-    admin = True
+    return redirect("/admin")
   return render_template('index.html', subjects=database.getSubjects(), types=['Questions', 'Notes', 'Definitions'], topics=database.subjectTopic(), title = "Text Tetea")
 #, admin=admin);
 
@@ -149,7 +149,7 @@ def upload_file():
   return render_template('admin.html', subjects=info, message=msg, title=title)
   #return redirect("/")
   
-@app.route("/logout/", methods=['POST'])
+@app.route("/logout/")
 def logout():
   session.pop("username")
   return redirect("/")
