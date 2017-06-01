@@ -113,22 +113,31 @@ var setDropdown = function(to_add, thisSelect) {
 //sets topics when form data is changed
 var setTopics = function(topics) {
 	//console.log("setTopics: " + String(topics));
+	topics = JSON.parse(topics);
 	var subjPicked = selected("selectSubjects");
 	var typePicked = selected("selectTypes");
 	var select = document.getElementById("selectTopics");
+	var selectOuter = document.getElementById("selectTopics");
 	var selectHeading = document.getElementById("selectTopicsHeading");
 
 	if (typePicked=='Notes') {
 		//set topics based on subject
-		select.style.visibility = "visible";
+		
+		while (select.hasChildNodes()) {
+			select.removeChild(select.lastChild);
+		}
+		
+		selectOuter.style.visibility = "visible";
 		selectHeading.style.visibility = "visible";
+		//console.log(subjPicked);
+		//console.log("setTopics[subjPicked]: " + String(topics[subjPicked]));
 		setDropdown(topics[subjPicked], "selectTopics");
 	} else {
 		//no topics: clear the dropdown of options
 		while (select.hasChildNodes()) {
 			select.removeChild(select.lastChild);
 		}
-		select.style.visibility = "collapse";
+		selectOuter.style.visibility = "collapse";
 		selectHeading.style.visibility = "collapse";
 	}
 };
@@ -599,6 +608,7 @@ var addDropListeners = function() {
 		var dropId = drpdwn.getAttribute("id");
 		if (dropId.substring(0,6)=="select") {
 			$(dropdown).on('click', '#'.concat(dropId).concat(' li a'), function() {
+				console.log(dropId);
 				var id = "select".concat(this.getAttribute("class").substring(4));
 				if (id != "selectSubjects" && id != "selectTypes"){
 					id = this.getAttribute("class").substring(4);
@@ -607,7 +617,7 @@ var addDropListeners = function() {
     		var button = document.getElementById(id);
     		button.innerHTML = $(this).text();
     		button.setAttribute("picked",$(this).text());
-				//setTopics({{topics}});
+				setTopics(document.getElementById('topicSource').innerHTML);
 				setQuiz();
 				setDefinition();
 				//addDropListeners();
@@ -619,7 +629,7 @@ var addDropListeners = function() {
 window.onload = function WindowLoad(event) {
 	var select = document.getElementById("selectTopics");
 	var selectHeading = document.getElementById("selectTopicsHeading");
-	//select.style.visibility = "collapse";
+	select.style.visibility = "collapse";
 	selectHeading.style.visibility = "collapse";
 	var quiz = document.getElementById("selectQuiz");
 	var quizHeading = document.getElementById("selectQuizHeading");
