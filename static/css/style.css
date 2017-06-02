@@ -89,27 +89,3 @@
     background: #FF0000;
 }
 
-/*Styling for upload buttons */
-
-.custom-file {
-    position: relative;
-    display: inline-block;
-    max-width: 100%;
-    height: 2.5rem;
-    margin-bottom: 0;
-    cursor: pointer;
-}
-
-.custom-file-input {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    padding: .5rem 1rem;
-    line-height: 1.5;
-    color: #464a4c;
-    user-select: none;
-    background-color: #fff;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: .25rem;
-}
