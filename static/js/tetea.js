@@ -219,13 +219,14 @@ var setDefinition = function() {
 					dataType: "text",
 					success: function(response){
 						if (response==0) {
-							definitionOuter.style.display = "none";
-							definitionHeading.style.display = "none";
+						    definitionOuter.style.display = "none";
+						    definitionHeading.style.display = "none";
     						var msg = document.createElement("p");
     						msg.innerHTML = "No defitions available based on your selections.";
     						definitionOuter.parentElement.appendChild(msg);
     						return ;
 						}
+						
 						var amounts = [];
 						var i = 1;
 						while (i <= parseInt(response)){
@@ -252,6 +253,7 @@ var setDefinition = function() {
 // Runs upon submission
 // Gets content based on subj/type/topic
 var getContent = function() {
+
 	var subj = selected("selectSubjects");
 	var mType = selected("selectTypes");
 	var mTopic;
@@ -280,11 +282,19 @@ var getContent = function() {
         dataType: "text",
         success: function(response){
         	response = JSON.parse(response)
-        	if (mType=='Notes') {
+            if (mType=='Notes') {
 		    	dispn(response);
-        	} else if (mType=='Questions') {
+            } else if (mType=='Questions') {
+         		var quizOuter = document.getElementById("selectQuiz");
+		        var msg = document.createElement("p");
+		        msg.innerHTML = "Click on the words answer the quiz!";
+		        quizOuter.parentElement.appendChild(msg);
 		    	dispq(reponse);
-        	} else if (mType=='Definitions') {;
+        	} else if (mType=='Definitions') {
+		        var definitionOuter = document.getElementById("selectDefinition");
+		        var msg = document.createElement("p");
+		        msg.innerHTML = "Click on the words to see their definitions!";
+		        definitionOuter.parentElement.appendChild(msg);
 		    	dispd(response);
         	}
         },
@@ -355,7 +365,9 @@ var createContentNode = function(content) {
 
 var dispn = function(notes){
     clearContent();
-
+    var message = document.createElement("h3");
+    message.innerHTML = "Read these notes to better understand the topic!";
+    content.appendChild(message);
     if (notes.length==0) {
     	content.appendChild(document.createElement("br"));
     	var msg = document.createElement("p");
@@ -372,11 +384,6 @@ var dispn = function(notes){
     row.setAttribute("class", "notes_header");
     row.innerHTML = "Notes:";
     cont.appendChild(row);
-    //explanation
-    var row = document.createElement("ul");
-    row.setAttribute("class", "notes_explanation");
-    row.innerHTML = "Use these notes to gain a better understanding of the afformentioned topic.";
-    cont.appendChild(row);
     
     var i=0;
     for(i=0; i<contentCapNotes; i++){
@@ -392,7 +399,9 @@ var dispn = function(notes){
 
 var dispq = function(qs) {
     clearContent();
-
+    var message = document.createElement("h3");
+    message.innerHTML = "Click on the answer choice you think is correct and check your answers at the end!";
+    content.appendChild(message);
     if (qs.length==0) {
     	content.appendChild(document.createElement("br"));
     	var msg = document.createElement("p");
@@ -474,7 +483,9 @@ var scoreQuiz = function() {
 
 var dispd = function(defs) {
     clearContent();
-
+    var message = document.createElement("h3");
+    message.innerHTML = "Click on the words to see their definitions!!";
+    content.appendChild(message);
     var i=0;
     for (i=0; i<contentCap; i++) {
 	def = defs[i];
