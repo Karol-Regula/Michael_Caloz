@@ -473,6 +473,7 @@ var scoreQuiz = function() {
 			var ans = answers[j];
 			if (ans.getAttribute("class")=="answer right" && ans.getAttribute("style")=="color: black;") {
 				score+=1;
+			    ans.setAttribute("style","color: green;");
 			}else if (ans.getAttribute("class")!="answer right" && ans.getAttribute("style")=="color: black;"){
         ans.setAttribute("style","color: red;")
       }else if (ans.getAttribute("class")=="answer right"){
