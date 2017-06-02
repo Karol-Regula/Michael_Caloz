@@ -239,3 +239,6 @@ yvonneC -- 2017-06-02 1:29
 
 karolR -- 2017-06-02 9:13
 - added wrong answer highlighting for individual questions to quizzes
+
+emmaV & felixR -- 2017-06-02 12:00
+- added right answer highlighting for answers
