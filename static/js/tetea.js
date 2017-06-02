@@ -257,21 +257,15 @@ var setDefinition = function() {
 					data: {subject: subj},
 					dataType: "text",
 					success: function(response){
-						//console.log("SucessDefinition: " + response);
-						var amounts = [];
-						console.log(response);
 						if (response==0) {
-
 							definitionOuter.style.display = "none";
 							definitionHeading.style.display = "none";
-							//definitionHeading.innerHTML = "No definitions available based on your selections.";
-							definitionOuter.appendChild(document.createElement("br"));
     						var msg = document.createElement("p");
-    						msg.innerHTML = "No notes available based on your selections.";
-    						definitionOuter.appendChild(msg);
+    						msg.innerHTML = "No defitions available based on your selections.";
+    						definitionOuter.parentElement.appendChild(msg);
     						return ;
 						}
-
+						var amounts = [];
 						var i = 1;
 						while (i <= parseInt(response)){
 							amounts.push(i);
@@ -389,7 +383,7 @@ var content = null;
 //clears content section of page
 //so it can be filled with new content
 var clearContent = function() {
-	content = document.getElementById("content")
+	content = document.getElementById("content");
 	while (content.hasChildNodes()) {
 		content.removeChild(content.lastChild);
 	}
@@ -712,6 +706,16 @@ var addDropListeners = function() {
 		var dropId = drpdwn.getAttribute("id");
 		if (dropId.substring(0,6)=="select") {
 			$(dropdown).on('click', '#'.concat(dropId).concat(' li a'), function() {
+				var definitionOuter = document.getElementById("selectDefinition");
+				var i=0;
+				var children = definitionOuter.parentElement.childNodes;
+				console.log(children);
+				for (i=0; i<children.length; i++) {
+					console.log(children[i].tagName);
+					if (children[i].tagName=="P") {
+						definitionOuter.parentElement.removeChild(children[i]);
+					}
+				}
 				console.log(dropId);
 				var id = "select".concat(this.getAttribute("class").substring(4));
 				if (id != "selectSubjects" && id != "selectTypes"){
