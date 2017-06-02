@@ -242,3 +242,4 @@ karolR -- 2017-06-02 9:13
 
 emmaV & felixR -- 2017-06-02 12:00
 - added right answer highlighting for answers
+- make definitions sizing better for phones
