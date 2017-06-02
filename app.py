@@ -141,6 +141,7 @@ def upload_file():
       msg = "Only SQL files are accepted"
       return render_template('admin.html', subjects = info, message=msg, title=title)
     else:
+      msg = "Your database files have been uploaded"
       filename = secure_filename(file.filename)
       print filename
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
