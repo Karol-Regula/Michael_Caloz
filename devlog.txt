@@ -185,11 +185,17 @@ yvonneC -- 2017-05-31 12:33
 - incorporated error message for uploading files so that user must select a file and it must be an .sql file
 
 karolR -- 2017-05-31 12:50
+- added letters to answer choices
 - added sql to sqlite3 conversion script to utils
 - worked on function that converts uploaded sql file to sqlite3
 
 bayleSS -- 2017-05-31 17:00
 - added session usage so you can't just go to admin route unless you're logged in
+
+karolR -- 2017-05-31 19:24
+- finished database insertion/conversion function
+- fixed login cases
+- added message flashing for login errors
 
 emmaV -- 2017-05-31 21:05
 - work on integrating dropdowns
@@ -198,6 +204,12 @@ yvonneC -- 2017-05-31 22:48
 - integrated admin.html to rest of website so it looks like it's part of Tetea
 - integrated logout functionality where admins will only be able to access the homepage after logging out
 
+karolR -- 2017-06-01 00:33
+- started working on new selected() function
+- worked on adding bootstrap dropdowns, integrated ajax functionality
+- added dynamic dropdown hiding
+- dropdowns reset themselves to original prompt text after disappearing
+
 yvonneC & karolR -- 2017-06-01 10:07
 - stylized website so it's much prettier!
 - added logo image and changed colors and designs of buttons
@@ -205,6 +217,9 @@ yvonneC & karolR -- 2017-06-01 10:07
 emmaV -- 2017-06-01 11:22
 - change dropdown hide/show so that there aren't random empty spaces
 - quiz scoring
+
+karolR -- 2017-06-01 12:33
+- added carets to all dropdowns in all cases
 
 bayleSS -- 2017-06-01 13:00
 - fixed color scheme of graph so that it matches the rest
