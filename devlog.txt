@@ -188,6 +188,9 @@ karolR -- 2017-05-31 12:50
 - added sql to sqlite3 conversion script to utils
 - worked on function that converts uploaded sql file to sqlite3
 
+bayleSS -- 2017-05-31 17:00
+- added session usage so you can't just go to admin route unless you're logged in
+
 emmaV -- 2017-05-31 21:05
 - work on integrating dropdowns
 
@@ -203,9 +206,15 @@ emmaV -- 2017-06-01 11:22
 - change dropdown hide/show so that there aren't random empty spaces
 - quiz scoring
 
+bayleSS -- 2017-06-01 13:00
+- fixed color scheme of graph so that it matches the rest
+
 felixRB -- 207-06-01 18:00
 -added a quick bug fix for scrolling in firefox
 
-emmaV -- 2017-06-02 22:10
+emmaV -- 2017-06-01 22:10
 -fixed bug of Definition set dropdown when no definitions (biology)
 -make selected answer more differentiable
+
+bayleSS -- 2017-06-01 23:00
+- added explanatory messages for each type of data given (notes, quizzes, definitions)
