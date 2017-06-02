@@ -221,3 +221,6 @@ bayleSS -- 2017-06-01 23:00
 
 yvonneC -- 2017-06-02 1:29
 - continued working on making upload buttons look pretty but ran into problems with functionality
+
+karolR -- 2017-06-02 9:13
+- added wrong answer highlighting for individual questions to quizzes

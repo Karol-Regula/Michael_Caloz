@@ -471,9 +471,12 @@ var scoreQuiz = function() {
 		answers = q.childNodes[1].childNodes;
 		for (j=0; j<answers.length; j++) { //for each answer
 			var ans = answers[j];
-			if ((ans.getAttribute("class")=="answer right") &&
-				ans.getAttribute("style")=="color: black;") {
+			if (ans.getAttribute("class")=="answer right" && ans.getAttribute("style")=="color: black;") {
 				score+=1;
+			}else if (ans.getAttribute("class")!="answer right" && ans.getAttribute("style")=="color: black;"){
+        ans.setAttribute("style","color: red;")
+      }else if (ans.getAttribute("class")=="answer right"){
+				ans.setAttribute("style","color: green;")
 			}
 		}
 	}
