@@ -8,11 +8,8 @@ var selected_old = function(thisSelect) {
 
 //gets selected of dropdown with id thisselect
 var selected = function(thisSelect) {
-	//console.log("selected");
- 	//console.log("thisSelect: ".concat(thisSelect));
 	var typeSelect = document.getElementById(thisSelect);
 	var typePicked = typeSelect.getAttribute("picked");
-	//console.log(typePicked);
 	return typePicked;
 }
 
@@ -22,10 +19,9 @@ var selected = function(thisSelect) {
 var setSelect = function(lastSelect,fxn,thisSelect) {
 	var typePicked = selected(lastSelect);
 	var topics = ""
-	// run fxn, set topics to response
+
 	$.ajax({
 		traditional: true,
-		//async: false,
         type: "GET",
         url: fxn,
         data: {category: typePicked},
@@ -48,17 +44,12 @@ var setSelect = function(lastSelect,fxn,thisSelect) {
 // the information in to_add (which is either values
 // separated by commas, or an array)
 var setDropdown_old = function(to_add, thisSelect) {
-	//console.log("setDropdown:" + String(to_add) + String(thisSelect))
-	if (to_add instanceof String) {
-		// str of comma separated vals
+	if (to_add instanceof String) { // str of comma separated vals
 		var topicList = to_add.split(",");
-	} else {
-		// just use the array as is
+	} else { // just use the array as is
 		var topicList = to_add;
 	}
-	
 	var select = document.getElementById(thisSelect);
-	// clear old subtopics
 	while (select.hasChildNodes()) {
 		select.removeChild(select.lastChild);
 	}
@@ -79,21 +70,6 @@ var setDropdown = function(to_add, thisSelect) {
 	} else {
 		var topicList = to_add;
 	}
-
-	// var drpdwn = document.createElement("dropdown");
-	// 
-	// var button = document.createElement("button");
-	// button.setAttribute("class","btn btn-primary dropdown-toggle");
-	// button.setAttribute("type","button");
-	// button.setAttribute("data-toggle","dropdown");
-	// button.setAttribute("id", thisSelect.concat('-button'));
-	// var spn = document.createElement("span");
-	// spn.setAttribute("class","caret");
-	// button.appendChild(spn);
-	// 
-	// var list = document.createElement("ul");
-	// list.setAttribute("class", "dropdown-menu");
-	// list.setAttribute("id","thisSelect");
 	
 	var thisSelectFull = thisSelect.concat('-inner');
 	var list = document.getElementById(thisSelectFull);
@@ -107,12 +83,10 @@ var setDropdown = function(to_add, thisSelect) {
 		listItem.appendChild(link);
 		list.appendChild(listItem);
 	}
-	//drpdwn.appendChild(list);
 }
 
 //sets topics when form data is changed
 var setTopics = function(topics) {
-	//console.log("setTopics: " + String(topics));
 	topics = JSON.parse(topics);
 	var subjPicked = selected("selectSubjects");
 	var typePicked = selected("selectTypes");
@@ -121,12 +95,9 @@ var setTopics = function(topics) {
 	var selectHeading = document.getElementById("selectTopicsHeading");
 
 	if (typePicked=='Notes') {
-		//set topics based on subject
-		
 		while (select.hasChildNodes()) {
 			select.removeChild(select.lastChild);
 		}
-		
 		for (var i = 0; i < selectOuter.childNodes.length; i++) {
 			if (selectOuter.childNodes[i].className == "caret") {
 				selectOuter.removeChild(selectOuter.childNodes[i]);
@@ -139,11 +110,8 @@ var setTopics = function(topics) {
 		selectOuter.appendChild(caret);
 		selectOuter.style.display = "block";
 		selectHeading.style.display = "block";
-		//console.log(subjPicked);
-		//console.log("setTopics[subjPicked]: " + String(topics[subjPicked]));
 		setDropdown(topics[subjPicked], "selectTopics");
 	} else {
-		//no topics: clear the dropdown of options
 		while (select.hasChildNodes()) {
 			select.removeChild(select.lastChild);
 		}
@@ -160,16 +128,14 @@ var setQuiz = function() {
 	var quiz = document.getElementById("selectQuiz-inner");
 	var quizOuter = document.getElementById("selectQuiz");
 	var quizHeading = document.getElementById("selectQuizHeading");
-	
 	var subj = selected("selectSubjects");
 	
 	if (typePicked=='Questions') {
-		
 		for (var i = 0; i < quizOuter.childNodes.length; i++) {
-    	if (quizOuter.childNodes[i].className == "caret") {
-      		quizOuter.removeChild(quizOuter.childNodes[i]);
-      	break;
-    	}        
+    		if (quizOuter.childNodes[i].className == "caret") {
+      			quizOuter.removeChild(quizOuter.childNodes[i]);
+      			break;
+    		}        
 		}
 		
 		var caret = document.createElement('span');
@@ -189,7 +155,6 @@ var setQuiz = function() {
 					data: {subject: subj},
 					dataType: "text",
 					success: function(response){
-						//console.log("SucessQuiz: " + response);
 						var amounts = [];
 						var i = 1;
 						if (response.length==0) {
@@ -218,7 +183,6 @@ var setQuiz = function() {
 	}
 };
 
-
 //sets definition sets when form data is changed
 var setDefinition = function() {
 	var subjPicked = selected("selectSubjects");
@@ -230,14 +194,11 @@ var setDefinition = function() {
 	var subj = selected("selectSubjects");
 	
 	if (typePicked=='Definitions') {
-		//console.log("setDefinition:");
-		
-		
 		for (var i = 0; i < definitionOuter.childNodes.length; i++) {
-    	if (definitionOuter.childNodes[i].className == "caret") {
-      	definitionOuter.removeChild(definitionOuter.childNodes[i]);
-      	break;
-    	}        
+    		if (definitionOuter.childNodes[i].className == "caret") {
+      			definitionOuter.removeChild(definitionOuter.childNodes[i]);
+      			break;
+    		}        
 		}
 		
 		var caret = document.createElement('span');
@@ -278,7 +239,6 @@ var setDefinition = function() {
 						console.log(errorThrown)
 					}
 		})
-		
 	} else {
 		while (definition.hasChildNodes()) {
 			definition.removeChild(definition.lastChild);
@@ -295,14 +255,14 @@ var getContent = function() {
 	var subj = selected("selectSubjects");
 	var mType = selected("selectTypes");
 	var mTopic;
-	//only get type if applicable
+
 	if (mType=='Notes') {
 		mTopic = selected("selectTopics");
 	} else {
 		mTopic = "";
 	}
+
 	var mNumber;
-	//only get number if applicable
 	if (mType=='Questions') {
 		mNumber = selected("selectQuiz");
 	} else if (mType=='Definitions') {
@@ -311,7 +271,6 @@ var getContent = function() {
 		mNumber = "";
 	}
 
-	// call to app.py to get the content
 	if (mNumber == ""){
 	$.ajax({
 		traditional: true,
@@ -322,14 +281,11 @@ var getContent = function() {
         success: function(response){
         	response = JSON.parse(response)
         	if (mType=='Notes') {
-        	    //displayNotes(response);
-		    dispn(response);
+		    	dispn(response);
         	} else if (mType=='Questions') {
-        		//displayQuestions(response);
-		    dispq(reponse);
-        	} else if (mType=='Definitions') {
-        	    //displayDefinitions(response);
-		    dispd(response);
+		    	dispq(reponse);
+        	} else if (mType=='Definitions') {;
+		    	dispd(response);
         	}
         },
         error: function(textStatus, errorThrown){
@@ -424,37 +380,14 @@ var dispn = function(notes){
     
     var i=0;
     for(i=0; i<contentCapNotes; i++){
-	if(notes[i] != null){
-	    var row = document.createElement("ul");
-	    row.setAttribute("class", "one_note");
-	    row.innerHTML = (i+1)+". "+notes[i];
-	    cont.appendChild(row);
-	}
+		if(notes[i] != null){
+		    var row = document.createElement("ul");
+		    row.setAttribute("class", "one_note");
+		    row.innerHTML = (i+1)+". "+notes[i];
+		    cont.appendChild(row);
+		}
     }
     content.appendChild(cont);
-    
-    /*
-    var i=0;
-    for (i=0; i<contentCap; i++) {
-	var row = document.createElement("div");
-	row.setAttribute("class", "aNote");
-	row.innerHTML = notes[i];
-
-	content.appendChild(row);
-	
-    }
-    */
-}
-
-var displayNotes = function(notes) {
-	clearContent();
-
-	var i=0;
-	for (i=0; i<contentCapNotes; i++) {
-		row = document.createElement("tr")
-		row.appendChild(createContentNode(notes[i]));
-		content.appendChild(row);
-	}
 }
 
 var dispq = function(qs) {
@@ -539,49 +472,6 @@ var scoreQuiz = function() {
 	p.innerHTML = "Score: " + (score*10).toString().concat("%");
 }
 
-var displayQuestions = function(qs) {
-	clearContent();
-
-	var row = document.createElement("tr");
-	var i=0;
-	var keys = ['Question','A','B','C','D','E'];
-	for (i=0; i<keys.length; i++) {
-		row.appendChild(createContentNode(keys[i]));
-	}
-	console.log(row);
-	content.appendChild(row);
-
-	var i=0;
-	for (i=0; i<contentCap; i++) {
-		var this_row = document.createElement("tr");
-		q = qs[i]
-		console.log(q);
-		var j=0;
-	    for (j=0; j<keys.length; j++) {
-		if(j==0){
-		    var item = createContentNode(i+1+". <br>"+q[keys[j]])
-		}
-		else{
-		    var item = createContentNode(q[keys[j]])
-		}
-			if (keys[j]=='Question') {
-				item.setAttribute("class","question")
-			}
-
- 			if (keys[j]==q['Answer']) { //If correct answer
- 				item.addEventListener('click', function(e) { this.setAttribute("style","color: green;"); });
- 				item.setAttribute("class","answer right"); //adds BOTH CLASSES to this element
- 			} else if (keys[j].length==1) { //wrong answer
- 				item.addEventListener('click', function(e) { this.setAttribute("style","color: red;"); });
- 				item.setAttribute("class","answer wrong");
- 			}
- 			this_row.appendChild(item);
-		}
-		this_row.setAttribute("class","qitem");
-		content.appendChild(this_row);
-	}
-}
-
 var dispd = function(defs) {
     clearContent();
 
@@ -626,56 +516,18 @@ var dispd2 = function(defs){
     var i=0;
     var keys = ['Word', 'Definition'];
     for (i=0; i<keys.length; i++) {
-	row.appendChild(createContentNode(keys[i]));
+		row.appendChild(createContentNode(keys[i]));
     }
     console.log(row);
     row.setAttribute("class", "def_header");
     hold.appendChild(row);
-    //content.appendChild(row);
 
     var i=0;
     for (i=0; i<contentCap; i++) {
-	var this_row = document.createElement("tr");
-	d = defs[i]
-	var j=0;
-	
-	var itemWord = createContentNode(d[keys[0]])
-	var itemDef = createContentNode(d[keys[1]])
-	itemDef.setAttribute("style","visibility: hidden;");
-	itemDef.setAttribute("id", String(i) + "definitionActual");
-	itemWord.setAttribute("id", String(i) + "definition");
-	itemWord.addEventListener('click', function(e) { document.getElementById(this.getAttribute("id") + "Actual").setAttribute("style","visibility: visible;");});
-	this_row.appendChild(itemWord);
-	this_row.appendChild(itemDef);
-
-	this_row.setAttribute("class", "defs");
-	
-	hold.appendChild(this_row);
-    }
-
-    content.appendChild(hold);
-    
-    //console.log("displaying Definitions");
-}
-
-var displayDefinitions = function(defs) {
-	clearContent();
-	
-	var row = document.createElement("tr");
-	var i=0;
-	var keys = ['Word', 'Definition'];
-	for (i=0; i<keys.length; i++) {
-		row.appendChild(createContentNode(keys[i]));
-	}
-	console.log(row);
-	content.appendChild(row);
-
-	var i=0;
-	for (i=0; i<contentCap; i++) {
 		var this_row = document.createElement("tr");
 		d = defs[i]
 		var j=0;
-		
+	
 		var itemWord = createContentNode(d[keys[0]])
 		var itemDef = createContentNode(d[keys[1]])
 		itemDef.setAttribute("style","visibility: hidden;");
@@ -684,10 +536,12 @@ var displayDefinitions = function(defs) {
 		itemWord.addEventListener('click', function(e) { document.getElementById(this.getAttribute("id") + "Actual").setAttribute("style","visibility: visible;");});
 		this_row.appendChild(itemWord);
 		this_row.appendChild(itemDef);
-		content.appendChild(this_row);
-	}
-	
-	console.log("displaying Definitions");
+
+		this_row.setAttribute("class", "defs");
+		
+		hold.appendChild(this_row);
+    }
+    content.appendChild(hold);
 }
 
 function dropdown(val) {
@@ -740,7 +594,6 @@ var addDropListeners = function() {
 				setTopics(document.getElementById('topicSource').innerHTML);
 				setQuiz();
 				setDefinition();
-				//addDropListeners();
     		});
 		}
 	}
