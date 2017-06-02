@@ -491,10 +491,10 @@ var dispq = function(qs) {
 			var x=0;
 			var lst = this.parentElement.childNodes;
 			for (x=0; x<lst.length; x++) {
-				lst[x].setAttribute("style","font-style: normal;");
+				lst[x].setAttribute("style","");
 			}
 
-			this.setAttribute("style","font-style: italic;");
+			this.setAttribute("style","color: black;");
 		});
 		var letters = ['a', 'b', 'c', 'd', 'e']
 		thisAns.innerHTML = letters[j-1]+") "+q[keys[j]];
@@ -530,7 +530,7 @@ var scoreQuiz = function() {
 		for (j=0; j<answers.length; j++) { //for each answer
 			var ans = answers[j];
 			if ((ans.getAttribute("class")=="answer right") &&
-				ans.getAttribute("style")=="font-style: italic;") {
+				ans.getAttribute("style")=="color: black;") {
 				score+=1;
 			}
 		}
