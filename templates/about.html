@@ -1,48 +1,31 @@
 {% extends "layout.html" %}
 
-{% block title %}
-About
-{% endblock %}
-
 {% block head %}
 <link rel="stylesheet" href="static/css/bootstrap-theme.css" type="text/css">
-
 {% endblock %}
 
-{% block body %}
-<center>
-    <br>
+{% block data %}
+  <center>
     <div class="card large-6">
-        <div class="content">
-            <span class="title"> About </span>
+      <div class="action">
+        <div class="row results">
+          <div class="large-12 columns ">
+	    <h1>About TETEA</h1>
+	    
+	    <h2>Mission Statement</h2>
+	    
+	    “To empower Tanzanians through education.”
+	    <br><br>
+	    We work to achieve our mission by expanding educational opportunities in Tanzania through sponsoring needy students and working to develop learning centers in the country.
+	    <br><br>
+	    TETEA was founded in November 2008 and is a registered 501(c)(3) non-profit organization.
+	    <br>
+	    <h2> About this Site </h2>
+	    This site is designed from the TETEA text service.  The site was written for a senior level computer science elective at Stuyvesant High School in New York City.
+          </div>
         </div>
-        <div class="action">
-          <div class="row results">
-            <div class="large-12 columns ">
-	      <h1>About TETEA</h1>
-
-	      <h2>Mission Statement</h2>
-
-	      “To empower Tanzanians through education.”
-
-	      We work to achieve our mission by expanding educational opportunities in Tanzania through sponsoring needy students and working to develop learning centers in the country.
-
-	      TETEA was founded in November 2008 and is a registered 501(c)(3) non-profit organization.
-
-
-	      <h2> About this Site </h2>
-
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-</center>
-
-<script>
-//set background image to the tetea symbol
-$(document).ready(function(){
-    $("body").css({"background-image": 'url("/static/")'});
-});
-</script>
-
+  </center>
+  
 {% endblock %}

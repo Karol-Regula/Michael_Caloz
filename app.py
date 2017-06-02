@@ -155,9 +155,9 @@ def logout():
   session.pop("username")
   return redirect("/")
 
-@app.route("/about", methods = ["POST"])
+@app.route("/about", methods = ["GET"])
 def about():
-    return render_template('about.html')
+    return render_template('about.html', title = 'About')
     
 
 if __name__ == "__main__":
