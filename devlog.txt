@@ -255,3 +255,6 @@ karolR -- 2017-06-03 15:16
 - added jquery source to static/js
 - made logout button on admin page black
 - cleaned up ALL python print statements and some comments
+
+emmaV -- 2017-06-03 17:03
+- dynamic sizing + scrolling for definitions for mobile

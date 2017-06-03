@@ -510,9 +510,6 @@ var dispd = function(defs) {
 	thisOne.setAttribute("word", def['Word']);
 	thisOne.setAttribute("definition", def['Definition']);
 	thisOne.innerHTML = thisOne.getAttribute("word");
-
-
-
 	
 	thisOne.addEventListener('click',
 				 function(e){
