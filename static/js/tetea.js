@@ -1,11 +1,4 @@
 //gets selected of dropdown with id thisselect
-var selected_old = function(thisSelect) {
-  console.log(thisSelect);
-	var typeSelect = document.getElementById(thisSelect);
-	var typePicked = typeSelect.options[typeSelect.selectedIndex].text;
-	return typePicked;
-}
-
 //gets selected of dropdown with id thisselect
 var selected = function(thisSelect) {
 	var typeSelect = document.getElementById(thisSelect);
@@ -313,9 +306,7 @@ var getContent = function() {
         dataType: "text",
         success: function(response){
         	response = JSON.parse(response)
-			//		console.log(response)
-			//displayQuestions(response);
-	    dispq(response);
+	    	dispq(response);
         },
         error: function(textStatus, errorThrown){
         	console.log(textStatus)
@@ -523,14 +514,10 @@ var dispd = function(defs) {
 	
 	thisOne.addEventListener('click',
 				 function(e){
-				     console.log(this.getAttribute("word"));
-				     console.log(this.innerHTML);
 				     if(this.innerHTML == this.getAttribute("word")){
-					 console.log(this);
-					 this.innerHTML = this.getAttribute("definition");  }
+					 	this.innerHTML = this.getAttribute("definition");  }
 				     else{
-					 console.log("else");
-					 this.innerHTML = this.getAttribute("word");  }
+					 	this.innerHTML = this.getAttribute("word");  }
 				 });
 					 
 	
@@ -550,7 +537,6 @@ var dispd2 = function(defs){
     for (i=0; i<keys.length; i++) {
 		row.appendChild(createContentNode(keys[i]));
     }
-    console.log(row);
     row.setAttribute("class", "def_header");
     hold.appendChild(row);
 
@@ -595,19 +581,15 @@ var addDropListeners = function() {
 				var definitionOuter = document.getElementById("selectDefinition");
 				var i=0;
 				var children = definitionOuter.parentElement.childNodes;
-				console.log(children);
 				for (i=0; i<children.length; i++) {
-					console.log(children[i].tagName);
 					if (children[i].tagName=="P") {
 						definitionOuter.parentElement.removeChild(children[i]);
 					}
 				}
-				console.log(dropId);
 				var id = "select".concat(this.getAttribute("class").substring(4));
 				if (id != "selectSubjects" && id != "selectTypes"){
 					id = this.getAttribute("class").substring(4);
 				}
-				console.log('id: '.concat(id));
     		var button = document.getElementById(id);
     		button.innerHTML = $(this).text();
     		button.setAttribute("picked",$(this).text());
