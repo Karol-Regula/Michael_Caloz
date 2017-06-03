@@ -615,6 +615,22 @@ var addDropListeners = function() {
 	}
 }
 
+$(document).ready( function() {
+    $(':file').on('fileselect', function(event, numFiles, label) {
+        console.log(numFiles);
+        console.log(label);
+				filename = document.getElementById('file-upload-span');
+				filename.innerHTML = label;
+    });
+});
+
+$(document).on('change', ':file', function() {
+    var input = $(this),
+        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [numFiles, label]);
+});
+
 window.onload = function WindowLoad(event) {
 	var select = document.getElementById("selectTopics");
 	if (select != null){//so that about page doesn't have js erorrs
