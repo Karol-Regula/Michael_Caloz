@@ -47,7 +47,6 @@ def getTopicsBy():
 @app.route("/getQuizAmount/", methods=["GET"])
 def getQuizAmount():
   subject = request.args['subject']
-  print "getQuizAmount():"
   amount = database.returnQuizAmount(subject)
   return str(amount)
 
@@ -63,7 +62,6 @@ def getQuiz():
 @app.route("/getDefinitionAmount/", methods=["GET"])
 def getDefinitionAmount():
   subject = request.args['subject']
-  print "getDefinitionAmount():"
   amount = database.returnDefinitionAmount(subject)
   return str(amount)
 
@@ -105,7 +103,7 @@ def login():
   text = accounts.login(user, pw)#error message
   if text == "":#if no error message, succesful go back home
     session["username"] = user
-    print text
+    #print text
     return redirect("/admin")
   else:
     flash(text);
@@ -143,9 +141,9 @@ def upload_file():
     else:
       msg = "Your database files have been uploaded"
       filename = secure_filename(file.filename)
-      print filename
+      #print filename
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-      print msg
+      #print msg
       return redirect(url_for('upload_file',filename=filename, message=msg, title=title))
   return render_template('admin.html', subjects=info, message=msg, title=title)
   #return redirect("/")
@@ -165,6 +163,3 @@ if __name__ == "__main__":
   # app.config.from_object("config")
   # app.secret_key = app.config["SECRET_KEY"]
   app.run()
-
-#next thing due:
-#FRIDAY: demo of progress, site design, discuss what is being worked on/project

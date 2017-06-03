@@ -1,10 +1,4 @@
-import time
-import csv
-import sqlite3
-import json
-
-from subprocess import Popen, PIPE
-import os
+import time, csv, sqlite3, json, os
 
 f = "database.db"
 
@@ -133,7 +127,7 @@ def getSubtopicQuestions():
 
 #retrieves the topics under a certain subject from question table
 def getTopicsNotes(subject):
-  print "subject: " + subject
+  #print "subject: " + subject
   initializeDB()
   q = 'SELECT Topic_Name FROM notes WHERE subject=?'
   c.execute(q, (revSubTranslate(subject),))
@@ -146,11 +140,9 @@ def getTopicsNotes(subject):
   #print topics
   return topics
 
-#print getTopicsNotes("Physics")
-
 #retrieves subtopics under certain topic from notes table
 def getSubtopicsNotes(topic):
-  print "topic: " + topic
+  #print "topic: " + topic
   initializeDB()
   q = 'SELECT Subtopic_Name FROM notes WHERE Topic_Name=?'
   info = c.execute(q, (topic,))
@@ -194,7 +186,6 @@ def content(subject,tipe,topic):
     c.execute(q, (subject,topic))
     for i in c.fetchall():
       ret.append(i[0])
-    print ret
 
   if tipe == "Definitions":
     q = "SELECT Word, Definition FROM definitions WHERE subject =?"
@@ -210,12 +201,10 @@ def content(subject,tipe,topic):
     for i in whole:
       if (i[6] != ''):
         ret.append({"Question": i[0], "A": i[1], "B": i[2], "C": i[3], "D":i[4], "E":i[5], "Answer": i[6]})
-        #print "i[6]" + str(i[6])
   closeDB()
   #print ret
   return json.dumps(ret)
 
-#print content("Physics", "Notes", "Applications of Vectors")
 
 #return dictionary of subject:[topics] for the notes
 def subjectTopic():
@@ -247,7 +236,7 @@ def returnQuiz(quizNumber, subject):
       out.append({"Question": i[0], "A": i[1], "B": i[2], "C": i[3], "D":i[4], "E":i[5], "Answer": i[6]})
   a = (quizNumber * 10) - 10
   b = (quizNumber * 10)
-  print "a: " + str(a) + "b: " + str(b)
+  #print "a: " + str(a) + "b: " + str(b)
   out = out[a:b]
   closeDB()
   return json.dumps(out)
@@ -262,13 +251,12 @@ def returnQuizAmount(subject):
   for i in whole:
     if (i[6] != ''):
       out.append({"Question": i[0], "A": i[1], "B": i[2], "C": i[3], "D":i[4], "E":i[5], "Answer": i[6]})
-  print "len(out): " + str(len(out))
+  #print "len(out): " + str(len(out))
   a = (len(out) / 10)
-  print len(out)
   if a * 10 < len(out):
     a += 1
   closeDB()
-  print "a: " + str(a)
+  #print "a: " + str(a)
   return a
 
 #returns data for requested definition set, scalable
@@ -283,7 +271,7 @@ def returnDefinition(definitionNumber, subject):
     out.append({'Word': i[0], 'Definition':i[1]})
   a = (definitionNumber * 10) - 10
   b = (definitionNumber * 10)
-  print "a: " + str(a) + "b: " + str(b)
+  #print "a: " + str(a) + "b: " + str(b)
   out = out[a:b]
   closeDB()
   return json.dumps(out)
@@ -297,12 +285,12 @@ def returnDefinitionAmount(subject):
   whole = c.fetchall()
   for i in whole:
     out.append({'Word': i[0], 'Definition':i[1]})
-  print "len(out): " + str(len(out))
+  #print "len(out): " + str(len(out))
   a = (len(out) / 10)
   if a * 10 < len(out):
     a += 1
   closeDB()
-  print "a: " + str(a)
+  #print "a: " + str(a)
   return a
   
   
@@ -315,12 +303,6 @@ def convertDB(filename):
 
 
 #convertDB('sqlDbORIGINAL.sql')
-
-
-#print returnQuiz(2, "Civics");
-#print returnQuiz(5, "Civics");
-#print returnQuizAmount("Civics");
-#print returnQuizAmount("Biology");
 
   
 #removes duplicate entires from database
@@ -336,19 +318,4 @@ def deduplicateDatabase():
   c.execute(q);
   closeDB()
 
-
-  
 #deduplicateDatabase()
-  
-  
-#print subjectTopic()
-
-#print content('Geography','definitions','')
-
-'''   
-getSubjectsDefinitions()
-getSubjectsNotes()
-getSubjectsQuestions()
-getSubtopicQuestions()
-print getSubtopicNotes()
-'''

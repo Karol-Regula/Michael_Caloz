@@ -254,3 +254,4 @@ karolR -- 2017-06-03 15:16
 - made 'score quiz' and 'try again' buttons pretty
 - added jquery source to static/js
 - made logout button on admin page black
+- cleaned up ALL python print statements and some comments
