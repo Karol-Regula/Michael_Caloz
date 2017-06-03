@@ -434,6 +434,7 @@ var dispq = function(qs) {
 			var lst = this.parentElement.childNodes;
 			for (x=0; x<lst.length; x++) {
 				lst[x].setAttribute("style","");
+				lst[x].innerHTML = lst[x].innerHTML.replace(" (CORRECT)","");
 			}
 
 			this.setAttribute("style","color: black;");
@@ -458,6 +459,20 @@ var dispq = function(qs) {
 	var p = document.createElement("p");
 	p.setAttribute("id", "quizScore");
 	content.appendChild(p);
+
+	var btnClear = document.createElement("button");
+	btnClear.innerHTML = "Try again";
+	btnClear.addEventListener("click", function() {
+		var qAnswers = document.getElementsByClassName("answer");
+		var ctr=0;
+		for (ctr=0; ctr<qAnswers.length; ctr++) {
+			qAnswers[ctr].setAttribute("style","");
+		}
+		var scoreP = document.getElementById("quizScore");
+		scoreP.innerHTML = "";
+	})
+	content.appendChild(btnClear);
+
 }
 
 var scoreQuiz = function() {
@@ -473,7 +488,9 @@ var scoreQuiz = function() {
 			var ans = answers[j];
 			if (ans.getAttribute("class")=="answer right" && ans.getAttribute("style")=="color: black;") {
 				score+=1;
-			    ans.setAttribute("style","color: green;");
+				ans.innerHTML = ans.innerHTML.replace(" (CORRECT)","");
+				ans.innerHTML += " (CORRECT)"
+			    //ans.setAttribute("style","color: green;");
 			}else if (ans.getAttribute("class")!="answer right" && ans.getAttribute("style")=="color: black;"){
         ans.setAttribute("style","color: red;")
       }else if (ans.getAttribute("class")=="answer right"){
