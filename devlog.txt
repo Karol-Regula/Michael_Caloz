@@ -258,3 +258,4 @@ karolR -- 2017-06-03 15:16
 
 emmaV -- 2017-06-03 17:03
 - dynamic sizing + scrolling for definitions for mobile
+- add local jquery
