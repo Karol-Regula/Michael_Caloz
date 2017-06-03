@@ -131,6 +131,7 @@ def upload_file():
     file = request.files['file']
     # if user does not select file, browser also
     # submit a empty part without filename
+    #print file.filename
     if file.filename == '':
       msg = "Please select a file first"
       #flash('No selected file')
