@@ -247,3 +247,8 @@ emmaV & felixR -- 2017-06-02 12:00
 emmaV -- 2017-06-03 11:25
 - add quiz 'Try again' button
 - fix quiz scoring when re-done w/o trying again
+
+karolR -- 2017-06-03 15:16
+- added administrator to about.html
+- fixed some js erros that appeared on non index.html pages
+- made 'score quiz' and 'try again' buttons pretty
