@@ -445,6 +445,7 @@ var dispq = function(qs) {
     }
     var btn = document.createElement("button");
 	btn.innerHTML = "Score quiz";
+	btn.setAttribute("class", "btn btn-primary");
 	btn.addEventListener("click",scoreQuiz);
 	content.appendChild(btn);
 	var p = document.createElement("p");
@@ -453,6 +454,7 @@ var dispq = function(qs) {
 
 	var btnClear = document.createElement("button");
 	btnClear.innerHTML = "Try again";
+	btnClear.setAttribute("class", "btn btn-primary");
 	btnClear.addEventListener("click", function() {
 		var qAnswers = document.getElementsByClassName("answer");
 		var ctr=0;
@@ -481,7 +483,7 @@ var scoreQuiz = function() {
 				score+=1;
 				ans.innerHTML = ans.innerHTML.replace(" (CORRECT)","");
 				ans.innerHTML += " (CORRECT)"
-			    //ans.setAttribute("style","color: green;");
+			  //ans.setAttribute("style","color: green;");
 			}else if (ans.getAttribute("class")!="answer right" && ans.getAttribute("style")=="color: black;"){
         ans.setAttribute("style","color: red;")
       }else if (ans.getAttribute("class")=="answer right"){
@@ -615,19 +617,21 @@ var addDropListeners = function() {
 
 window.onload = function WindowLoad(event) {
 	var select = document.getElementById("selectTopics");
-	var selectHeading = document.getElementById("selectTopicsHeading");
-	select.style.display = "none";
-	selectHeading.style.display = "none";
+	if (select != null){//so that about page doesn't have js erorrs
+		var selectHeading = document.getElementById("selectTopicsHeading");
+		select.style.display = "none";
+		selectHeading.style.display = "none";
 
-	var quiz = document.getElementById("selectQuiz");
-	var quizHeading = document.getElementById("selectQuizHeading");
-	quiz.style.display = "none";
-	quizHeading.style.display = "none";
+		var quiz = document.getElementById("selectQuiz");
+		var quizHeading = document.getElementById("selectQuizHeading");
+		quiz.style.display = "none";
+		quizHeading.style.display = "none";
 
-	var definition = document.getElementById("selectDefinition");
-	var definitionHeading = document.getElementById("selectDefinitionHeading");
-	definition.style.display = "none";
-	definitionHeading.style.display = "none";
+		var definition = document.getElementById("selectDefinition");
+		var definitionHeading = document.getElementById("selectDefinitionHeading");
+		definition.style.display = "none";
+		definitionHeading.style.display = "none";
 
-	addDropListeners();
+		addDropListeners();
+	}
 }
