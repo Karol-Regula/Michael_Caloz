@@ -252,3 +252,5 @@ karolR -- 2017-06-03 15:16
 - added administrator to about.html
 - fixed some js erros that appeared on non index.html pages
 - made 'score quiz' and 'try again' buttons pretty
+- added jquery source to static/js
+- made logout button on admin page black
