@@ -514,11 +514,14 @@ var dispd = function(defs) {
 	thisOne.addEventListener('click',
 				 function(e){
 				 	if(this.innerHTML == this.getAttribute("word")){
-					 	this.innerHTML = this.getAttribute("definition"); 
+					 	this.innerHTML = this.getAttribute("definition");
+					 	this.style.display = 'none';
+					 	this.style.display = 'block';
 					 }else{
 					 	this.innerHTML = this.getAttribute("word");  
+					 	this.style.display = 'flex';
 					 }
-					 $(window).trigger('resize');
+					 //$(window).trigger('resize');
 				 });
 					 
 	
