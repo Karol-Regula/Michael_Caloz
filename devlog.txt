@@ -270,3 +270,4 @@ yvonneC -- 2017-06-03
 
 emmaV -- 2017-06-04 8:50
 - Mozilla firefox scrolling for definitions
+- Definitions stay vertically aligned
