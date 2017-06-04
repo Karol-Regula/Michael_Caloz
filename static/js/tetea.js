@@ -33,30 +33,6 @@ var setSelect = function(lastSelect,fxn,thisSelect) {
 	});
 };
 
-// resets dropdown with id thisSelect to contain
-// the information in to_add (which is either values
-// separated by commas, or an array)
-var setDropdown_old = function(to_add, thisSelect) {
-	if (to_add instanceof String) { // str of comma separated vals
-		var topicList = to_add.split(",");
-	} else { // just use the array as is
-		var topicList = to_add;
-	}
-	var select = document.getElementById(thisSelect);
-	while (select.hasChildNodes()) {
-		select.removeChild(select.lastChild);
-	}
-
-	//add each item in list to dropdown
-	var i=0;
-	for (i=0; i<topicList.length; i++){
-		var node = document.createElement("option");
-		node.setAttribute("value", topicList[i])
-		node.innerHTML = topicList[i]
-		select.appendChild(node)
-	}
-};
-
 var setDropdown = function(to_add, thisSelect) {
 	if (to_add instanceof String) { // str of comma separated vals
 		var topicList = to_add.split(",");
