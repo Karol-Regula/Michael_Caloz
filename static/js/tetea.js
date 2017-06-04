@@ -514,11 +514,12 @@ var dispd = function(defs) {
 	thisOne.addEventListener('click',
 				 function(e){
 				 	if(this.innerHTML == this.getAttribute("word")){
-					 	this.innerHTML = this.getAttribute("definition");
-					 	this.style.display = 'none';
-					 	this.style.display = 'block';  
+					 	this.innerHTML = this.getAttribute("definition"); 
 					 }else{
-					 	this.innerHTML = this.getAttribute("word");  }
+					 	this.innerHTML = this.getAttribute("word");  
+					 }
+					 this.style.display = 'none';
+					 this.style.display = 'block'; 
 				 });
 					 
 	

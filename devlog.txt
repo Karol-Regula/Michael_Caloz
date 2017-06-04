@@ -269,4 +269,4 @@ yvonneC -- 2017-06-03
 - added home page to nav bar to redirect depending on whether admin is logged in
 
 emmaV -- 2017-06-04 8:50
-- Work on mozilla scrolling definitions
+- Mozilla firefox scrolling for definitions

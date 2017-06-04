@@ -16,14 +16,6 @@
 	color: gray;
 }
 
-.wrong {
-    /*font-style: italic;*/
-}
-
-.right {
-    /*font-style: bold;*/
-}
-
 /*THE STYLING FOR NOTES*/
 .aNote{
     border: 1px solid black;
@@ -75,17 +67,18 @@
     overflow: scroll;
     overflow-x: hidden;
     overflow:-moz-scrollbars-none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 @media only screen and (max-device-width: 500px) {
     .definition {
         width: 100%;
         height: 75px;
-        overflow: auto;
-        overflow:-moz-scrollbars-none;
+    }
+}
+
+@-moz-document url-prefix() {
+    .definition {
+        overflow-y: auto;
     }
 }
 
@@ -97,4 +90,3 @@
 ::-webkit-scrollbar-thumb {
     background: #FF0000;
 }
-
