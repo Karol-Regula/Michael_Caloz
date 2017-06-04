@@ -151,7 +151,8 @@ def upload_file():
   
 @app.route("/logout/")
 def logout():
-  session.pop("username")
+  if 'username' in session:
+    session.pop("username")
   return redirect("/")
 
 @app.route("/about", methods = ["GET"])
