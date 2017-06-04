@@ -424,11 +424,11 @@ var dispq = function(qs) {
 			var x=0;
 			var lst = this.parentElement.childNodes;
 			for (x=0; x<lst.length; x++) {
+				lst[x].setAttribute("class", lst[x].getAttribute("class").replace(" picked",""));
 				lst[x].setAttribute("style","");
-				lst[x].innerHTML = lst[x].innerHTML.replace(" (CORRECT)","");
 			}
 
-			this.setAttribute("style","color: black;");
+			this.setAttribute("class", this.getAttribute("class") + " picked");
 		});
 		var letters = ['a', 'b', 'c', 'd', 'e']
 		thisAns.innerHTML = letters[j-1]+") "+q[keys[j]];
@@ -459,6 +459,7 @@ var dispq = function(qs) {
 		var qAnswers = document.getElementsByClassName("answer");
 		var ctr=0;
 		for (ctr=0; ctr<qAnswers.length; ctr++) {
+			qAnswers[ctr].setAttribute("class",qAnswers[ctr].getAttribute("class").replace("picked",""));
 			qAnswers[ctr].setAttribute("style","");
 		}
 		var scoreP = document.getElementById("quizScore");
@@ -479,14 +480,12 @@ var scoreQuiz = function() {
 		answers = q.childNodes[1].childNodes;
 		for (j=0; j<answers.length; j++) { //for each answer
 			var ans = answers[j];
-			if (ans.getAttribute("class")=="answer right" && ans.getAttribute("style")=="color: black;") {
+			if (ans.getAttribute("class")=="answer right picked") {
 				score+=1;
-				ans.innerHTML = ans.innerHTML.replace(" (CORRECT)","");
-				ans.innerHTML += " (CORRECT)"
-			  //ans.setAttribute("style","color: green;");
-			}else if (ans.getAttribute("class")!="answer right" && ans.getAttribute("style")=="color: black;"){
-        ans.setAttribute("style","color: red;")
-      }else if (ans.getAttribute("class")=="answer right"){
+				ans.setAttribute("style", ans.getAttribute("style") + "color: green;")
+			}else if (ans.getAttribute("class")=="answer wrong picked") {
+        		ans.setAttribute("style","color: red;")
+      		}else if (ans.getAttribute("class")=="answer right"){
 				ans.setAttribute("style","color: green;")
 			}
 		}

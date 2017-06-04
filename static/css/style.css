@@ -16,6 +16,11 @@
 	color: gray;
 }
 
+.picked {
+    color: black;
+    font-weight: bold;
+}
+
 /*THE STYLING FOR NOTES*/
 .aNote{
     border: 1px solid black;
