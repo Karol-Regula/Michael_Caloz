@@ -84,6 +84,8 @@
     .definition {
         width: 100%;
         height: 75px;
+        overflow: auto;
+        overflow:-moz-scrollbars-none;
     }
 }
 
