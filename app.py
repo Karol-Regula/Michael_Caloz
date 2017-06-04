@@ -156,7 +156,17 @@ def logout():
 
 @app.route("/about", methods = ["GET"])
 def about():
-    return render_template('about.html', title = 'About')
+  admin = False
+  if 'username' in session:
+    admin = True
+  return render_template('about.html', title = 'About', loggedin = admin)
+
+@app.route("/contact/", methods = ["GET"])
+def contact():
+  admin = False
+  if 'username' in session:
+    admin = True
+  return render_template('contact.html', title = 'Contact', loggedin = admin)
     
 
 if __name__ == "__main__":
