@@ -244,6 +244,9 @@ emmaV & felixR -- 2017-06-02 12:00
 - added right answer highlighting for answers
 - make definitions sizing better for phones
 
+yvonneC -- 2017-06-02 12:30
+- began work on contacts page
+
 emmaV -- 2017-06-03 11:25
 - add quiz 'Try again' button
 - fix quiz scoring when re-done w/o trying again
@@ -259,3 +262,8 @@ karolR -- 2017-06-03 15:16
 emmaV -- 2017-06-03 17:03
 - dynamic sizing + scrolling for definitions for mobile
 - add local jquery
+
+yvonneC -- 2017-06-03 
+- finished contact page (Felix's email to-be-updated)
+- integrated admin login in nav bar to change on about and contact page when admin is logged in
+- added home page to nav bar to redirect depending on whether admin is logged in
