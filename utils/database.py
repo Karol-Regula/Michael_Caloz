@@ -185,7 +185,8 @@ def content(subject,tipe,topic):
     q = "SELECT Information FROM notes WHERE Subject=? AND Topic_Name=?"
     c.execute(q, (subject,topic))
     for i in c.fetchall():
-      ret.append(i[0])
+      note = i[0].replace('\\n', '<br />')
+      ret.append(note)
 
   if tipe == "Definitions":
     q = "SELECT Word, Definition FROM definitions WHERE subject =?"
