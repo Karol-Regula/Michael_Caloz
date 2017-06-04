@@ -515,8 +515,15 @@ var dispd = function(defs) {
 				 function(e){
 				 	if(this.innerHTML == this.getAttribute("word")){
 					 	this.innerHTML = this.getAttribute("definition");
-					 	this.style.display = 'none';
-					 	this.style.display = 'block';
+					 	
+					 	if (this.scrollHeight > this.clientHeight) {
+					 		this.style.display = 'none';
+					 		this.style.display = 'block';
+					 		console.log("scroll");
+					 	}
+					 	//} else {
+					 	//	this.style.display = 'flex';
+					 	//}
 					 }else{
 					 	this.innerHTML = this.getAttribute("word");  
 					 	this.style.display = 'flex';
