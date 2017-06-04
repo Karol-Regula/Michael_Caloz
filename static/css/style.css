@@ -67,6 +67,9 @@
     overflow: scroll;
     overflow-x: hidden;
     overflow:-moz-scrollbars-none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media only screen and (max-device-width: 500px) {

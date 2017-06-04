@@ -518,8 +518,7 @@ var dispd = function(defs) {
 					 }else{
 					 	this.innerHTML = this.getAttribute("word");  
 					 }
-					 this.style.display = 'none';
-					 this.style.display = 'block'; 
+					 $(window).trigger('resize');
 				 });
 					 
 	
