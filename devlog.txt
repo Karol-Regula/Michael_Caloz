@@ -247,6 +247,9 @@ emmaV & felixR -- 2017-06-02 12:00
 yvonneC -- 2017-06-02 12:30
 - began work on contacts page
 
+bayleSS -- 2017-06-02 13:00
+- made and connected about page
+
 emmaV -- 2017-06-03 11:25
 - add quiz 'Try again' button
 - fix quiz scoring when re-done w/o trying again
