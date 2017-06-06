@@ -217,10 +217,8 @@ def subjectTopic():
   for i in info:
     if subTranslate(i[1]) not in ret:
       ret[subTranslate(i[1])] = [i[0]]
-    else:
+    elif (i[0] not in ret[subTranslate(i[1])]):
       ret[subTranslate(i[1])].append(i[0])
-  for item in ret:
-    ret[item] = list(set(ret[item])    )
   closeDB()
   return json.dumps(ret)
   
