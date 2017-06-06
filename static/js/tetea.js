@@ -428,7 +428,8 @@ var dispq = function(qs) {
     	return ;
     }
 
-    for (i=0; i<contentCap; i++) {
+		console.log(qs.length);
+    for (i=0; i<qs.length; i++) {
 	
 	q = qs[i];
 	
