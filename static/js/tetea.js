@@ -220,7 +220,7 @@ var setDefinition = function() {
 					dataType: "text",
 					success: function(response){
 						response = JSON.parse(response);
-						if (response==null) {
+						if (response==0) {
 						    definitionOuter.style.display = "none";
 								definitionRandom.style.display = "none";
 						    definitionHeading.style.display = "none";
