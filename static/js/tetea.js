@@ -158,6 +158,7 @@ var setDefinition = function() {
 	var typePicked = selected("selectTypes");
 	var definition = document.getElementById("selectDefinition-inner");
 	var definitionOuter = document.getElementById("selectDefinition");
+	var definitionRandom = document.getElementById("selectDefinitionRandom");
 	var definitionHeading = document.getElementById("selectDefinitionHeading");
 	
 	var subj = selected("selectSubjects");
@@ -174,6 +175,7 @@ var setDefinition = function() {
 		caret.setAttribute('class', 'caret');
 		definitionOuter.appendChild(caret);
 		definitionOuter.style.display = "block";
+		definitionRandom.style.display = "block";
 		definitionHeading.style.display = "block";
 		
 		while (definition.hasChildNodes()) {
@@ -191,6 +193,7 @@ var setDefinition = function() {
 						console.log(response);
 						if (response==null) {
 						    definitionOuter.style.display = "none";
+								definitionRandom.style.display = "none";
 						    definitionHeading.style.display = "none";
     						var msg = document.createElement("p");
     						msg.innerHTML = "No defitions available based on your selections.";
@@ -209,6 +212,7 @@ var setDefinition = function() {
 			definition.removeChild(definition.lastChild);
 		}
 		definitionOuter.innerHTML = 'Pick a definition set ';
+		definitionRandom.style.display = "none";
 		definitionOuter.style.display = "none";
 		definitionHeading.style.display = "none";
 	}
@@ -623,8 +627,10 @@ window.onload = function WindowLoad(event) {
 		quizHeading.style.display = "none";
 
 		var definition = document.getElementById("selectDefinition");
+		var definitionRandom = document.getElementById("selectDefinitionRandom");
 		var definitionHeading = document.getElementById("selectDefinitionHeading");
 		definition.style.display = "none";
+		definitionRandom.style.display = "none";
 		definitionHeading.style.display = "none";
 
 		addDropListeners();

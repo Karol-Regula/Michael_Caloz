@@ -309,7 +309,6 @@ def returnDefinitionLetter(definitionLetter, subject):
       out.append({'Word': i[0], 'Definition':i[1]})
   closeDB()
   out.sort(key=lambda x: x['Word']) #sort by word
-  print out
   return json.dumps(out)
   
 #returns list of letters for which definitions exist
