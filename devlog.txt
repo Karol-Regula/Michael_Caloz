@@ -299,3 +299,6 @@ yvonneC -- 2017-06-05 22:47
 
 emmaV -- 2017-06-06 13:14
 - items auto load once final dropdown is hit
+
+bayleSS -- 2017-06-06 17:50
+- added the OR for the definitions and spaces
