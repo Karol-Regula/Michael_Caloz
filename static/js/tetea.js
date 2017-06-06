@@ -360,7 +360,7 @@ var getContent = function() {
 	}
 }
 
-var contentCap = 100;
+var contentCap = 10;
 var contentCapNotes = 100;
 var content = null;
 
@@ -527,7 +527,7 @@ var dispd = function(defs) {
     message.innerHTML = "Click on the words to see their definitions!!";
     content.appendChild(message);
     var i=0;
-    for (i=0; i<contentCap; i++) {
+    for (i=0; i<contentCapNotes; i++) {
 	def = defs[i];
 	if (def==null) { break;}
 
