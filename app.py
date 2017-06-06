@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, send_file
 import utils, datetime, time, os
 from os import urandom
 #from os.path import join, dirname, realpath
@@ -163,9 +163,9 @@ def upload_file():
   return render_template('admin.html', subjects=info, message=msg, title=title)
   #return redirect("/")
 
-@app.route("/admin")
+@app.route('/uploads/', methods=['GET', 'POST'])
 def download():
-  return "/data/database.db"
+    return send_file('data/database.sql',attachment_filename='database.sql',as_attachment=True)
   
 @app.route("/logout/")
 def logout():
