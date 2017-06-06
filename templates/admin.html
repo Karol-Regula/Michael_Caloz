@@ -53,6 +53,40 @@
 	</span>
 	<input type="submit" class="btn btn-primary" value="Upload">
 </form>
+
+<br><br><br>
+<h2>Change administrator password</h2>
+<form class="container" method="POST" action="{{ url_for('changePass') }}">
+	<div class="row">
+		<div class="col-md-3">
+			<input type="password" class="form-control" placeholder="New password" name="p1">
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-3">
+			<input type="password" class="form-control" placeholder="Retype password" name="p2">
+		</div>
+	</div>
+	<br>
+	<input type="submit" id="submitPass" class="btn btn-primary" value="Change password"">
+	<span style="display: none;" id="submitWarn">New password entries must match</span>
+</form>
+
+<script type="text/javascript">
+	var passes = document.getElementsByClassName("form-control");
+	var subm = document.getElementById("submitPass");
+	var msg = document.getElementById("submitWarn");
+	passes[1].addEventListener('keyup', function(e) {
+		subm.setAttribute("class", subm.getAttribute("class").replace(" disabled",""));
+		msg.style.display = 'none';
+		if (passes[1].value != passes[0].value) {
+			subm.setAttribute("class", subm.getAttribute("class") + " disabled");
+			msg.style.display = 'block';
+		}
+	});
+</script>
+
 <i> {{ message }} </i>
 
 {% endblock %}

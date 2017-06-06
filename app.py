@@ -169,6 +169,10 @@ def contact():
     admin = True
   return render_template('contact.html', title = 'Contact', loggedin = admin)
     
+@app.route("/changePass/", methods=["POST"])
+def changePass():
+  accounts.changePass("Admin",request.form['p1'])
+  return redirect("/admin")
 
 if __name__ == "__main__":
   app.debug = True

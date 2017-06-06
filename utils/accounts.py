@@ -64,13 +64,14 @@ def changePass(user, pw):
   query = "SELECT * FROM Accounts WHERE username=?"
   info = c.execute(query, (user,))
   salt = ""
+  ret = ""
   for record in info:
     salt = record[2]
     pw = sha1(pw+salt).hexdigest()
     changeQuery = "UPDATE Accounts SET PASSWORD = ? WHERE USERNAME = ?"
     c.execute(changeQuery, (pw, user))
     ret = "Password is now changed."
-    closeDB()
+  closeDB()
   return ret
   
 def getPassword(user):

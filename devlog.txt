@@ -275,3 +275,6 @@ emmaV -- 2017-06-04 8:50
 - Mozilla firefox scrolling for definitions
 - Definitions stay vertically aligned
 - make quiz scoring look nicer
+
+emmaV -- 2017-06-05 20:55
+- Do front end and integrating for admin pass changing
