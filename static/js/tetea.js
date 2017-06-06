@@ -152,6 +152,12 @@ var setQuiz = function() {
 	}
 };
 
+var random = false;
+var randomDefinition = function(){
+	random = true;
+	getContent();
+}
+
 //sets definition sets when form data is changed
 var setDefinition = function() {
 	var subjPicked = selected("selectSubjects");
@@ -190,7 +196,6 @@ var setDefinition = function() {
 					dataType: "text",
 					success: function(response){
 						response = JSON.parse(response);
-						console.log(response);
 						if (response==null) {
 						    definitionOuter.style.display = "none";
 								definitionRandom.style.display = "none";
@@ -201,6 +206,30 @@ var setDefinition = function() {
     						return ;
 						}
 						setDropdown(response, "selectDefinition");
+					},
+					error: function(textStatus, errorThrown){
+						console.log(textStatus)
+						console.log(errorThrown)
+					}
+		})
+		$.ajax({
+			traditional: true,
+					type: "GET",
+					url: "/getDefinitionAmount/",
+					data: {subject: subj},
+					dataType: "text",
+					success: function(response){
+						response = JSON.parse(response);
+						if (response==null) {
+						    definitionOuter.style.display = "none";
+								definitionRandom.style.display = "none";
+						    definitionHeading.style.display = "none";
+    						var msg = document.createElement("p");
+    						msg.innerHTML = "No defitions available based on your selections.";
+    						definitionOuter.parentElement.appendChild(msg);
+    						return ;
+						}
+						definitionRandom.setAttribute('amount', response);
 					},
 					error: function(textStatus, errorThrown){
 						console.log(textStatus)
@@ -221,17 +250,17 @@ var setDefinition = function() {
 // Runs upon submission
 // Gets content based on subj/type/topic
 var getContent = function() {
-
+	
 	var subj = selected("selectSubjects");
 	var mType = selected("selectTypes");
 	var mTopic;
-
+	
 	if (mType=='Notes') {
 		mTopic = selected("selectTopics");
 	} else {
 		mTopic = "";
 	}
-
+	
 	var mNumber;
 	if (mType=='Questions') {
 		mNumber = selected("selectQuiz");
@@ -240,72 +269,95 @@ var getContent = function() {
 	} else {
 		mNumber = "";
 	}
-
+	
 	if (mNumber == ""){
-	$.ajax({
-		traditional: true,
-        type: "GET",
-        url: "/getContent/",
-        data: {subject: subj, type: mType, topic: mTopic},
-        dataType: "text",
-        success: function(response){
-        	response = JSON.parse(response)
-            if (mType=='Notes') {
-		    	dispn(response);
-            } else if (mType=='Questions') {
-         		var quizOuter = document.getElementById("selectQuiz");
-		        var msg = document.createElement("p");
-		        msg.innerHTML = "Click on the words answer the quiz!";
-		        quizOuter.parentElement.appendChild(msg);
-		    	dispq(reponse);
-        	} else if (mType=='Definitions') {
-		        var definitionOuter = document.getElementById("selectDefinition");
-		        var msg = document.createElement("p");
-		        msg.innerHTML = "Click on the words to see their definitions!";
-		        definitionOuter.parentElement.appendChild(msg);
-		    	dispd(response);
-        	}
-        },
-        error: function(textStatus, errorThrown){
-        	console.log(textStatus)
-        	console.log(errorThrown)
-        }
-	})
-}else{
-	if (mType == "Questions"){
-	$.ajax({
-		traditional: true,
-        type: "GET",
-        url: "/getQuiz/",
-        data: {subject: subj, number:mNumber},
-        dataType: "text",
-        success: function(response){
-        	response = JSON.parse(response)
-	    	dispq(response);
-        },
-        error: function(textStatus, errorThrown){
-        	console.log(textStatus)
-        	console.log(errorThrown)
-        }
-	})
-}else{
-	$.ajax({
-		traditional: true,
-        type: "GET",
-        url: "/getDefinitionLetter/",
-        data: {subject: subj, letter:mNumber},
-        dataType: "text",
-        success: function(response){
-        	response = JSON.parse(response)
-	    dispd(response);
-        },
-        error: function(textStatus, errorThrown){
-        	console.log(textStatus)
-        	console.log(errorThrown)
-        }
-	})
-}
-}
+		$.ajax({
+			traditional: true,
+			type: "GET",
+			url: "/getContent/",
+			data: {subject: subj, type: mType, topic: mTopic},
+			dataType: "text",
+			success: function(response){
+				response = JSON.parse(response)
+				if (mType=='Notes') {
+					dispn(response);
+				} else if (mType=='Questions') {
+					var quizOuter = document.getElementById("selectQuiz");
+					var msg = document.createElement("p");
+					msg.innerHTML = "Click on the words answer the quiz!";
+					quizOuter.parentElement.appendChild(msg);
+					dispq(reponse);
+				} else if (mType=='Definitions') {
+					var definitionOuter = document.getElementById("selectDefinition");
+					var msg = document.createElement("p");
+					msg.innerHTML = "Click on the words to see their definitions!";
+					definitionOuter.parentElement.appendChild(msg);
+					dispd(response);
+				}
+			},
+			error: function(textStatus, errorThrown){
+				console.log(textStatus)
+				console.log(errorThrown)
+			}
+		})
+	}else{
+		if (mType == "Questions"){
+			$.ajax({
+				traditional: true,
+				type: "GET",
+				url: "/getQuiz/",
+				data: {subject: subj, number:mNumber},
+				dataType: "text",
+				success: function(response){
+					response = JSON.parse(response)
+					dispq(response);
+				},
+				error: function(textStatus, errorThrown){
+					console.log(textStatus)
+					console.log(errorThrown)
+				}
+			})
+		}else{
+			if (random){
+				var definitionRandom = document.getElementById("selectDefinitionRandom");
+				mNumber = definitionRandom.getAttribute('amount');
+				mNumber = Math.floor((Math.random() * mNumber) + 1);
+				//console.log(mNumber);
+				$.ajax({
+					traditional: true,
+					type: "GET",
+					url: "/getDefinition/",
+					data: {subject: subj, number:mNumber},
+					dataType: "text",
+					success: function(response){
+						response = JSON.parse(response)
+						dispd(response);
+					},
+					error: function(textStatus, errorThrown){
+						console.log(textStatus)
+						console.log(errorThrown)
+					}
+				})
+				random = false;
+			}else{
+				$.ajax({
+					traditional: true,
+					type: "GET",
+					url: "/getDefinitionLetter/",
+					data: {subject: subj, letter:mNumber},
+					dataType: "text",
+					success: function(response){
+						response = JSON.parse(response)
+						dispd(response);
+					},
+					error: function(textStatus, errorThrown){
+						console.log(textStatus)
+						console.log(errorThrown)
+					}
+				})
+			}
+		}
+	}
 }
 
 var contentCap = 100;
