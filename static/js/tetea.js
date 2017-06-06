@@ -52,7 +52,9 @@ var setDropdown = function(to_add, thisSelect) {
 		link.setAttribute("class", "link".concat(thisSelect));
 		link.innerHTML = topicList[i];
 
-		if (topicList[i].length==1) { // letters
+		if (thisSelect=="selectDefinition" ||
+			thisSelect=="selectQuiz" ||
+			thisSelect=="selectTopics") { // letters
 			link.addEventListener("mouseup", function(e) {
 				setTimeout(getContent, 1);
 			});

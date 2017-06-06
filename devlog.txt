@@ -298,4 +298,4 @@ yvonneC -- 2017-06-05 22:47
 - instructions obstructed convenience of index.html functionality so most of it was moved to about page
 
 emmaV -- 2017-06-06 13:14
-- definitions auto-load on picking a letter
+- items auto load once final dropdown is hit
