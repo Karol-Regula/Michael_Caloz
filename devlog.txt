@@ -292,3 +292,7 @@ karolR -- 2017-06-05 22:23
 - fixed ordering of notes to match database order
 - added ability to download database
 - activated database upload function??
+
+yvonneC -- 2017-06-05 22:47
+- added welcome text to index.html and wrote basic instructions as to how to use the website
+- instructions obstructed convenience of index.html functionality so most of it was moved to about page
