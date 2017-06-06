@@ -44,16 +44,12 @@
 		     var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 		     chart.draw(data, options);
 		     }
-
-	var getCurr = document.getElementById("getDbBtn");
-	getCurr.addEventListener('click', function(e) {
-	});	
 		     </script>
 <br> <hr> <br>
 <h2>Upload a New SQL Database</h2>
 <form method=post enctype=multipart/form-data>
 
-	<button id="getDbBtn" type="submit" class="btn btn-primary">Download current database!
+	<button id="getDbBtn" class="btn btn-primary">Download current database!
 	</button>
 
 	<span class="btn btn-default btn-file">
@@ -93,6 +89,11 @@
 			msg.style.display = 'block';
 		}
 	});
+
+	var getCurr = document.getElementById("getDbBtn");
+	getCurr.addEventListener('click', function(e) {
+		console.log("clickety");
+	});	
 </script>
 
 <i> {{ message }} </i>
