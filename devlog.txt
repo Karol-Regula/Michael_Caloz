@@ -276,5 +276,16 @@ emmaV -- 2017-06-04 8:50
 - Definitions stay vertically aligned
 - make quiz scoring look nicer
 
+karolR -- 2017-06-04 11:39
+-added drop-down hamburger menu functionality for mobile
+- styling changes to navbar
+- fixed clear cache and logout crash session bug
+- replaced \n's in returned note content to <br>'s
+
 emmaV -- 2017-06-05 20:55
 - Do front end and integrating for admin pass changing
+
+karolR -- 2017-06-05 22:23
+- converted categorization of definitions from sets of 10 to letters (backend + js + some html)
+- added support for number definitions
+- added ability to request a random definition set
