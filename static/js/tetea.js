@@ -183,11 +183,13 @@ var setDefinition = function() {
 		$.ajax({
 			traditional: true,
 					type: "GET",
-					url: "/getDefinitionAmount/",
+					url: "/getDefinitionLetterAmount/",
 					data: {subject: subj},
 					dataType: "text",
 					success: function(response){
-						if (response==0) {
+						response = JSON.parse(response);
+						console.log(response);
+						if (response==null) {
 						    definitionOuter.style.display = "none";
 						    definitionHeading.style.display = "none";
     						var msg = document.createElement("p");
@@ -195,14 +197,7 @@ var setDefinition = function() {
     						definitionOuter.parentElement.appendChild(msg);
     						return ;
 						}
-						
-						var amounts = [];
-						var i = 1;
-						while (i <= parseInt(response)){
-							amounts.push(i);
-							i++;
-						}
-						setDropdown(amounts, "selectDefinition");
+						setDropdown(response, "selectDefinition");
 					},
 					error: function(textStatus, errorThrown){
 						console.log(textStatus)
@@ -293,8 +288,8 @@ var getContent = function() {
 	$.ajax({
 		traditional: true,
         type: "GET",
-        url: "/getDefinition/",
-        data: {subject: subj, number:mNumber},
+        url: "/getDefinitionLetter/",
+        data: {subject: subj, letter:mNumber},
         dataType: "text",
         success: function(response){
         	response = JSON.parse(response)
@@ -309,7 +304,7 @@ var getContent = function() {
 }
 }
 
-var contentCap = 10;
+var contentCap = 100;
 var contentCapNotes = 100;
 var content = null;
 

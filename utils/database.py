@@ -294,6 +294,47 @@ def returnDefinitionAmount(subject):
   #print "a: " + str(a)
   return a
   
+#returns data for requested definition set starting with a particular letter of the alphabet, scalable
+def returnDefinitionLetter(definitionLetter, subject):
+  initializeDB()
+  out = []
+  nums = ['0','1','2','3','4','5','6','7','8','9']
+  q = "SELECT Word, Definition FROM definitions WHERE subject =?"
+  c.execute(q, (subject,))
+  whole = c.fetchall()
+  for i in whole:
+    if (i[0][0].upper() == definitionLetter):
+      out.append({'Word': i[0], 'Definition':i[1]})
+    if (definitionLetter == '#' and str(i[0][0]) in nums):
+      out.append({'Word': i[0], 'Definition':i[1]})
+  closeDB()
+  out.sort(key=lambda x: x['Word']) #sort by word
+  print out
+  return json.dumps(out)
+  
+#returns list of letters for which definitions exist
+def returnDefinitionLetterAmount(subject):
+  initializeDB()
+  out = []
+  num = 0
+  nums = ['0','1','2','3','4','5','6','7','8','9']
+  letLow = [str(chr(i)) for i in range(ord('a'),ord('z')+1)]
+  letUp = [x.upper() for x in letLow] #yay list comprehensions are useful!
+  q = "SELECT Word, Definition FROM definitions WHERE subject =?"  
+  c.execute(q, (subject,))
+  whole = c.fetchall()
+  for i in whole:
+    if (i[0][0].upper() not in out):
+      if (i[0][0] in letLow or i[0][0] in letUp):
+        out.append(str(i[0][0]).upper())
+      elif (str(i[0][0]) in nums):
+        num = 1
+  if (num == 1):
+    out.append('#')
+  out.sort()
+  closeDB()
+  return json.dumps(out)
+  
   
 def convertDB(filename):
   os.system('./utils/sqlToSqlite.sh uploads/' + filename +  '| sqlite3 data/databaseNEW.db')

@@ -57,6 +57,12 @@ def getQuiz():
   number = request.args['number']
   return database.returnQuiz(number, subject)
 
+# Returns content of the reuquested definition set
+@app.route("/getDefinition/", methods=["GET"])
+def getDefinition():
+  subject = request.args['subject']
+  number = request.args['number']
+  return database.returnDefinition(number, subject)
 	
 # Returns number of available definition sets
 @app.route("/getDefinitionAmount/", methods=["GET"])
@@ -64,13 +70,20 @@ def getDefinitionAmount():
   subject = request.args['subject']
   amount = database.returnDefinitionAmount(subject)
   return str(amount)
-
-# Returns content of the reuqested definition set
-@app.route("/getDefinition/", methods=["GET"])
-def getDefinition():
+  
+# Returns content of the reuquested definition letter
+@app.route("/getDefinitionLetter/", methods=["GET"])
+def getDefinitionLetter():
   subject = request.args['subject']
-  number = request.args['number']
-  return database.returnDefinition(number, subject)
+  letter = request.args['letter']
+  return database.returnDefinitionLetter(letter, subject)
+  
+# Returns number of available definition letters
+@app.route("/getDefinitionLetterAmount/", methods=["GET"])
+def getDefinitionLetterAmount():
+  subject = request.args['subject']
+  letters = database.returnDefinitionLetterAmount(subject)
+  return str(letters)
 
 
 @app.route("/")
