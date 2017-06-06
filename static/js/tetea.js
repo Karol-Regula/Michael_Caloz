@@ -44,11 +44,20 @@ var setDropdown = function(to_add, thisSelect) {
 	var list = document.getElementById(thisSelectFull);
 	var i=0;
 	for (i=0; i<topicList.length; i++){
+
+
 		var listItem = document.createElement("li");
 		var link = document.createElement("a");
 		link.setAttribute("href","#");
 		link.setAttribute("class", "link".concat(thisSelect));
 		link.innerHTML = topicList[i];
+
+		if (topicList[i].length==1) { // letters
+			link.addEventListener("mouseup", function(e) {
+				setTimeout(getContent, 1);
+			});
+		}
+
 		listItem.appendChild(link);
 		list.appendChild(listItem);
 	}
