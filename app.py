@@ -6,6 +6,7 @@ from utils import database, accounts, accessDB
 import json
 
 
+
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = 'uploads/'
@@ -161,6 +162,10 @@ def upload_file():
       return redirect(url_for('upload_file',filename=filename, message=msg, title=title))
   return render_template('admin.html', subjects=info, message=msg, title=title)
   #return redirect("/")
+
+@app.route("/admin")
+def download():
+  return "/data/database.db"
   
 @app.route("/logout/")
 def logout():
