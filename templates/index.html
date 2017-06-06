@@ -72,13 +72,31 @@
   </ul>
 </div>
 
-<h2 id="selectDefinitionHeading">Definition Sets</h2>
-<div class="dropdown">
-  <button id="selectDefinition" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pick a defnition set
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" id="selectDefinition-inner">
-  </ul>
+<div id="selectDefinition">
+  <h2 id="selectDefinitionHeading">Definition Sets</h2>
+
+  <div class="container">
+  <div class="dropdown row">
+    <div class="col-md-3">
+      <label><input type="radio" name="sets"></label>
+      <button id="selectDefinitionSet" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pick a defnition set
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" id="selectDefinition-inner">
+      </ul>
+    </div>
+
+    <div class="col-md-3">
+      <label><input type="radio" name="glossary"></label>
+       <button id="selectLetter" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+       <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" id="selectLetter-inner">
+      </ul>
+    </div>
+
+  </div>
+  </div>
 </div>
 
 <br><br>
