@@ -175,24 +175,28 @@ var setDefinition = function() {
 	var typePicked = selected("selectTypes");
 	var definition = document.getElementById("selectDefinition-inner");
 	var definitionOuter = document.getElementById("selectDefinition");
-	var definitionRandom = document.getElementById("selectDefinitionRandom");
+        var definitionRandom = document.getElementById("selectDefinitionRandom");
 	var definitionHeading = document.getElementById("selectDefinitionHeading");
 	
 	var subj = selected("selectSubjects");
 	
-	if (typePicked=='Definitions') {
+    if (typePicked=='Definitions') {
+	        var or = document.getElementById("or");
+                var msg = document.createElement('p');
+    	        msg.innerHTML = "OR";
+    	        or.appendChild(msg);
 		for (var i = 0; i < definitionOuter.childNodes.length; i++) {
     		if (definitionOuter.childNodes[i].className == "caret") {
       			definitionOuter.removeChild(definitionOuter.childNodes[i]);
       			break;
     		}        
 		}
-		
+	        
 		var caret = document.createElement('span');
 		caret.setAttribute('class', 'caret');
 		definitionOuter.appendChild(caret);
 		definitionOuter.style.display = "block";
-		definitionRandom.style.display = "block";
+	        definitionRandom.style.display = "block";
 		definitionHeading.style.display = "block";
 		
 		while (definition.hasChildNodes()) {
@@ -254,7 +258,7 @@ var setDefinition = function() {
 		definitionOuter.innerHTML = 'Pick a definition set ';
 		definitionRandom.style.display = "none";
 		definitionOuter.style.display = "none";
-		definitionHeading.style.display = "none";
+	        definitionHeading.style.display = "none";
 	}
 };
 
