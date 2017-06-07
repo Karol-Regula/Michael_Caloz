@@ -226,6 +226,24 @@ def getRandomQuestions(subject):
   return json.dumps(newRet)
   #return newRet   
 
+def getRandomDefnitions(subject):
+  initializeDB()
+  ret = []
+  q = "SELECT Word, Definition FROM definitions WHERE subject =?"
+  c.execute(q, (subject,))
+  whole = c.fetchall()
+  for i in whole:
+    ret.append({'Word': i[0], 'Definition':i[1]})
+  closeDB()   
+  lenRet = len(ret)
+  newRet = []
+  while len(newRet) < 10:
+    ran = random.randint(0,lenRet-1)
+    if ret[ran] not in newRet:
+      newRet.append(ret[ran])
+  return json.dumps(newRet)
+  #return newRet   
+    
 #return dictionary of subject:[topics] for the notes
 def subjectTopic():
   initializeDB()
@@ -379,4 +397,4 @@ def deduplicateDatabase():
   closeDB()
 
 #deduplicateDatabase()
-#print getRandomQuestions('History')
+#print getRandomDefnitions('History')
