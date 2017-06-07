@@ -218,15 +218,13 @@ def getRandomQuestions(subject):
       ret.append({"Question": i[0], "A": i[1], "B": i[2], "C": i[3], "D":i[4], "E":i[5], "Answer": i[6]})
   closeDB()
   lenRet = len(ret)
-  strat = random.randint(1,lenRet/10+1)
   newRet = []
-  for x in range(1,11):
-    if x*strat < len(ret):
-      newRet.append(ret[x*strat])
-    else:
-      newRet.append(ret[len(ret)-1])
+  while len(newRet) < 10:
+    ran = random.randint(0,lenRet-1)
+    if ret[ran] not in newRet:
+      newRet.append(ret[ran])
   return json.dumps(newRet)
-      
+  #return newRet   
 
 #return dictionary of subject:[topics] for the notes
 def subjectTopic():
