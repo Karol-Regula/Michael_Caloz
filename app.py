@@ -36,9 +36,9 @@ def getTopics():
 
 @app.route("/getRandomQuiz/", methods=["GET"])
 def getRandQs():
-  print request.args.keys()
   subj = request.args['subject']
-  return ",".join(database.getRandomQuestions(subj))
+  qs = database.getRandomQuestions(subj)
+  return qs
 
 # Returns comma-separated str of subtopics available
 # for the requested topic

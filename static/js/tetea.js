@@ -371,9 +371,10 @@ var getContent = function() {
 					traditional: true,
 					type: "GET",
 					url: "/getRandomQuiz/",
-					data: {subject: subj, number:mNumber},
+					data: {subject: subj},
 					dataType: "text",
 					success: function(response){
+						console.log(response)
 						response = JSON.parse(response)
 						dispq(response);
 					},
