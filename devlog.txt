@@ -313,3 +313,6 @@ emmaV -- 2017-06-06 21:52
 
 bayleSS -- 2017-06-06 22:30
 - made backend for random quizzes
+
+bayleSS -- 2017-06-07 12:10
+- made backend to truly randomize definitions
