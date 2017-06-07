@@ -308,3 +308,4 @@ bayleSS -- 2017-06-06 21:40
 
 emmaV -- 2017-06-06 21:52
 - remove empty answers from question display
+- set up front end for random quizzes

@@ -109,8 +109,15 @@ var setQuiz = function() {
 	var quizOuter = document.getElementById("selectQuiz");
 	var quizHeading = document.getElementById("selectQuizHeading");
 	var subj = selected("selectSubjects");
+	var quizRand = document.getElementById("selectQuizRandom");
 	
 	if (typePicked=='Questions') {
+
+		var or = document.getElementById("qor");
+        var msg = document.createElement('p');
+    	msg.innerHTML = "OR";
+    	or.appendChild(msg);
+
 		for (var i = 0; i < quizOuter.childNodes.length; i++) {
     		if (quizOuter.childNodes[i].className == "caret") {
       			quizOuter.removeChild(quizOuter.childNodes[i]);
@@ -123,6 +130,7 @@ var setQuiz = function() {
 		quizOuter.appendChild(caret);
 		quizOuter.style.display = "block";
 		quizHeading.style.display = "block";
+		quizRand.style.display = "block";
 		
 		while (quiz.hasChildNodes()) {
 			quiz.removeChild(quiz.lastChild);
@@ -160,12 +168,19 @@ var setQuiz = function() {
 		quizOuter.innerHTML = 'Pick a quiz ';
 		quizOuter.style.display = "none";
 		quizHeading.style.display = "none";
+		quizRand.style.display = "none";
 	}
 };
 
 var random = false;
 var randomDefinition = function(){
 	random = true;
+	getContent();
+}
+
+var randomQ = false;
+var randomQuiz = function() {
+	randomQ = true;
 	getContent();
 }
 
@@ -314,25 +329,43 @@ var getContent = function() {
 				console.log(textStatus)
 				console.log(errorThrown)
 			}
-		})
+		});
 	}else{
 		if (mType == "Questions"){
-			$.ajax({
-				traditional: true,
-				type: "GET",
-				url: "/getQuiz/",
-				data: {subject: subj, number:mNumber},
-				dataType: "text",
-				success: function(response){
-					response = JSON.parse(response)
-					dispq(response);
-				},
-				error: function(textStatus, errorThrown){
-					console.log(textStatus)
-					console.log(errorThrown)
-				}
-			})
-		}else{
+			if (!randomQ) {
+				$.ajax({
+					traditional: true,
+					type: "GET",
+					url: "/getQuiz/",
+					data: {subject: subj, number:mNumber},
+					dataType: "text",
+					success: function(response){
+						response = JSON.parse(response)
+						dispq(response);
+					},
+					error: function(textStatus, errorThrown){
+						console.log(textStatus)
+						console.log(errorThrown)
+					}
+				})
+			} else {
+				$.ajax({
+					traditional: true,
+					type: "GET",
+					url: "/getRandomQuiz/",
+					data: {subject: subj, number:mNumber},
+					dataType: "text",
+					success: function(response){
+						response = JSON.parse(response)
+						dispq(response);
+					},
+					error: function(textStatus, errorThrown){
+						console.log(textStatus)
+						console.log(errorThrown)
+					}
+				})
+			}
+		} else {
 			if (random){
 				var definitionRandom = document.getElementById("selectDefinitionRandom");
 				mNumber = definitionRandom.getAttribute('amount');
@@ -354,7 +387,7 @@ var getContent = function() {
 					}
 				})
 				random = false;
-			}else{
+			} else {
 				$.ajax({
 					traditional: true,
 					type: "GET",
@@ -692,7 +725,9 @@ window.onload = function WindowLoad(event) {
 
 		var quiz = document.getElementById("selectQuiz");
 		var quizHeading = document.getElementById("selectQuizHeading");
+		var quizRandom = document.getElementById("selectQuizRandom");
 		quiz.style.display = "none";
+		quizRandom.style.display = "none";
 		quizHeading.style.display = "none";
 
 		var definition = document.getElementById("selectDefinition");

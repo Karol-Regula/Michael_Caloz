@@ -34,6 +34,12 @@ def getTopics():
     ret = [topic[0] for topic in topics] #bc tuple
   return ",".join(ret)
 
+@app.route("/getRandomQuiz/", methods=["GET"])
+def getRandQs():
+  print request.args.keys()
+  subj = request.args['subject']
+  return ",".join(database.getRandomQuestions(subj))
+
 # Returns comma-separated str of subtopics available
 # for the requested topic
 @app.route("/getTopics/", methods=["GET"])
