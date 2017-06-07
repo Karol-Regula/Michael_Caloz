@@ -40,6 +40,13 @@ def getRandQs():
   qs = database.getRandomQuestions(subj)
   return qs
 
+@app.route("/getRandomDefs/", methods=["GET"])
+def getRandDs():
+    subj = request.args['subject']
+    ds = database.getRandomDefinitions(subj)
+    print ds
+    return ds
+
 # Returns comma-separated str of subtopics available
 # for the requested topic
 @app.route("/getTopics/", methods=["GET"])

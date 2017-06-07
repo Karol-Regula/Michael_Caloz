@@ -237,7 +237,7 @@ var setDefinition = function() {
 					url: "/getDefinitionLetterAmount/",
 					data: {subject: subj},
 					dataType: "text",
-					success: function(response){
+				success: function(response){
 						response = JSON.parse(response);
 						if (response==null) {
 						    definitionOuter.style.display = "none";
@@ -392,8 +392,8 @@ var getContent = function() {
 				$.ajax({
 					traditional: true,
 					type: "GET",
-					url: "/getDefinition/",
-					data: {subject: subj, number:mNumber},
+					url: "/getRandomDefs/",
+					data: {subject: subj},
 					dataType: "text",
 					success: function(response){
 						response = JSON.parse(response)
