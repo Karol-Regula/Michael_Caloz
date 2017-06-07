@@ -226,7 +226,7 @@ def getRandomQuestions(subject):
   return json.dumps(newRet)
   #return newRet   
 
-def getRandomDefnitions(subject):
+def getRandomDefinitions(subject):
   initializeDB()
   ret = []
   q = "SELECT Word, Definition FROM definitions WHERE subject =?"
@@ -397,4 +397,4 @@ def deduplicateDatabase():
   closeDB()
 
 #deduplicateDatabase()
-#print getRandomDefnitions('History')
+#print getRandomDefinitions('History')
