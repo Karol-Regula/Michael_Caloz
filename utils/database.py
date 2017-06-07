@@ -227,8 +227,8 @@ def returnQuiz(quizNumber, subject):
   initializeDB()
   quizNumber = int(quizNumber)
   out = []
-  q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =?"
-  c.execute(q, (subject,))
+  q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =? and Flag==?"
+  c.execute(q, (subject,""))
   whole = c.fetchall()
   for i in whole:
     if (i[6] != ''):
