@@ -225,7 +225,7 @@ def getRandomQuestions(subject):
       newRet.append(ret[x*strat])
     else:
       newRet.append(ret[len(ret)-1])
-  return newRet
+  return json.dumps(newRet)
       
 
 #return dictionary of subject:[topics] for the notes
