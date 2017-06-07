@@ -196,8 +196,8 @@ def content(subject,tipe,topic):
       ret.append({'Word': i[0], 'Definition':i[1]})
       
   if tipe == "Questions":
-    q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =?"
-    c.execute(q, (subject,))
+    q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =? AND Flag==?"
+    c.execute(q, (subject,""))
     whole = c.fetchall()
     for i in whole:
       if (i[6] != ''):
@@ -244,8 +244,8 @@ def returnQuiz(quizNumber, subject):
 def returnQuizAmount(subject):
   initializeDB()
   out = []
-  q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =?"
-  c.execute(q, (subject,))
+  q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =? AND Flag==?"
+  c.execute(q, (subject,""))
   whole = c.fetchall()
   for i in whole:
     if (i[6] != ''):
