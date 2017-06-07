@@ -309,3 +309,7 @@ bayleSS -- 2017-06-06 21:40
 emmaV -- 2017-06-06 21:52
 - remove empty answers from question display
 - set up front end for random quizzes
+- JS for random quizzes works! :)
+
+bayleSS -- 2017-06-06 22:30
+- made backend for random quizzes
