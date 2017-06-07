@@ -305,3 +305,6 @@ bayleSS -- 2017-06-06 17:50
 
 bayleSS -- 2017-06-06 21:40
 - removed flagged questions from being displayed
+
+emmaV -- 2017-06-06 21:52
+- remove empty answers from question display

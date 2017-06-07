@@ -455,31 +455,33 @@ var dispq = function(qs) {
 	var keys = ['Question','A','B','C','D','E'];
 	for (j=0; j<keys.length; j++) {
 	    if (j==0) {
-		var theq = document.createElement("p");
-		theq.setAttribute("class","question");
-		theq.innerHTML = (i+1)+". "+q[keys[j]];
-		this_q.appendChild(theq);
+			var theq = document.createElement("p");
+			theq.setAttribute("class","question");
+			theq.innerHTML = (i+1)+". "+q[keys[j]];
+			this_q.appendChild(theq);
 	    } else {
-		var thisAns = document.createElement("ul");
-		thisAns.addEventListener('click', function(e) {
+	    	if (q[keys[j]]!="") {
+				var thisAns = document.createElement("ul");
+				thisAns.addEventListener('click', function(e) {
 
-			var x=0;
-			var lst = this.parentElement.childNodes;
-			for (x=0; x<lst.length; x++) {
-				lst[x].setAttribute("class", lst[x].getAttribute("class").replace(" picked",""));
-				lst[x].setAttribute("style","");
+					var x=0;
+					var lst = this.parentElement.childNodes;
+					for (x=0; x<lst.length; x++) {
+						lst[x].setAttribute("class", lst[x].getAttribute("class").replace(" picked",""));
+						lst[x].setAttribute("style","");
+					}
+
+					this.setAttribute("class", this.getAttribute("class") + " picked");
+				});
+				var letters = ['a', 'b', 'c', 'd', 'e']
+				thisAns.innerHTML = letters[j-1]+") "+q[keys[j]];
+				if (keys[j] == q['Answer']) {
+				    thisAns.setAttribute("class","answer right");
+				} else {
+				    thisAns.setAttribute("class","answer wrong");
+				}
+				answerList.appendChild(thisAns);
 			}
-
-			this.setAttribute("class", this.getAttribute("class") + " picked");
-		});
-		var letters = ['a', 'b', 'c', 'd', 'e']
-		thisAns.innerHTML = letters[j-1]+") "+q[keys[j]];
-		if (keys[j] == q['Answer']) {
-		    thisAns.setAttribute("class","answer right");
-		} else {
-		    thisAns.setAttribute("class","answer wrong");
-		}
-		answerList.appendChild(thisAns);
 	    }
 	}
 	this_q.append(answerList);
