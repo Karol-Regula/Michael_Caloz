@@ -374,7 +374,6 @@ var getContent = function() {
 					data: {subject: subj},
 					dataType: "text",
 					success: function(response){
-						console.log(response)
 						response = JSON.parse(response)
 						dispq(response);
 					},
