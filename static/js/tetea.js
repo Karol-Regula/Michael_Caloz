@@ -110,10 +110,14 @@ var setQuiz = function() {
 	var quizHeading = document.getElementById("selectQuizHeading");
 	var subj = selected("selectSubjects");
 	var quizRand = document.getElementById("selectQuizRandom");
+	var or = document.getElementById("qor");
 	
 	if (typePicked=='Questions') {
 
-		var or = document.getElementById("qor");
+		while (qor.hasChildNodes()) {
+			qor.removeChild(qor.lastChild);
+		}
+
         var msg = document.createElement('p');
     	msg.innerHTML = "OR";
     	or.appendChild(msg);
@@ -169,6 +173,10 @@ var setQuiz = function() {
 		quizOuter.style.display = "none";
 		quizHeading.style.display = "none";
 		quizRand.style.display = "none";
+
+		while (qor.hasChildNodes()) {
+			qor.removeChild(qor.lastChild);
+		}
 	}
 };
 
@@ -192,11 +200,15 @@ var setDefinition = function() {
 	var definitionOuter = document.getElementById("selectDefinition");
         var definitionRandom = document.getElementById("selectDefinitionRandom");
 	var definitionHeading = document.getElementById("selectDefinitionHeading");
+	var or = document.getElementById("or");
 	
 	var subj = selected("selectSubjects");
 	
     if (typePicked=='Definitions') {
-	        var or = document.getElementById("or");
+
+    		while (or.hasChildNodes()) {
+				or.removeChild(or.lastChild);
+			}
                 var msg = document.createElement('p');
     	        msg.innerHTML = "OR";
     	        or.appendChild(msg);
@@ -213,6 +225,7 @@ var setDefinition = function() {
 		definitionOuter.style.display = "block";
 	        definitionRandom.style.display = "block";
 		definitionHeading.style.display = "block";
+		or.style.display = "block";
 		
 		while (definition.hasChildNodes()) {
 			definition.removeChild(definition.lastChild);
@@ -273,7 +286,12 @@ var setDefinition = function() {
 		definitionOuter.innerHTML = 'Pick a definition set ';
 		definitionRandom.style.display = "none";
 		definitionOuter.style.display = "none";
-	        definitionHeading.style.display = "none";
+	    definitionHeading.style.display = "none";
+	    or.style.display = "none";
+
+	    /*while (or.hasChildNodes()) {
+			or.removeChild(or.lastChild);
+		}*/
 	}
 };
 
