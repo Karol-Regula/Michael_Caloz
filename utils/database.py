@@ -1,4 +1,4 @@
-import time, csv, sqlite3, json, os
+import time, csv, sqlite3, json, os, random
 
 f = "database.db"
 
@@ -206,6 +206,27 @@ def content(subject,tipe,topic):
   #print ret
   return json.dumps(ret)
 
+#returns dict of 10 random questions
+def getRandomQuestions(subject):
+  initializeDB()
+  ret = []
+  q = "SELECT Question, A, B, C, D, E, Answer FROM questions WHERE subject =? AND Flag==?"
+  c.execute(q, (subject,""))
+  whole = c.fetchall()
+  for i in whole:
+    if (i[6] != ''):
+      ret.append({"Question": i[0], "A": i[1], "B": i[2], "C": i[3], "D":i[4], "E":i[5], "Answer": i[6]})
+  closeDB()
+  lenRet = len(ret)
+  strat = random.randint(1,lenRet/10+1)
+  newRet = []
+  for x in range(1,11):
+    if x*strat < len(ret):
+      newRet.append(ret[x*strat])
+    else:
+      newRet.append(ret[len(ret)-1])
+  return newRet
+      
 
 #return dictionary of subject:[topics] for the notes
 def subjectTopic():
@@ -360,3 +381,4 @@ def deduplicateDatabase():
   closeDB()
 
 #deduplicateDatabase()
+#print getRandomQuestions('History')
