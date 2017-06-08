@@ -21,16 +21,17 @@
 
 
 {% block data %}
-<p style="font-size:1.5em;margin:0;"> Welcome to Text Tetea!<br></p>
-<font style="font-size:1.0em;">See the About page for instructions.</font>
 
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 {% for message in messages %}
-<b style="color:red">{{ message }}</b>
+<b style="color:red;font-size:1.5em;">{{ message }}</b>
 {% endfor %}
 {% endif %}
 {% endwith %}
+
+<p style="font-size:1.5em;margin:0;"> Welcome to Text Tetea!<br></p>
+<font style="font-size:1.0em;">See the About page for instructions.</font>
 
 <h2>Subjects</h2>
 <div class="dropdown">
