@@ -118,7 +118,7 @@ var setQuiz = function() {
 			qor.removeChild(qor.lastChild);
 		}
 
-        var msg = document.createElement('p');
+		var msg = document.createElement('p');
     	msg.innerHTML = "OR";
     	or.appendChild(msg);
 
@@ -198,7 +198,7 @@ var setDefinition = function() {
 	var typePicked = selected("selectTypes");
 	var definition = document.getElementById("selectDefinition-inner");
 	var definitionOuter = document.getElementById("selectDefinition");
-        var definitionRandom = document.getElementById("selectDefinitionRandom");
+    var definitionRandom = document.getElementById("selectDefinitionRandom");
 	var definitionHeading = document.getElementById("selectDefinitionHeading");
 	var or = document.getElementById("or");
 	
@@ -241,10 +241,11 @@ var setDefinition = function() {
 						response = JSON.parse(response);
 						if (response==null) {
 						    definitionOuter.style.display = "none";
-								definitionRandom.style.display = "none";
+							definitionRandom.style.display = "none";
 						    definitionHeading.style.display = "none";
     						var msg = document.createElement("p");
     						msg.innerHTML = "No defitions available based on your selections.";
+    						or.style.display = "none";
     						definitionOuter.parentElement.appendChild(msg);
     						return ;
 						}
@@ -270,6 +271,7 @@ var setDefinition = function() {
     						var msg = document.createElement("p");
     						msg.innerHTML = "No defitions available based on your selections.";
     						definitionOuter.parentElement.appendChild(msg);
+    						or.style.display = "none";
     						return ;
 						}
 						definitionRandom.setAttribute('amount', response);
@@ -490,6 +492,7 @@ var dispq = function(qs) {
     	content.appendChild(document.createElement("br"));
     	var msg = document.createElement("p");
     	msg.innerHTML = "No questions available based on your selections.";
+    	or.style.display = "none";
     	content.appendChild(msg);
     	return ;
     }
