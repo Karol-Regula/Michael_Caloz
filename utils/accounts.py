@@ -20,8 +20,6 @@ def closeDB():
   db.commit()
   db.close()
 
-
-#Ask Yvonne for default password
 def initializeAdmin():
   initializeDB()
   tableCreateQuery = "CREATE TABLE IF NOT EXISTS Accounts (username TEXT, password TEXT, salt TEXT, defaultPW TEXT)"
