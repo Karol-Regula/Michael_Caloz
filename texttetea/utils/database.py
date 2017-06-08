@@ -379,12 +379,15 @@ def returnDefinitionLetterAmount(subject):
   
   
 def convertDB(filename):
-  print "filename: " + str(filename)
-  print DIR
-  os.system('. ' + DIR + '/utils/sqlToSqlite.sh ' + DIR + 'uploads/' + filename +' | sqlite3 ' + DIR + 'data/databaseNEW.db')
-  os.rename(DIR + 'data/database.db', DIR + 'data/databaseOLD.db'); #uncomment this to make this function live
-  os.rename(DIR + 'data/databaseNEW.db', DIR + 'data/database.db'); #change database1 to database to make this function live
-  os.rename(DIR + 'uploads/' + filename, DIR + 'data/database.sql')
+  #rint "filename: " + str(filename)
+  #print DIR
+  try:
+    os.system('. ' + DIR + '/utils/sqlToSqlite.sh ' + DIR + 'uploads/' + filename +' | sqlite3 ' + DIR + 'data/databaseNEW.db')
+    os.rename(DIR + 'data/database.db', DIR + 'data/databaseOLD.db'); #uncomment this to make this function live
+    os.rename(DIR + 'data/databaseNEW.db', DIR + 'data/database.db'); #change database1 to database to make this function live
+    os.rename(DIR + 'uploads/' + filename, DIR + 'data/database.sql')
+  except:
+    print "Contact the group."
   #dos.remove('uploads/' + str(filename))
   #os.remove('uploads/' + filename)
   #print 'uploads/' + str(filename)
