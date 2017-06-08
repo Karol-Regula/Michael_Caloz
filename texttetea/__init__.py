@@ -19,7 +19,9 @@ UPLOAD_FOLDER = DIR + 'uploads/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
+UPLOAD_FOLDER = UPLOAD_FOLDER[1:]
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+print UPLOAD_FOLDER
 app.secret_key = urandom(20)
 
 # Returns comma-separated str of topics available
