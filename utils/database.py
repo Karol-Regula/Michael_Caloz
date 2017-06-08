@@ -1,11 +1,13 @@
 import time, csv, sqlite3, json, os, random
 
 DIR = os.path.dirname(__file__)
+print "DIR DB: " + DIR
 if not DIR==".":
-  DIR+= "/"
-  f = DIR+"database.db"
+  DIR+= "/../"
+  f = DIR+"data/database.db"
 else:
   f = "data/database.db"
+print f
 
 #database headings
 

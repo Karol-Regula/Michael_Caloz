@@ -5,12 +5,13 @@ import json
 import os
 
 DIR = os.path.dirname(__file__)
+print "DIR ACCESS: " + DIR
 if not DIR==".":
-  DIR+= "/"
-  f = DIR+"access.db"
+  DIR+= "/../"
+  f = DIR+"data/access.db"
 else:
   f = "data/access.db"
-  #print f
+print f
 
 def initializeAccessDB():
   global c, db

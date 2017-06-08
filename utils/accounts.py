@@ -5,9 +5,10 @@ from hashlib import sha1
 def initializeDB():
   global c, db
   DIR = os.path.dirname(__file__)
+  print "DIR ACCS: " + DIR
   if not DIR==".":
-    DIR+= "/"
-    f = DIR+"admin.db"
+    DIR+= "/../"
+    f = DIR+"data/admin.db"
   else:
     f = "data/admin.db"
   print f
