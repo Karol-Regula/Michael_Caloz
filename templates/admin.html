@@ -54,6 +54,7 @@
 	</span>
 	<input type="submit" class="btn btn-primary" value="Upload">
 </form>
+<i> {{ message }} </i>
 
 <h2>Download the Current SQL Database</h2>
 <a href="{{ url_for('download') }}">
@@ -76,7 +77,7 @@
 		</div>
 	</div>
 	<br>
-	<input type="submit" id="submitPass" class="btn btn-primary" value="Change password"">
+	<input type="submit" id="submitPass" class="btn btn-primary" value="Change password">
 	<span style="display: none;" id="submitWarn">New password entries must match</span>
 </form>
 
@@ -98,8 +99,6 @@
 		console.log("clickety");
 	});	
 </script>
-
-<i> {{ message }} </i>
 
 {% endblock %}
 
