@@ -170,8 +170,8 @@ def upload_file():
       msg = "Your database files have been uploaded"
       filename = secure_filename(file.filename)
       #print filename
-      database.convertDB(filename)
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+      database.convertDB(filename)
       #print msg
       return redirect(url_for('upload_file',filename=filename, message=msg, title=title))
   return render_template('admin.html', subjects=info, message=msg, title=title)
