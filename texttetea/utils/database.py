@@ -283,6 +283,7 @@ def returnQuiz(quizNumber, subject):
   #print "a: " + str(a) + "b: " + str(b)
   out = out[a:b]
   closeDB()
+  print out
   return json.dumps(out)
 
 #returns amount of available quizes for a particular subject, use for returnQuiz()
@@ -393,7 +394,7 @@ def convertDB(filename):
   #print 'uploads/' + str(filename)
   #os.remove('uploads/' + filename)
   #os.system('mv uploads/database.sql data/')
-  #deduplicateDatabase();
+  deduplicateDatabase();
   return
 
 
@@ -404,13 +405,15 @@ def convertDB(filename):
 def deduplicateDatabase():
   initializeDB()
   q = 'DELETE FROM definitions WHERE rowid NOT IN(SELECT min(rowid) FROM definitions GROUP BY idx, Definition)'
-  c.execute(q);
+  c.execute(q)
   q = 'DELETE FROM questions WHERE rowid NOT IN(SELECT min(rowid) FROM questions GROUP BY Question, A)'
-  c.execute(q);
+  c.execute(q)
+  q = 'DELETE FROM questions WHERE (A = \'\')'
+  c.execute(q)
   q = 'DELETE FROM notes WHERE rowid NOT IN(SELECT min(rowid) FROM notes GROUP BY idx, Information)'
-  c.execute(q);
+  c.execute(q)
   q = 'vacuum'
-  c.execute(q);
+  c.execute(q)
   closeDB()
 
 #deduplicateDatabase()
