@@ -244,7 +244,7 @@ var setDefinition = function() {
 							definitionRandom.style.display = "none";
 						    definitionHeading.style.display = "none";
     						var msg = document.createElement("p");
-    						msg.innerHTML = "No defitions available based on your selections.";
+    						msg.innerHTML = "No definitions available based on your selections.";
     						or.style.display = "none";
     						definitionOuter.parentElement.appendChild(msg);
     						return ;
@@ -269,7 +269,7 @@ var setDefinition = function() {
 								definitionRandom.style.display = "none";
 						    definitionHeading.style.display = "none";
     						var msg = document.createElement("p");
-    						msg.innerHTML = "No defitions available based on your selections.";
+    						msg.innerHTML = "No definitions available based on your selections.";
     						definitionOuter.parentElement.appendChild(msg);
     						or.style.display = "none";
     						return ;

@@ -375,7 +375,7 @@ def convertDB(filename):
   os.system('./utils/sqlToSqlite.sh uploads/' + filename +  '| sqlite3 data/databaseNEW.db')
   os.rename('data/database.db', 'data/databaseOLD.db'); #uncomment this to make this function live
   os.rename('data/databaseNEW.db', 'data/database.db'); #change database1 to database to make this function live
-  os.remove('uploads/' + str(filename))
+  #dos.remove('uploads/' + str(filename))
   #os.remove('uploads/' + filename)
   #print 'uploads/' + str(filename)
   #os.remove('uploads/' + filename)
