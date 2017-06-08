@@ -319,3 +319,4 @@ bayleSS -- 2017-06-07 12:10
 
 emmaV -- 2017-06-07 10:10
 - fix bayle's OR yet again :)
+- make quiz scoring based off length qs

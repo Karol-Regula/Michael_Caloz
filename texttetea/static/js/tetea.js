@@ -589,7 +589,8 @@ var scoreQuiz = function() {
 		}
 	}
 	var p = document.getElementById("quizScore");
-	p.innerHTML = "Score: " + (score*10).toString().concat("%");
+	var numQs = document.getElementsByClassName("question").length;
+	p.innerHTML = "Score: " + ((score*100)/numQs).toString().concat("%");
 }
 
 var dispd = function(defs) {
