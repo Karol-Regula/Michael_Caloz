@@ -2,8 +2,15 @@
 
 import sqlite3
 import json
+import os
 
-f = "data/access.db"
+DIR = os.path.dirname(__file__)
+if DIR==".":
+  DIR+= "/"
+  f = DIR+"access.db"
+else:
+  f = "data/access.db"
+  #print f
 
 def initializeAccessDB():
   global c, db

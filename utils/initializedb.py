@@ -5,8 +5,9 @@ initializing second database file that tallies the clicks on the website
 import sqlite3   #enable control of an sqlite database
 import os
 
-
-f = "access.db"
+DIR = os.path.dirname(__file__) or "."
+DIR+= "/"
+f = DIR + "access.db"
 
 db = sqlite3.connect(f) #open if f exists, otherwise create
 c = db.cursor()    #facilitate db ops

@@ -1,11 +1,17 @@
 import sqlite3
-from os import urandom
+import os
 from hashlib import sha1
 
 def initializeDB():
   global c, db
-  file = 'data/admin.db'
-  db = sqlite3.connect(file)
+  DIR = os.path.dirname(__file__)
+  if DIR==".":
+    DIR+= "/"
+    f = DIR+"admin.db"
+  else:
+    f = "data/admin.db"
+  print f
+  db = sqlite3.connect(f)
   c = db.cursor()
   return c
 
@@ -22,7 +28,7 @@ def initializeAdmin():
   c.execute(tableCreateQuery)
   user = "Admin"
   adminQuery = "INSERT INTO Accounts VALUES (?,?,?,?)"
-  salt = urandom(10).encode('hex')
+  salt = os.urandom(10).encode('hex')
   password = sha1("pass"+salt).hexdigest()
   default = sha1("pass"+salt).hexdigest()
   c.execute(adminQuery, (user, password, salt, default))

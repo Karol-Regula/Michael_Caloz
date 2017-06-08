@@ -1,6 +1,11 @@
 import time, csv, sqlite3, json, os, random
 
-f = "database.db"
+DIR = os.path.dirname(__file__)
+if DIR==".":
+  DIR+= "/"
+  f = DIR+"database.db"
+else:
+  f = "data/database.db"
 
 #database headings
 
@@ -46,7 +51,8 @@ def revSubTranslate(subject):
 
 def initializeDB():
   global c, db
-  file = 'data/database.db'
+  file = f
+  print file
   db = sqlite3.connect(file)
   c = db.cursor()
   #initialize.createDB()
