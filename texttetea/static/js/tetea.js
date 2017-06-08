@@ -247,6 +247,9 @@ var setDefinition = function() {
     						msg.innerHTML = "No definitions available based on your selections.";
     						or.style.display = "none";
     						definitionOuter.parentElement.appendChild(msg);
+    						while (content.hasChildNodes) {
+    							content.removeChild(content.lastChild);
+    						}
     						return ;
 						}
 						setDropdown(response, "selectDefinition");
@@ -272,6 +275,9 @@ var setDefinition = function() {
     						msg.innerHTML = "No definitions available based on your selections.";
     						definitionOuter.parentElement.appendChild(msg);
     						or.style.display = "none";
+    						while (content.hasChildNodes) {
+    							content.removeChild(content.lastChild);
+    						}
     						return ;
 						}
 						definitionRandom.setAttribute('amount', response);
@@ -456,6 +462,9 @@ var dispn = function(notes){
     content.appendChild(message);
     if (notes.length==0) {
     	content.appendChild(document.createElement("br"));
+    	while (content.hasChildNodes) {
+    		content.removeChild(content.lastChild);
+    	}
     	var msg = document.createElement("p");
     	msg.innerHTML = "No notes available based on your selections.";
     	content.appendChild(msg);
