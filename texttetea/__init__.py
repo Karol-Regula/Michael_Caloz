@@ -21,7 +21,7 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 app = Flask(__name__)
 UPLOAD_FOLDER = UPLOAD_FOLDER[1:]
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-print UPLOAD_FOLDER
+#print UPLOAD_FOLDER
 app.secret_key = urandom(20)
 
 # Returns comma-separated str of topics available
@@ -46,14 +46,21 @@ def getTopics():
 def getRandQs():
   subj = request.args['subject']
   qs = database.getRandomQuestions(subj)
+  theType = 'quiz'
+  topic = ''
+  time = datetime.datetime.now()
+  accessDB.addAccessEntry(time, subj, theType, topic)
   return qs
 
 @app.route("/getRandomDefs/", methods=["GET"])
 def getRandDs():
-    subj = request.args['subject']
-    ds = database.getRandomDefinitions(subj)
-    print ds
-    return ds
+  subj = request.args['subject']
+  ds = database.getRandomDefinitions(subj)
+  theType = 'definition'
+  topic = ''
+  time = datetime.datetime.now()
+  accessDB.addAccessEntry(time, subj, theType, topic)
+  return ds
 
 # Returns comma-separated str of subtopics available
 # for the requested topic
@@ -77,6 +84,10 @@ def getQuizAmount():
 def getQuiz():
   subject = request.args['subject']
   number = request.args['number']
+  theType = 'quiz'
+  topic = ''
+  time = datetime.datetime.now()
+  accessDB.addAccessEntry(time, subject, theType, topic)
   return database.returnQuiz(number, subject)
 
 # Returns content of the reuquested definition set
@@ -84,6 +95,10 @@ def getQuiz():
 def getDefinition():
   subject = request.args['subject']
   number = request.args['number']
+  theType = 'definition'
+  topic = ''
+  time = datetime.datetime.now()
+  accessDB.addAccessEntry(time, subject, theType, topic)
   return database.returnDefinition(number, subject)
 	
 # Returns number of available definition sets
@@ -98,6 +113,10 @@ def getDefinitionAmount():
 def getDefinitionLetter():
   subject = request.args['subject']
   letter = request.args['letter']
+  theType = 'definition'
+  topic = ''
+  time = datetime.datetime.now()
+  accessDB.addAccessEntry(time, subject, theType, topic)
   return database.returnDefinitionLetter(letter, subject)
   
 # Returns number of available definition letters
