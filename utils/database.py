@@ -1,7 +1,7 @@
 import time, csv, sqlite3, json, os, random
 
 DIR = os.path.dirname(__file__)
-if DIR==".":
+if not DIR==".":
   DIR+= "/"
   f = DIR+"database.db"
 else:

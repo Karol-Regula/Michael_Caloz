@@ -5,7 +5,7 @@ import json
 import os
 
 DIR = os.path.dirname(__file__)
-if DIR==".":
+if not DIR==".":
   DIR+= "/"
   f = DIR+"access.db"
 else:
