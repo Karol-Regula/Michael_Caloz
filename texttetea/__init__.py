@@ -230,7 +230,7 @@ def contact():
     
 @app.route("/changePass/", methods=["POST"])
 def changePass():
-  accounts.changePass(session['username'],request.form['p1'])
+  if 'usermame' in session:
   return redirect("/admin")
 
 if __name__ == "__main__":
