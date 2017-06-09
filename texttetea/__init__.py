@@ -232,10 +232,8 @@ def contact():
 def changePass():
   if 'username' in session:
     accounts.changePass(session['username'],request.form['p1'])
-  else:
-    print session
-    print "aaaaa"
-  return redirect("/admin/")
+    session.pop("username")
+  redirect("/")
 
 if __name__ == "__main__":
   app.debug = True
