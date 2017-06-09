@@ -11,7 +11,7 @@ def initializeDB():
     f = DIR+"data/admin.db"
   else:
     f = "data/admin.db"
-  print f
+  #print f
   db = sqlite3.connect(f)
   c = db.cursor()
   return c
@@ -78,6 +78,8 @@ def changePass(user, pw):
     ret = "Password is now changed."
   closeDB()
   return ret
+  
+#changePass('administratorTetea', 'pass')
   
 def getPassword(user):
   initializeDB()
