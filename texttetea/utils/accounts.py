@@ -51,9 +51,9 @@ def login(user,password):
     for record in sel:
       password = sha1(password+record[2]).hexdigest()
       if (password==record[1]):
-  	ret = ""
+  	    ret = ""
       else: #password doesn't match
-  	ret = "Wrong username or password"    
+  	    ret = "Wrong username or password"    
     if ret=="n/a": # no records
   	  ret = "Username does not exist"
         
