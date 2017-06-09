@@ -131,11 +131,11 @@ def getDefinitionLetterAmount():
 def placeholder1():
   #homepage changes depending on whether admin is logged in or not
   if 'username' in session:
-    return redirect("/admin")
+    return redirect("/admin/")
   return render_template('index.html', subjects=database.getSubjects(), types=['Questions', 'Notes', 'Definitions'], topics=database.subjectTopic(), title = "Text Tetea")
 #, admin=admin);
 
-@app.route("/slash")
+@app.route("/slash/")
 def placeholder0():
   data = database.getSubjects()
   return render_template('test.html', variable = data)
@@ -158,7 +158,7 @@ def login():
   if text == "":#if no error message, succesful go back home
     session["username"] = user
     #print text
-    return redirect("/admin")
+    return redirect("/admin/")
   else:
     flash(text);
     return redirect("/")
@@ -172,7 +172,7 @@ info = accessDB.getInfoArray()
 return render_template('admin.html', subjects=info)'''
 
 
-@app.route("/admin", methods=['GET', 'POST'])
+@app.route("/admin/", methods=['GET', 'POST'])
 def upload_file():
   msg = ""
   title = "Tetea Admin"
@@ -232,7 +232,10 @@ def contact():
 def changePass():
   if 'username' in session:
     accounts.changePass(session['username'],request.form['p1'])
-  return redirect("/admin")
+  else:
+    print session
+    print "aaaaa"
+  return redirect("/admin/")
 
 if __name__ == "__main__":
   app.debug = True
